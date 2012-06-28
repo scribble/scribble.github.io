@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset='utf-8' />
+    <meta http-equiv="X-UA-Compatible" content="chrome=1" />
+    <meta name="description" content="Scribble : Protocol Language" />
+
+    <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
+
+    <title>Scribble</title>
+  </head>
+
+  <body>
+
+    <!-- HEADER -->
+    <div id="header_wrap" class="outer">
+        <header class="inner">
+          <a id="forkme_banner" href="https://github.com/scribble">View on GitHub</a>
+
+          <h1 id="project_title">Scribble</h1>
+          <h2 id="project_tagline">Protocol Language</h2>
+
+        </header>
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <div id="main_content_wrap" class="outer">
+      <section id="main_content" class="inner">
+        <h3>What is Scribble?</h3>
+
+<p>Scribble is a language to describe application-level protocols among communicating systems. A protocol represents an agreement on how participating systems interact with each other. Without a protocol, it is hard to do a meaningful interaction: participants simply cannot communicate effectively, since they do not know when to expect the other parties to send their data, or whether the other party is ready to receive a datum it is sending. In fact it is not clear what kinds of data is to be used for each interaction. It is too costly to carry out communications based on guess works and with inevitable communication mismatch (synchronisation bugs). Simply, it is not feasible as an engineering practice.</p>
+
+<p>Scribble presents a stratified description language:</p>
+
+<ul>
+<li>The bottom layer is the type layer, in which we describe the bare skeleton of conversations structures as types for interactions (known in the literature as session type).</li>
+<li>The assertion layer allows elaboration of a type-layer description using assertions.</li>
+<li>Finally the third layer, protocol document layer, allows description of multiple protocols and constraints over them.</li>
+</ul><p>Test link to subpage: <a href="otherpage.html">Other Page</a></p>
+
+<h3>A Simple Exampe</h3>
+
+<pre><code>protocol HelloWorld (role Me) {
+    Me introduces World;
+
+    Hello from Me to World;
+}
+</code></pre>
+
+<h3>How can it be used?</h3>
+
+<p>The development and validation of programs against protocol descriptions could proceed as follows:</p>
+
+<ul>
+<li>A programmer specifies a set of protocols to be used in her application.</li>
+<li>She can verify that those protocols are valid, free from livelocks and deadlocks.</li>
+<li>She develops her application referring to those protocols, potentially using communication constructs available in the chosen programming language.</li>
+<li>She validates her programs against protocols using a protocol checker, which detects lack of conformance.</li>
+<li>At the execution time, a local monitor can validate messages with respect to given protocols, optionally blocking invalid messages from being delivered.</li>
+</ul>
+      </section>
+    </div>
+
+    <!-- FOOTER  -->
+    <div id="footer_wrap" class="outer">
+      <footer class="inner">
+        <p>Published with <a href="http://pages.github.com">GitHub Pages</a></p>
+      </footer>
+    </div>
+
+    
+
+  </body>
+</html>
