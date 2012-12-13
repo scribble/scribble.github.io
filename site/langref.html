@@ -1,0 +1,1169 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/REC-html40/loose.dtd">
+<html><head>
+<title>
+	Scribble Language Reference
+	 
+	Version 0.2
+
+</title>
+
+<meta http-equiv="Content-Type" content="text/html; charset=us-ascii">
+<meta name="GENERATOR" content="hevea 1.10">
+<style type="text/css">
+.li-itemize{margin:1ex 0ex;}
+.li-enumerate{margin:1ex 0ex;}
+.dd-description{margin:0ex 0ex 1ex 4ex;}
+.dt-description{margin:0ex;}
+.toc{list-style:none;}
+.thefootnotes{text-align:left;margin:0ex;}
+.dt-thefootnotes{margin:0em;}
+.dd-thefootnotes{margin:0em 0em 0em 2em;}
+.footnoterule{margin:1em auto 1em 0px;width:50%;}
+.caption{padding-left:2ex; padding-right:2ex; margin-left:auto; margin-right:auto}
+.title{margin:2ex auto;text-align:center}
+.center{text-align:center;margin-left:auto;margin-right:auto;}
+.flushleft{text-align:left;margin-left:0ex;margin-right:auto;}
+.flushright{text-align:right;margin-left:auto;margin-right:0ex;}
+DIV TABLE{margin-left:inherit;margin-right:inherit;}
+PRE{text-align:left;margin-left:0ex;margin-right:auto;}
+BLOCKQUOTE{margin-left:4ex;margin-right:4ex;text-align:left;}
+TD P{margin:0px;}
+.boxed{border:1px solid black}
+.textboxed{border:1px solid black}
+.vbar{border:none;width:2px;background-color:black;}
+.hbar{border:none;height:2px;width:100%;background-color:black;}
+.hfill{border:none;height:1px;width:200%;background-color:black;}
+.vdisplay{border-collapse:separate;border-spacing:2px;width:auto; empty-cells:show; border:2px solid red;}
+.vdcell{white-space:nowrap;padding:0px;width:auto; border:2px solid green;}
+.display{border-collapse:separate;border-spacing:2px;width:auto; border:none;}
+.dcell{white-space:nowrap;padding:0px;width:auto; border:none;}
+.dcenter{margin:0ex auto;}
+.vdcenter{border:solid #FF8000 2px; margin:0ex auto;}
+.minipage{text-align:left; margin-left:0em; margin-right:auto;}
+.marginpar{border:solid thin black; width:20%; text-align:left;}
+.marginparleft{float:left; margin-left:0ex; margin-right:1ex;}
+.marginparright{float:right; margin-left:1ex; margin-right:0ex;}
+.theorem{text-align:left;margin:1ex auto 1ex 0ex;}
+.part{margin:2ex auto;text-align:center}
+.lstlisting{font-family:monospace;white-space:pre;margin-right:auto;margin-left:0pt;text-align:left}
+.ruled{border:solid
+black;padding:1ex;background:#ffffaa;color:black}
+.comment{border:dotted
+black;padding:1ex;background:#ffaaaa;color:black}
+</style>
+</head>
+<body>
+<!--HEVEA command line is: c:\cygwin\usr\local\bin\hevea\hevea -exec xxdate.exe main.tex -->
+<!--CUT DEF chapter 1 --><table class="title"><tbody><tr><td><h1 class="titlemain">
+	Scribble Language Reference
+	<br>
+	<font size="4">Version 0.2</font>
+</h1><h3 class="titlerest">The Scribble team</h3></td></tr>
+</tbody></table><hr size="2"><!--TOC chapter Contents-->
+<h1 class="chapter"><!--SEC ANCHOR -->Contents</h1><!--SEC END --><ul class="toc"><li class="li-toc">
+<a href="#htoc1">Chapter&nbsp;1&nbsp;&nbsp;Introduction</a>
+<ul class="toc"><li class="li-toc">
+<a href="#htoc2">1.1&nbsp;&nbsp;Notation</a>
+</li><li class="li-toc"><a href="#htoc3">1.2&nbsp;&nbsp;Terminology</a>
+</li></ul>
+</li><li class="li-toc"><a href="#htoc4">Chapter&nbsp;2&nbsp;&nbsp;Lexical Structure</a>
+<ul class="toc"><li class="li-toc">
+<a href="#htoc5">2.1&nbsp;&nbsp;White Space</a>
+</li><li class="li-toc"><a href="#htoc6">2.2&nbsp;&nbsp;Comments</a>
+</li><li class="li-toc"><a href="#htoc7">2.3&nbsp;&nbsp;Identifiers</a>
+</li><li class="li-toc"><a href="#htoc8">2.4&nbsp;&nbsp;Keywords</a>
+</li></ul>
+</li><li class="li-toc"><a href="#htoc9">Chapter&nbsp;3&nbsp;&nbsp;Syntax</a>
+<ul class="toc"><li class="li-toc">
+<a href="#htoc10">3.1&nbsp;&nbsp;Packages and Modules</a>
+<ul class="toc"><li class="li-toc">
+<a href="#htoc11">3.1.1&nbsp;&nbsp;Packages</a>
+</li><li class="li-toc"><a href="#htoc12">3.1.2&nbsp;&nbsp;Modules</a>
+</li><li class="li-toc"><a href="#htoc13">3.1.3&nbsp;&nbsp;Import Declarations</a>
+</li><li class="li-toc"><a href="#htoc14">3.1.4&nbsp;&nbsp;Module Members and Visibility</a>
+</li></ul>
+</li><li class="li-toc"><a href="#htoc15">3.2&nbsp;&nbsp;Payload Type Declarations</a>
+<ul class="toc"><li class="li-toc">
+<a href="#htoc16">3.2.1&nbsp;&nbsp;Visible Payload Types</a>
+</li></ul>
+</li><li class="li-toc"><a href="#htoc17">3.3&nbsp;&nbsp;Message Signatures</a>
+</li><li class="li-toc"><a href="#htoc18">3.4&nbsp;&nbsp;Protocol Declarations</a>
+</li><li class="li-toc"><a href="#htoc19">3.5&nbsp;&nbsp;Global Protocols</a>
+<ul class="toc"><li class="li-toc">
+<a href="#htoc20">3.5.1&nbsp;&nbsp;Global Interaction Blocks and Sequences</a>
+</li><li class="li-toc"><a href="#htoc21">3.5.2&nbsp;&nbsp;Point-to-Point Message Transfer</a>
+</li><li class="li-toc"><a href="#htoc22">3.5.3&nbsp;&nbsp;Choice</a>
+</li><li class="li-toc"><a href="#htoc23">3.5.4&nbsp;&nbsp;Parallel</a>
+</li><li class="li-toc"><a href="#htoc24">3.5.5&nbsp;&nbsp;Recursion</a>
+</li><li class="li-toc"><a href="#htoc25">3.5.6&nbsp;&nbsp;Interruptible</a>
+</li><li class="li-toc"><a href="#htoc26">3.5.7&nbsp;&nbsp;Do</a>
+</li><li class="li-toc"><a href="#htoc27">3.5.8&nbsp;&nbsp;Spawn</a>
+</li></ul>
+</li><li class="li-toc"><a href="#htoc28">3.6&nbsp;&nbsp;Local Protocols</a>
+<ul class="toc"><li class="li-toc">
+<a href="#htoc29">3.6.1&nbsp;&nbsp;Local Interaction Blocks and Sequences</a>
+</li><li class="li-toc"><a href="#htoc30">3.6.2&nbsp;&nbsp;Point-to-Point Message Transfer</a>
+</li><li class="li-toc"><a href="#htoc31">3.6.3&nbsp;&nbsp;Choice</a>
+</li><li class="li-toc"><a href="#htoc32">3.6.4&nbsp;&nbsp;Parallel</a>
+</li><li class="li-toc"><a href="#htoc33">3.6.5&nbsp;&nbsp;Recursion</a>
+</li><li class="li-toc"><a href="#htoc34">3.6.6&nbsp;&nbsp;Interruptible</a>
+</li><li class="li-toc"><a href="#htoc35">3.6.7&nbsp;&nbsp;Protocol Creation and
+Entrance</a>
+</li></ul>
+</li></ul>
+</li><li class="li-toc"><a href="#htoc36">Chapter&nbsp;4&nbsp;&nbsp;Well-Formed Protocols</a>
+<ul class="toc"><li class="li-toc">
+<a href="#htoc37">4.1&nbsp;&nbsp;Global Protocols</a>
+<ul class="toc"><li class="li-toc">
+<a href="#htoc38">4.1.1&nbsp;&nbsp;General Conditions</a>
+</li><li class="li-toc"><a href="#htoc39">4.1.2&nbsp;&nbsp;Local Choice Conditions</a>
+</li><li class="li-toc"><a href="#htoc40">4.1.3&nbsp;&nbsp;Parallel Conditions</a>
+</li><li class="li-toc"><a href="#htoc41">4.1.4&nbsp;&nbsp;Recursion Conditions</a>
+</li><li class="li-toc"><a href="#htoc42">4.1.5&nbsp;&nbsp;Interruptible Conditions</a>
+</li><li class="li-toc"><a href="#htoc43">4.1.6&nbsp;&nbsp;Spawn Conditions</a>
+</li></ul>
+</li></ul>
+</li><li class="li-toc"><a href="#htoc44">Chapter&nbsp;5&nbsp;&nbsp;Semantics</a>
+<ul class="toc"><li class="li-toc">
+<a href="#htoc45">5.1&nbsp;&nbsp;Communication Model</a>
+<ul class="toc"><li class="li-toc">
+<a href="#htoc46">5.1.1&nbsp;&nbsp;Communication Events</a>
+</li><li class="li-toc"><a href="#htoc47">5.1.2&nbsp;&nbsp;Communication Event Traces</a>
+</li></ul>
+</li><li class="li-toc"><a href="#htoc48">5.2&nbsp;&nbsp;Global Interaction Semantics</a>
+<ul class="toc"><li class="li-toc">
+<a href="#htoc49">5.2.1&nbsp;&nbsp;Global Protocol Declaration and Global Interaction Block</a>
+</li><li class="li-toc"><a href="#htoc50">5.2.2&nbsp;&nbsp;Interaction Sequence</a>
+</li><li class="li-toc"><a href="#htoc51">5.2.3&nbsp;&nbsp;Point-to-Point Message Transfer</a>
+</li><li class="li-toc"><a href="#htoc52">5.2.4&nbsp;&nbsp;Choice</a>
+</li><li class="li-toc"><a href="#htoc53">5.2.5&nbsp;&nbsp;Parallel</a>
+</li><li class="li-toc"><a href="#htoc54">5.2.6&nbsp;&nbsp;Recursion</a>
+</li><li class="li-toc"><a href="#htoc55">5.2.7&nbsp;&nbsp;Interruptible</a>
+</li><li class="li-toc"><a href="#htoc56">5.2.8&nbsp;&nbsp;Do</a>
+</li><li class="li-toc"><a href="#htoc57">5.2.9&nbsp;&nbsp;Spawn</a>
+</li></ul>
+</li><li class="li-toc"><a href="#htoc58">5.3&nbsp;&nbsp;Local Interaction Semantics</a>
+</li><li class="li-toc"><a href="#htoc59">5.4&nbsp;&nbsp;Global-to-Local Protocol Projection</a>
+</li></ul>
+</li></ul><hr size="2"><!--TOC chapter Introduction-->
+<h1 class="chapter"><!--SEC ANCHOR --><a name="htoc1">Chapter&nbsp;1</a>&nbsp;&nbsp;Introduction</h1><!--SEC END --><p>
+<a name="sec:introduction"></a></p><p>This document is the Scribble language reference. It defines the
+language syntax and conventions
+for 	<em>Scribble protocols</em>.
+It also defines the semantics of
+Scribble protocols
+in terms of event traces.</p><hr size="2"><!--TOC section Notation-->
+<h2 class="section"><!--SEC ANCHOR --><a name="htoc2">1.1</a>&nbsp;&nbsp;<a name="name:nonterminal">N</a>otation</h2><!--SEC END --><p>Scribble syntax is specified using a BNF-like notation. <tt><font color="#9C10A8">Terminal</font></tt>
+symbols are in purple with typewriter
+font. <a href="#name:nonterminal"><em>Non-terminal</em></a>
+symbols are in italic. Each grammar rule starts with a non-terminal (the name defined by the rule) and <tt>::=</tt>.
+ Parentheses (&nbsp;) are used for grouping grammar elements, square 
+brackets [&nbsp;] for an optional element, vertical bar | for separating
+ alternatives, and star * for zero or more repetitions of the preceding 
+element. An ellipsis is used for choice of any single character from an 
+inclusive range of ASCII characters, e.g. <tt><font color="#9C10A8">a</font></tt>&nbsp;&#8230;&nbsp;<tt><font color="#9C10A8">z</font></tt> means any lower case letter.
+</p><hr size="2"><!--TOC section Terminology-->
+<h2 class="section"><!--SEC ANCHOR --><a name="htoc3">1.2</a>&nbsp;&nbsp;Terminology</h2><!--SEC END --><p>This document uses the following terminology related to
+Scribble protocols.</p><dl class="description"><dt class="dt-description">
+<b>Principal</b></dt><dd class="dd-description">
+		An identifiable network entity that can function as a conversation endpoint.
+	</dd><dt class="dt-description"><b>Conversation</b></dt><dd class="dd-description">
+		A communication session between principals.</dd><dt class="dt-description"><b>Role</b></dt><dd class="dd-description"> A role is an abstract principal inside a
+conversation. It represents one endpoint of this conversation.
+	</dd><dt class="dt-description"><b>Global protocol</b></dt><dd class="dd-description">
+		A global protocol is an abstract specification of a conversation. It 
+specifies the communication between roles from a global (neutral) 
+perspective.<p>		</p></dd><dt class="dt-description"><b>Local protocol</b></dt><dd class="dd-description">
+		A local protocol specifies the local behaviour of a role (i.e.  from the perspective of that role).
+		</dd></dl><dl class="description"><dt class="dt-description">
+<b>Message</b></dt><dd class="dd-description">
+		A unit of communication between
+			principals in a conversation.</dd><dt class="dt-description"><b>Network</b></dt><dd class="dd-description">
+	The
+		interconnect between principals responsible for message delivery.
+	</dd><dt class="dt-description"><b>Message dispatch</b></dt><dd class="dd-description">
+		The event of
+	a principal
+		committing
+	a message to the network for delivery.
+	</dd><dt class="dt-description"><b>Message delivery</b></dt><dd class="dd-description">
+	The
+		event of delivering a dispatched message to the
+		target principal.
+	</dd><dt class="dt-description"><b>Message consume</b></dt><dd class="dd-description">
+		The event of a principal
+	consuming a message delivered by the network.
+	</dd></dl><hr size="2"><!--TOC chapter Lexical Structure-->
+<h1 class="chapter"><!--SEC ANCHOR --><a name="htoc4">Chapter&nbsp;2</a>&nbsp;&nbsp;Lexical Structure</h1><!--SEC END --><p>This section specifies the lexical structure of the Scribble language.</p><hr size="2"><!--TOC section White Space-->
+<h2 class="section"><!--SEC ANCHOR --><a name="htoc5">2.1</a>&nbsp;&nbsp;White Space</h2><!--SEC END --><p>White
+ space is defined as the ASCII space and horizontal tab characters, and 
+line terminators (ASCII LF, CR or CRLF). White space in Scribble 
+protocols serves only to delimit lexical tokens.
+</p><hr size="2"><!--TOC section Comments-->
+<h2 class="section"><!--SEC ANCHOR --><a name="htoc6">2.2</a>&nbsp;&nbsp;Comments</h2><!--SEC END --><p>Block comments are opened by <tt><font color="#9C10A8">/*</font></tt> and closed by
+<tt><font color="#9C10A8">*/</font></tt>. Single-line comments start from <tt><font color="#9C10A8">//</font></tt>
+ and end at the first line terminator.
+Comments do not nest. Block comments have no special meaning within a 
+single-line comment and vice versa. Comments delimit lexical tokens 
+similarly to white space.</p><hr size="2"><!--TOC section Identifiers-->
+<h2 class="section"><!--SEC ANCHOR --><a name="htoc7">2.3</a>&nbsp;&nbsp;Identifiers</h2><!--SEC END --><div class="center"><blockquote class="quote"><div class="ruled">
+
+<table class="display dcenter"><tbody><tr valign="middle"><td class="dcell"><table cellpadding="0" cellspacing="6"><tbody><tr><td align="right" nowrap="nowrap">&nbsp;&nbsp;<a href="#name:identifier"><i>identifier</i></a><a name="name:identifier"></a></td><td align="center" nowrap="nowrap"><tt>::=</tt></td><td align="left" nowrap="nowrap">(&nbsp;<a href="#name:letter"><i>letter</i></a>&nbsp;&nbsp;|&nbsp;&nbsp;<tt><font color="#9C10A8">_</font></tt>&nbsp;)
+&nbsp;&nbsp;(&nbsp;<a href="#name:letter"><i>letter</i></a>&nbsp;&nbsp;|&nbsp;&nbsp;<a href="#name:digit"><i>digit</i></a>&nbsp;&nbsp;|&nbsp;&nbsp;<tt><font color="#9C10A8">_</font></tt>
+		&nbsp;)*&nbsp;</td></tr>
+<tr><td align="right" nowrap="nowrap">&nbsp;&nbsp;<a href="#name:extidentifier"><i>extidentifier</i></a><a name="name:extidentifier"></a></td><td align="center" nowrap="nowrap"><tt>::=</tt></td><td align="left" nowrap="nowrap">(&nbsp;<a href="#name:letter"><i>letter</i></a>&nbsp;&nbsp;|&nbsp;&nbsp;<tt><font color="#9C10A8">_</font></tt>&nbsp;|&nbsp;&nbsp;<a href="#name:symbol"><i>symbol</i></a>)
+&nbsp;&nbsp;(&nbsp;<a href="#name:letter"><i>letter</i></a>&nbsp;&nbsp;|&nbsp;&nbsp;<a href="#name:digit"><i>digit</i></a>&nbsp;&nbsp;|&nbsp;&nbsp;<tt><font color="#9C10A8">_</font></tt>&nbsp;|&nbsp;<a href="#name:symbol"><i>symbol</i></a>
+		&nbsp;)*&nbsp;</td></tr>
+<tr><td align="right" nowrap="nowrap">&nbsp;&nbsp;<a href="#name:letter"><i>letter</i></a><a name="name:letter"></a></td><td align="center" nowrap="nowrap"><tt>::=</tt></td><td align="left" nowrap="nowrap"><tt><font color="#9C10A8">a</font></tt>&nbsp;&#8230;&nbsp;<tt><font color="#9C10A8">z</font></tt>&nbsp;&nbsp;|&nbsp;&nbsp;<tt><font color="#9C10A8">A</font></tt>&nbsp;&#8230;&nbsp;<tt><font color="#9C10A8">Z</font></tt>&nbsp;</td></tr>
+<tr><td align="right" nowrap="nowrap">&nbsp;&nbsp;<a href="#name:digit"><i>digit</i></a><a name="name:digit"></a></td><td align="center" nowrap="nowrap"><tt>::=</tt></td><td align="left" nowrap="nowrap"><tt><font color="#9C10A8">0</font></tt>&nbsp;&#8230;&nbsp;<tt><font color="#9C10A8">9</font></tt></td></tr>
+<tr><td align="right" nowrap="nowrap">&nbsp;&nbsp;<a href="#name:symbol"><i>symbol</i></a><a name="name:symbols"></a></td><td align="center" nowrap="nowrap"><tt>::=</tt></td><td align="left" nowrap="nowrap"><tt><font color="#9C10A8">{</font></tt>&nbsp;|&nbsp;<tt><font color="#9C10A8">}</font></tt>&nbsp;|&nbsp;<tt><font color="#9C10A8">(</font></tt>&nbsp;|&nbsp;<tt><font color="#9C10A8">)</font></tt>&nbsp;|&nbsp;<tt><font color="#9C10A8">[</font></tt>&nbsp;|&nbsp;<tt><font color="#9C10A8">]</font></tt>&nbsp;|&nbsp;<tt><font color="#9C10A8">:</font></tt>&nbsp;|&nbsp;<tt><font color="#9C10A8">/</font></tt>&nbsp;|&nbsp;<tt><font color="#9C10A8">\</font></tt>&nbsp;|&nbsp;<tt><font color="#9C10A8">.</font></tt>&nbsp;|&nbsp;<tt><font color="#9C10A8">#</font></tt>&nbsp;|&nbsp;<tt><font color="#9C10A8">&amp;</font></tt>&nbsp;|&nbsp;<tt><font color="#9C10A8">?</font></tt>&nbsp;|&nbsp;<tt><font color="#9C10A8">!</font></tt></td></tr>
+</tbody></table></td></tr>
+</tbody></table></div>
+</blockquote>
+</div><p>An <em>identifier</em> is a sequence of ASCII letters, digits and the <tt><font color="#9C10A8">_</font></tt> character that does not start with a digit.
+Identifiers cannot be among the reserved <a href="#name:keywords">keywords</a>. Identifiers should not be longer than 256 characters.</p><hr size="2"><!--TOC section Keywords-->
+<h2 class="section"><!--SEC ANCHOR --><a name="htoc8">2.4</a>&nbsp;&nbsp;<a name="name:keywords">K</a>eywords</h2><!--SEC END --><p>The following character sequences are reserved
+as Scribble keywords.
+They cannot be used as <a href="#name:identifier">identifiers</a> or <a href="#name:message-operator">message operators</a>.</p><table class="display dcenter"><tbody><tr valign="middle"><td class="dcell"><table cellpadding="0" cellspacing="6"><tbody><tr><td align="center" nowrap="nowrap"><tt><font color="#9C10A8">and</font></tt></td><td align="center" nowrap="nowrap" valign="top">&nbsp;&nbsp;&nbsp;&nbsp;</td><td align="center" nowrap="nowrap"><tt><font color="#9C10A8">as</font></tt></td><td align="center" nowrap="nowrap" valign="top">&nbsp;&nbsp;&nbsp;&nbsp;</td><td align="center" nowrap="nowrap"><tt><font color="#9C10A8">at</font></tt></td><td align="center" nowrap="nowrap" valign="top">&nbsp;&nbsp;&nbsp;&nbsp;</td><td align="center" nowrap="nowrap"><tt><font color="#9C10A8">by</font></tt></td><td align="center" nowrap="nowrap" valign="top">&nbsp;&nbsp;&nbsp;&nbsp;</td><td align="center" nowrap="nowrap"><tt><font color="#9C10A8">catch</font></tt>&nbsp;</td></tr>
+<tr><td align="center" nowrap="nowrap"><tt><font color="#9C10A8">choice</font></tt></td><td align="center" nowrap="nowrap" valign="top">&nbsp;&nbsp;&nbsp;&nbsp;</td><td align="center" nowrap="nowrap"><tt><font color="#9C10A8">continue</font></tt></td><td align="center" nowrap="nowrap" valign="top">&nbsp;&nbsp;&nbsp;&nbsp;</td><td align="center" nowrap="nowrap"><tt><font color="#9C10A8">create</font></tt></td><td align="center" nowrap="nowrap" valign="top">&nbsp;&nbsp;&nbsp;&nbsp;</td><td align="center" nowrap="nowrap"><tt><font color="#9C10A8">do</font></tt></td><td align="center" nowrap="nowrap" valign="top">&nbsp;&nbsp;&nbsp;&nbsp;</td><td align="center" nowrap="nowrap"><tt><font color="#9C10A8">enter</font></tt>&nbsp;</td></tr>
+<tr><td align="center" nowrap="nowrap"><tt><font color="#9C10A8">from</font></tt></td><td align="center" nowrap="nowrap" valign="top">&nbsp;&nbsp;&nbsp;&nbsp;</td><td align="center" nowrap="nowrap"><tt><font color="#9C10A8">global</font></tt></td><td align="center" nowrap="nowrap" valign="top">&nbsp;&nbsp;&nbsp;&nbsp;</td><td align="center" nowrap="nowrap"><tt><font color="#9C10A8">import</font></tt></td><td align="center" nowrap="nowrap" valign="top">&nbsp;&nbsp;&nbsp;&nbsp;</td><td align="center" nowrap="nowrap"><tt><font color="#9C10A8">instantiates</font></tt></td><td align="center" nowrap="nowrap" valign="top">&nbsp;&nbsp;&nbsp;&nbsp;</td><td align="center" nowrap="nowrap"><tt><font color="#9C10A8">interruptible</font></tt>&nbsp;</td></tr>
+<tr><td align="center" nowrap="nowrap"><tt><font color="#9C10A8">local</font></tt></td><td align="center" nowrap="nowrap" valign="top">&nbsp;&nbsp;&nbsp;&nbsp;</td><td align="center" nowrap="nowrap"><tt><font color="#9C10A8">or</font></tt></td><td align="center" nowrap="nowrap" valign="top">&nbsp;&nbsp;&nbsp;&nbsp;</td><td align="center" nowrap="nowrap"><tt><font color="#9C10A8">par</font></tt></td><td align="center" nowrap="nowrap" valign="top">&nbsp;&nbsp;&nbsp;&nbsp;</td><td align="center" nowrap="nowrap"><tt><font color="#9C10A8">protocol</font></tt></td><td align="center" nowrap="nowrap" valign="top">&nbsp;&nbsp;&nbsp;&nbsp;</td><td align="center" nowrap="nowrap"><tt><font color="#9C10A8">rec</font></tt>&nbsp;</td></tr>
+<tr><td align="center" nowrap="nowrap"><tt><font color="#9C10A8">role</font></tt></td><td align="center" nowrap="nowrap" valign="top">&nbsp;&nbsp;&nbsp;&nbsp;</td><td align="center" nowrap="nowrap"><tt><font color="#9C10A8">spawns</font></tt></td><td align="center" nowrap="nowrap" valign="top">&nbsp;&nbsp;&nbsp;&nbsp;</td><td align="center" nowrap="nowrap"><tt><font color="#9C10A8">throw</font></tt></td><td align="center" nowrap="nowrap" valign="top">&nbsp;&nbsp;&nbsp;&nbsp;</td><td align="center" nowrap="nowrap"><tt><font color="#9C10A8">to</font></tt></td><td align="center" nowrap="nowrap" valign="top">&nbsp;&nbsp;&nbsp;&nbsp;</td><td align="center" nowrap="nowrap"><tt><font color="#9C10A8">with</font></tt></td></tr>
+</tbody></table></td></tr>
+</tbody></table><hr size="2"><!--TOC chapter Syntax-->
+<h1 class="chapter"><!--SEC ANCHOR --><a name="htoc9">Chapter&nbsp;3</a>&nbsp;&nbsp;Syntax</h1><!--SEC END --><p>This chapter
+specifies
+the syntax of the Scribble language.</p><hr size="2"><!--TOC section Packages and Modules-->
+<h2 class="section"><!--SEC ANCHOR --><a name="htoc10">3.1</a>&nbsp;&nbsp;Packages and Modules</h2><!--SEC END --><hr size="2"><!--TOC subsection Packages-->
+<h3 class="subsection"><!--SEC ANCHOR --><a name="htoc11">3.1.1</a>&nbsp;&nbsp;<a name="name:packages">P</a>ackages</h3><!--SEC END --><p>The Scribble package hierarchy is a tree of package nodes. Leaf nodes are <a href="#name:modules">modules</a>, which are Scribble source files. Non-leaf nodes are simply called <em>packages</em>, which may contain other packages and modules as <em>subpackages</em>.
+ Scribble packages correspond to directories on the file system, with 
+subpackages nested inside their parent package directories.
+</p><p>	</p><div class="center"><blockquote class="quote"><div class="ruled">
+
+	<table class="display dcenter"><tbody><tr valign="middle"><td class="dcell"><table cellpadding="0" cellspacing="6"><tbody><tr><td align="right" nowrap="nowrap">		<a href="#name:package-name"><i>package-name</i></a><a name="name:package-name"></a></td><td align="center" nowrap="nowrap"><tt>::=</tt></td><td align="left" nowrap="nowrap"><a href="#name:identifier"><i>identifier</i></a>&nbsp;(&nbsp;<tt><font color="#9C10A8">.</font></tt>&nbsp;<a href="#name:identifier"><i>identifier</i></a>&nbsp;)*</td></tr>
+<tr><td align="right" nowrap="nowrap"></td></tr>
+</tbody></table></td></tr>
+</tbody></table>
+	</div>
+</blockquote>
+</div><p>Every package has a <em>simple package name</em> and a <em>fully qualified package name</em>. The simple package name is an <a href="#name:identifier"><i>identifier</i></a>. The fully qualified package name
+(<a href="#name:package-name"><i>package-name</i></a>)
+is a dot-separated sequence of simple package names, where each <a href="#name:identifier"><i>identifier</i></a>
+ in the sequence denotes a package that is a direct subpackage of the 
+preceding package, starting from the root package and ending with its 
+simple package name.</p><hr size="2"><!--TOC subsection Modules-->
+<h3 class="subsection"><!--SEC ANCHOR --><a name="htoc12">3.1.2</a>&nbsp;&nbsp;<a name="name:modules">M</a>odules</h3><!--SEC END --><p>A
+Scribble <em>module</em> is a leaf <a href="#name:packages">package</a>.
+A module is a text file with four parts: a <a href="#name:packages">package declaration</a>, an optional list of
+<a href="#name:importdeclarations">import declarations</a>, a list of zero or more <a href="#name:messagetypes">payload type declarations</a>,
+and a list of zero or more <a href="#name:protocoldecls">protocol declarations</a>.
+The start symbol of the grammar for
+the contents of a Scribble module
+is
+<a href="#name:module"><i>module</i></a>:
+</p><p>	</p><div class="center"><blockquote class="quote"><div class="ruled">
+
+	<table class="display dcenter"><tbody><tr valign="middle"><td class="dcell"><table cellpadding="0" cellspacing="6"><tbody><tr><td align="right" nowrap="nowrap">		<a href="#name:module"><i>module</i></a>
+		
+						<a name="name:module"></a>
+			
+	</td><td align="center" nowrap="nowrap"><tt>::=</tt></td><td align="left" nowrap="nowrap">		<a href="#name:package-decl"><i>package-decl</i></a>
+		(&nbsp;<a href="#name:import-decl"><i>import-decl</i></a>&nbsp;)*&nbsp;(&nbsp;<a href="#name:payload-type-decl"><i>payload-type-decl</i></a>&nbsp;)*&nbsp;&nbsp;(
+				<a href="#name:protocol-decl"><i>protocol-decl</i></a>
+		)*</td></tr>
+<tr><td align="right" nowrap="nowrap"></td></tr>
+</tbody></table></td></tr>
+</tbody></table>
+	</div>
+</blockquote>
+</div><p>A module starts with a <em>package declaration</em> that specifies the <a href="#name:packages">fully qualified package name</a> of the module.</p><p>	</p><div class="center"><blockquote class="quote"><div class="ruled">
+
+	<table class="display dcenter"><tbody><tr valign="middle"><td class="dcell"><table cellpadding="0" cellspacing="6"><tbody><tr><td align="right" nowrap="nowrap">			<a href="#name:package-decl"><i>package-decl</i></a>
+			<a name="name:package-decl"></a>
+		</td><td align="center" nowrap="nowrap"><tt>::=</tt></td><td align="left" nowrap="nowrap">			<tt><font color="#9C10A8">package</font></tt>&nbsp;<a href="#name:package-name"><i>package-name</i></a>&nbsp;<tt>;</tt></td></tr>
+</tbody></table></td></tr>
+</tbody></table>
+	</div>
+</blockquote>
+</div><p>The filename of the module is required to be the <a href="#name:packages">simple package name</a> appended with the suffix <tt>.spr</tt>.</p><hr size="2"><!--TOC subsection Import Declarations-->
+<h3 class="subsection"><!--SEC ANCHOR --><a name="htoc13">3.1.3</a>&nbsp;&nbsp;<a name="name:importdeclarations">I</a>mport Declarations</h3><!--SEC END --><p>	</p><div class="center"><blockquote class="quote"><div class="ruled">
+
+	<table class="display dcenter"><tbody><tr valign="middle"><td class="dcell"><table cellpadding="0" cellspacing="6"><tbody><tr><td align="right" nowrap="nowrap">			<a href="#name:import-decl"><i>import-decl</i></a>
+			<a name="name:include-decl"></a>
+		</td><td align="center" nowrap="nowrap"><tt>::=</tt></td><td align="left" nowrap="nowrap">			<tt><font color="#9C10A8">import</font></tt>&nbsp;<a href="#name:package-name"><i>package-name</i></a>
+						<tt>;</tt></td></tr>
+<tr><td align="right" nowrap="nowrap">		</td><td align="center" nowrap="nowrap">|</td><td align="left" nowrap="nowrap">			<tt><font color="#9C10A8">from</font></tt>&nbsp;<a href="#name:package-name"><i>package-name</i></a>
+						<tt><font color="#9C10A8">import</font></tt>&nbsp;<a href="#name:identifier"><i>identifier</i></a>&nbsp;[&nbsp;<tt><font color="#9C10A8">as</font></tt>&nbsp;<a href="#name:identifier"><i>identifier</i></a>&nbsp;]&nbsp;<tt>;</tt></td></tr>
+<tr><td align="right" nowrap="nowrap"></td></tr>
+</tbody></table></td></tr>
+</tbody></table>
+	</div>
+</blockquote>
+</div><p>The first case is called a <em>module import</em>.
+The <a href="#name:package-name"><i>package-name</i></a>
+specifies the <a href="#name:packages">fully qualified package name</a> of the module to import.
+The second case is called a <em>module member import</em>.
+The <a href="#name:package-name"><i>package-name</i></a> specifies the <a href="#name:packages">fully qualified package name</a> of the module to import from,
+and the first <a href="#name:identifier"><i>identifier</i></a> specifies a <a href="name:...">module member name</a>, which together specify the <em>imported member</em>. The second <a href="#name:identifier"><i>identifier</i></a> in the module member import is an optional alias by which the imported member may be referred to within the current module.</p><p>Module
+ files must be situated within the package directory to which they 
+belong. Package directories must be nested according to their subpackage
+ structure.
+When a module is imported, the <a href="http://www.../">Scribble tool</a> searches the locations specified in the Scribble <em>import path</em> for the source file. The tool does so by looking for a file of the same simple name appended with <tt>.spr</tt>
+ in the subdirectory corresponding to the module&#8217;s package from each of 
+the base directories in the import path.
+The import path is specified as an argument to the tool. The tool 
+searches the import path in order and uses the first match that it 
+finds. If the tool is unable to find the module, the tool will terminate
+ with an error.</p><hr size="2"><!--TOC subsection Module Members and Visibility-->
+<h3 class="subsection"><!--SEC ANCHOR --><a name="htoc14">3.1.4</a>&nbsp;&nbsp;<a name="name:...">M</a>odule Members and Visibility</h3><!--SEC END --><p>The <em>members</em> of a module are the <a href="name:...">payload types</a> and <a href="name:...">protocols</a> declared in the module.
+Like packages, module members have <em>simple member names</em> and <em>fully qualified member names</em>.
+ The simple member names of payload types and protocols are declared by 
+the corresponding payload type and protocol declarations. The fully 
+qualified member names are given by the <a href="#name:packages">fully qualified package name</a> of the module to which the member belongs, appended with a dot (<tt>.</tt>) and the simple member name.</p><p>The
+payload types and protocols
+that are <em>visible</em> within a module are:</p><ul class="itemize"><li class="li-itemize">
+	the members of that module, when either referred to by either their simple or fully qualified member names;</li><li class="li-itemize">	the members of all imported modules, when referred to by their fully qualified member names;</li><li class="li-itemize">
+	the imported members, when referred to by either their simple or fully 
+qualified member names if no alias is specified, or when referred to by 
+their alias if one is specified.
+</li></ul><hr size="2"><!--TOC section Payload Type Declarations-->
+<h2 class="section"><!--SEC ANCHOR --><a name="htoc15">3.2</a>&nbsp;&nbsp;<a name="name:messagetypes">P</a>ayload Type Declarations</h2><!--SEC END --><p>A <em>payload type</em> represents the data carried as a <a href="#name:messagesignatures">payload</a> by a Scribble message.
+</p><p>	</p><div class="center"><blockquote class="quote"><div class="ruled">
+
+	<table class="display dcenter"><tbody><tr valign="middle"><td class="dcell"><table cellpadding="0" cellspacing="6"><tbody><tr><td align="right" nowrap="nowrap">		<a href="#name:payload-type-decl"><i>payload-type-decl</i></a>
+		<a name="name:type-decl"></a></td><td align="center" nowrap="nowrap"><tt>::=</tt></td><td align="left" nowrap="nowrap">	&nbsp;<tt><font color="#9C10A8">type</font></tt>
+	&nbsp;<tt><font color="#9C10A8">&lt;</font></tt>&nbsp;<a href="#name:identifier"><i>identifier</i></a>&nbsp;<tt><font color="#9C10A8">&gt;</font></tt>&nbsp;<a href="#name:extidentifier"><i>extidentifier</i></a>	&nbsp;<tt><font color="#9C10A8">from</font></tt>&nbsp;<a href="#name:extidentifier"><i>extidentifier</i></a>
+	&nbsp;<tt><font color="#9C10A8">as</font></tt>&nbsp;<a href="#name:identifier"><i>identifier</i></a>&nbsp;<tt>;</tt>
+	&nbsp;</td></tr>
+</tbody></table></td><td class="dcell">
+	</td></tr>
+</tbody></table></div>
+</blockquote>
+</div><p>Payload types are declared by the keyword <tt><font color="#9C10A8">type</font></tt>. The first <a href="#name:identifier"><i>identifier</i></a>
+in angle brackets specifies a message schema type (e.g. YSD), and the following <a href="#name:extidentifier"><i>extidentifier</i></a> specifies the name
+of the payload type to be imported from an external message schema.
+The format of the payload type name will depend on the specified schema type.
+The second <a href="#name:extidentifier"><i>extidentifier</i></a> specifies the filename of the schema source file from which the payload type is to be imported.
+The
+final <a href="#name:identifier"><i>identifier</i></a>
+specifies the alias
+by which the payload type should be referred to within the
+current <a href="#name:module"><i>module</i></a>.
+</p><p>When a payload type is declared, the <a href="http://www.../">Scribble tool</a> searches for the specified file on the Scribble <em>payload type path</em>.
+ The payload type path is specified as an argument to the tool. The tool
+ searches the payload type path in order and uses the first match that 
+it finds. If the tool is unable to find the payload type, the tool will 
+terminate with an error.</p><hr size="2"><!--TOC subsection Visible Payload Types-->
+<h3 class="subsection"><!--SEC ANCHOR --><a name="htoc16">3.2.1</a>&nbsp;&nbsp;Visible Payload Types</h3><!--SEC END --><p>The payload types that are <em>visible</em> within a module are the declared payload types when referred to by their aliases.</p><hr size="2"><!--TOC section Message Signatures-->
+<h2 class="section"><!--SEC ANCHOR --><a name="htoc17">3.3</a>&nbsp;&nbsp;<a name="name:messagesignatures">M</a>essage Signatures</h2><!--SEC END --><p>A Scribble <em>message signature</em> comprises an <em>operator</em> header and an optional comma-separated list of <em>payload types</em>.</p><div class="center"><blockquote class="quote"><div class="ruled">
+
+		<table class="display dcenter"><tbody><tr valign="middle"><td class="dcell"><table cellpadding="0" cellspacing="6"><tbody><tr><td align="right" nowrap="nowrap">		<a href="#name:message-operator"><i>message-operator</i></a><a name="name:message-operator"></a></td><td align="center" nowrap="nowrap"><tt>::=</tt></td><td align="left" nowrap="nowrap">(&nbsp;<a href="#name:letter"><i>letter</i></a>&nbsp;&nbsp;|&nbsp;<a href="#name:digit"><i>digit</i></a>&nbsp;|&nbsp;<tt><font color="#9C10A8">_</font></tt>&nbsp;)*</td></tr>
+<tr><td align="right" nowrap="nowrap">		<a href="#name:message-signature"><i>message-signature</i></a><a name="name:message-signature"></a></td><td align="center" nowrap="nowrap"><tt>::=</tt></td><td align="left" nowrap="nowrap"><a href="#name:message-operator"><i>message-operator</i></a>&nbsp;&nbsp;<tt><font color="#9C10A8">(</font></tt>&nbsp;[&nbsp;<a href="#name:payload-type"><i>payload-type</i></a>&nbsp;(&nbsp;<tt><font color="#9C10A8">,</font></tt>&nbsp;<a href="#name:payload-type"><i>payload-type</i></a>&nbsp;)*&nbsp;]&nbsp;<tt><font color="#9C10A8">)</font></tt>&nbsp;</td></tr>
+<tr><td align="right" nowrap="nowrap">	<a href="#name:payload-type"><i>payload-type</i></a><a name="name:payload-type"></a>
+	</td><td align="center" nowrap="nowrap"><tt>::=</tt></td><td align="left" nowrap="nowrap">								[&nbsp;<a href="#name:identifier"><i>identifier</i></a>&nbsp;&nbsp;<tt><font color="#9C10A8">:</font></tt>&nbsp;]&nbsp;<a href="#name:identifier"><i>identifier</i></a>&nbsp;</td></tr>
+<tr><td align="right" nowrap="nowrap"></td></tr>
+</tbody></table></td></tr>
+</tbody></table>
+
+</div>
+</blockquote>
+</div><p>A message operator is a (possibly empty) sequence of letters, digits and the ASCII
+underscore character. An operator cannot be among the reserved
+<a href="#name:keywords">keywords</a>. The payload of the message is specified by the optional
+group inside the parentheses.
+The optional <a href="#name:identifier"><i>identifier</i></a> in a payload type is a <em>annotation</em> that associates a variable name to the payload. If present, the annotation is followed by a colon. The mandatory <a href="#name:identifier"><i>identifier</i></a> is the <em>data type</em> of the payload.
+The data type must be a <a href="name:...">visible payload type</a>.</p><hr size="2"><!--TOC section Protocol Declarations-->
+<h2 class="section"><!--SEC ANCHOR --><a name="htoc18">3.4</a>&nbsp;&nbsp;<a name="name:globalprotocols">P</a>rotocol Declarations</h2><!--SEC END --><p>A <em>protocol declaration</em> is either a <a href="name:...">global protocol declaration</a> or a <a href="name:...">local protocol declaration</a>.</p><p>	</p><div class="center"><blockquote class="quote"><div class="ruled">
+
+	<table class="display dcenter"><tbody><tr valign="middle"><td class="dcell"><table cellpadding="0" cellspacing="6"><tbody><tr><td align="right" nowrap="nowrap">		<a href="#name:protocol-decl"><i>protocol-decl</i></a>
+		
+						<a name="name:scribble-protocol"></a>
+			
+	</td><td align="center" nowrap="nowrap"><tt>::=</tt></td><td align="left" nowrap="nowrap"><a href="#name:global-protocol-decl"><i>global-protocol-decl</i></a></td></tr>
+<tr><td align="right" nowrap="nowrap">	</td><td align="center" nowrap="nowrap">|</td><td align="left" nowrap="nowrap"><a href="#name:local-protocol-decl"><i>local-protocol-decl</i></a></td></tr>
+<tr><td align="right" nowrap="nowrap"></td></tr>
+</tbody></table></td></tr>
+</tbody></table>
+	</div>
+</blockquote>
+</div><hr size="2"><!--TOC section Global Protocols-->
+<h2 class="section"><!--SEC ANCHOR --><a name="htoc19">3.5</a>&nbsp;&nbsp;<a name="name:globalprotocols">G</a>lobal Protocols</h2><!--SEC END --><p>A <em>global protocol declaration</em> has the following syntax.</p><p>	</p><div class="center"><blockquote class="quote"><div class="ruled">
+
+	<table class="display dcenter"><tbody><tr valign="middle"><td class="dcell"><table cellpadding="0" cellspacing="6"><tbody><tr><td align="right" nowrap="nowrap">		<a href="#name:global-protocol-decl"><i>global-protocol-decl</i></a>
+		<a name="name:global-protocol-decl"></a>
+	</td><td align="center" nowrap="nowrap"><tt>::=</tt></td><td align="left" nowrap="nowrap">		<tt><font color="#9C10A8">global</font></tt>&nbsp;<tt><font color="#9C10A8">protocol</font></tt>&nbsp;<a href="#name:identifier"><i>identifier</i></a>&nbsp;<a href="#name:global-protocol-definition"><i>global-protocol-definition</i></a></td></tr>
+<tr><td align="right" nowrap="nowrap">		<a href="#name:global-protocol-definition"><i>global-protocol-definition</i></a>
+		<a name="name:global-protocol-signature"></a>
+	</td><td align="center" nowrap="nowrap"><tt>::=</tt></td><td align="left" nowrap="nowrap">		[&nbsp;<tt><font color="#9C10A8">&lt;</font></tt>&nbsp;<a href="#name:parameter-list"><i>parameter-list</i></a>&nbsp;<tt><font color="#9C10A8">&gt;</font></tt>&nbsp;]&nbsp;<tt><font color="#9C10A8">(</font></tt>&nbsp;[&nbsp;<a href="#name:role-list"><i>role-list</i></a>&nbsp;]&nbsp;<tt><font color="#9C10A8">)</font></tt>&nbsp;<a href="#name:global-protocol-body"><i>global-protocol-body</i></a></td></tr>
+<tr><td align="right" nowrap="nowrap">	</td><td align="center" nowrap="nowrap">|</td><td align="left" nowrap="nowrap">	<tt><font color="#9C10A8">(</font></tt>&nbsp;[&nbsp;<a href="#name:role-list"><i>role-list</i></a>&nbsp;]&nbsp;<tt><font color="#9C10A8">)</font></tt>&nbsp;<tt><font color="#9C10A8">instantiates</font></tt>&nbsp;<a href="#name:identifier"><i>identifier</i></a>&nbsp;[&nbsp;<tt><font color="#9C10A8">&lt;</font></tt>&nbsp;<a href="#name:argument-list"><i>argument-list</i></a>&nbsp;<tt><font color="#9C10A8">&gt;</font></tt>&nbsp;]&nbsp;<tt><font color="#9C10A8">;</font></tt></td></tr>
+<tr><td align="right" nowrap="nowrap">		<a href="#name:role-list"><i>role-list</i></a>
+		<a name="name:role-list"></a>
+	</td><td align="center" nowrap="nowrap"><tt>::=</tt></td><td align="left" nowrap="nowrap">		<tt><font color="#9C10A8">role</font></tt>&nbsp;<a href="#name:role-name"><i>role-name</i></a>&nbsp;(&nbsp;<tt><font color="#9C10A8">,</font></tt>&nbsp;<tt><font color="#9C10A8">role</font></tt>&nbsp;<a href="#name:role-name"><i>role-name</i></a>&nbsp;)*</td></tr>
+<tr><td align="right" nowrap="nowrap">		<a href="#name:role-name"><i>role-name</i></a><a name="name:role-name"></a>
+	</td><td align="center" nowrap="nowrap"><tt>::=</tt></td><td align="left" nowrap="nowrap">		<a href="#name:identifier"><i>identifier</i></a></td></tr>
+<tr><td align="right" nowrap="nowrap">		<a href="#name:parameter-list"><i>parameter-list</i></a>
+		<a name="name:parameter-list"></a>
+	</td><td align="center" nowrap="nowrap"><tt>::=</tt></td><td align="left" nowrap="nowrap">				<tt><font color="#9C10A8">sig</font></tt>&nbsp;<a href="#name:identifier"><i>identifier</i></a>&nbsp;&nbsp;(&nbsp;<tt><font color="#9C10A8">,</font></tt>&nbsp;<tt><font color="#9C10A8">sig</font></tt>&nbsp;<a href="#name:identifier"><i>identifier</i></a>&nbsp;)*</td></tr>
+<tr><td align="right" nowrap="nowrap">		<a href="#name:argument-list"><i>argument-list</i></a>
+		<a name="name:argument-list"></a>
+	</td><td align="center" nowrap="nowrap"><tt>::=</tt></td><td align="left" nowrap="nowrap">		<a href="#name:message-signature"><i>message-signature</i></a>&nbsp;&nbsp;(&nbsp;<tt><font color="#9C10A8">,</font></tt>&nbsp;<a href="#name:message-signature"><i>message-signature</i></a>&nbsp;)*</td></tr>
+<tr><td align="right" nowrap="nowrap"></td></tr>
+</tbody></table></td></tr>
+</tbody></table>
+	</div>
+</blockquote>
+</div><p>A global protocol declaration starts with the keywords <tt><font color="#9C10A8">global
+protocol</font></tt>. It is followed by a name for the protocol, a role list
+and an optional parameter list. A role list is a comma-separated list
+of <a href="#name:identifier">identifiers</a> each preceded by the
+keyword <tt><font color="#9C10A8">role</font></tt>. A parameter list is a comma-separated list of
+<a href="#name:identifier"><i>identifier</i></a>s each preceded by the keyword <tt><font color="#9C10A8">sig</font></tt> (this <tt><font color="#9C10A8">sig</font></tt>
+specifies the <i>kind</i> of entities we are abstracting, here meaning
+a message signature: other kinds such as payload types
+may be included in later versions).</p><p>The global protocol declaration then either ends with
+a global protocol body, or the <tt><font color="#9C10A8">instantiates</font></tt> keyword followed by
+an <a href="#name:identifier"><i>identifier</i></a>. The <a href="#name:identifier"><i>identifier</i></a> in the latter case specifies the name of the
+parent global protocol being instantiated.</p><hr size="2"><!--TOC subsection Global Interaction Blocks and Sequences-->
+<h3 class="subsection"><!--SEC ANCHOR --><a name="htoc20">3.5.1</a>&nbsp;&nbsp;<a name="name:interactionseq">G</a>lobal Interaction Blocks and Sequences</h3><!--SEC END --><p>The body of a global protocol declaration is a <em>global interaction
+block</em>. A global interaction block is a <em>global interaction sequence</em> enclosed by
+curly braces <tt><font color="#9C10A8">{</font></tt>&nbsp;<tt><font color="#9C10A8">}</font></tt>.</p><p>	</p><div class="center"><blockquote class="quote"><div class="ruled">
+
+	<table class="display dcenter"><tbody><tr valign="middle"><td class="dcell"><table cellpadding="0" cellspacing="6"><tbody><tr><td align="right" nowrap="nowrap">		<a href="#name:global-protocol-body"><i>global-protocol-body</i></a><a name="name:global-protocol-body"></a></td><td align="center" nowrap="nowrap"><tt>::=</tt></td><td align="left" nowrap="nowrap"><a href="#name:global-interaction-block"><i>global-interaction-block</i></a></td></tr>
+<tr><td align="right" nowrap="nowrap">		<a href="#name:global-interaction-block"><i>global-interaction-block</i></a><a name="name:global-interaction-block"></a></td><td align="center" nowrap="nowrap"><tt>::=</tt></td><td align="left" nowrap="nowrap"><tt><font color="#9C10A8">{</font></tt>&nbsp;<a href="#name:global-interaction-sequence"><i>global-interaction-sequence</i></a>&nbsp;<tt><font color="#9C10A8">}</font></tt>&nbsp;</td></tr>
+<tr><td align="right" nowrap="nowrap">		<a href="#name:global-interaction-sequence"><i>global-interaction-sequence</i></a><a name="name:global-interaction-sequence"></a></td><td align="center" nowrap="nowrap"><tt>::=</tt></td><td align="left" nowrap="nowrap">(&nbsp;<a href="#name:global-interaction"><i>global-interaction</i></a>&nbsp;)*&nbsp;</td></tr>
+<tr><td align="right" nowrap="nowrap">				<a href="#name:global-interaction"><i>global-interaction</i></a><a name="name:global-interaction"></a></td><td align="center" nowrap="nowrap"><tt>::=</tt></td><td align="left" nowrap="nowrap"><a href="#name:message"><i>message</i></a>&nbsp;</td></tr>
+<tr><td align="right" nowrap="nowrap">		</td><td align="center" nowrap="nowrap">|</td><td align="left" nowrap="nowrap"><a href="#name:choice"><i>choice</i></a>&nbsp;</td></tr>
+<tr><td align="right" nowrap="nowrap">		</td><td align="center" nowrap="nowrap">|</td><td align="left" nowrap="nowrap"><a href="#name:parallel"><i>parallel</i></a>&nbsp;</td></tr>
+<tr><td align="right" nowrap="nowrap">		</td><td align="center" nowrap="nowrap">|</td><td align="left" nowrap="nowrap"><a href="#name:recursion"><i>recursion</i></a>&nbsp;</td></tr>
+<tr><td align="right" nowrap="nowrap">		</td><td align="center" nowrap="nowrap">|</td><td align="left" nowrap="nowrap"><a href="#name:continue"><i>continue</i></a>&nbsp;</td></tr>
+<tr><td align="right" nowrap="nowrap">		</td><td align="center" nowrap="nowrap">|</td><td align="left" nowrap="nowrap"><a href="#name:interruptible"><i>interruptible</i></a>&nbsp;</td></tr>
+<tr><td align="right" nowrap="nowrap">		</td><td align="center" nowrap="nowrap">|</td><td align="left" nowrap="nowrap"><a href="#name:do"><i>do</i></a>&nbsp;</td></tr>
+<tr><td align="right" nowrap="nowrap">		</td><td align="center" nowrap="nowrap">|</td><td align="left" nowrap="nowrap"><a href="#name:spawn"><i>spawn</i></a></td></tr>
+</tbody></table></td><td class="dcell">
+	</td></tr>
+</tbody></table>
+</div>
+</blockquote>
+</div><p>A global interaction sequence is
+a possibly empty sequence of <em>global interactions</em>: point-to-point <a href="#name:messagetransfer">message transfer</a>, <a href="#name:choice">choice</a>, <a href="#name:parallel">parallel</a>, <a href="#name:recursion">recursion</a> and <a href="#name:recursion">continue</a>.</p><hr size="2"><!--TOC subsection Point-to-Point Message Transfer-->
+<h3 class="subsection"><!--SEC ANCHOR --><a name="htoc21">3.5.2</a>&nbsp;&nbsp;<a name="name:messagetransfer">P</a>oint-to-Point Message Transfer</h3><!--SEC END --><p>A <em>point-to-point message transfer</em>
+specifies the communication of a single message between two roles.</p><div class="center"><blockquote class="quote"><div class="ruled">
+
+	<table class="display dcenter"><tbody><tr valign="middle"><td class="dcell"><table cellpadding="0" cellspacing="6"><tbody><tr><td align="right" nowrap="nowrap">		<a href="#name:message"><i>message</i></a><a name="name:message"></a></td><td align="center" nowrap="nowrap"><tt>::=</tt></td><td align="left" nowrap="nowrap">[&nbsp;<a href="#name:message-signature"><i>message-signature</i></a>&nbsp;|&nbsp;<a href="#name:identifier"><i>identifier</i></a>&nbsp;]&nbsp;&nbsp;<tt><font color="#9C10A8">from</font></tt>&nbsp;<a href="#name:role-name"><i>role-name</i></a>
+		&nbsp;<tt><font color="#9C10A8">to</font></tt>&nbsp;<a href="#name:role-name"><i>role-name</i></a>&nbsp;<tt>;</tt></td></tr>
+<tr><td align="right" nowrap="nowrap"></td></tr>
+</tbody></table></td></tr>
+</tbody></table>
+
+</div>
+</blockquote>
+</div><p>A message transfer starts with a <a href="#name:message-signature"><i>message-signature</i></a> or an <a href="#name:identifier"><i>identifier</i></a> declared as a <a href="#name:globalprotocols">generic message parameter</a>. The
+<a href="#name:role-name"><i>role-name</i></a> immediately after the <tt><font color="#9C10A8">from</font></tt> keyword specifies the sender of the message. The
+<a href="#name:role-name"><i>role-name</i></a> after the <tt><font color="#9C10A8">to</font></tt> keyword specifies the receiver.</p><hr size="2"><!--TOC subsection Choice-->
+<h3 class="subsection"><!--SEC ANCHOR --><a name="htoc22">3.5.3</a>&nbsp;&nbsp;<a name="name:choice">C</a>hoice</h3><!--SEC END --><p>The choice construct specifies that one role chooses one out of a set
+of interaction blocks for the protocol to follow. The choice of
+an interaction block is mutually exclusive; the conversation follows
+exactly one interaction block.</p><div class="center"><blockquote class="quote"><div class="ruled">
+
+	<table class="display dcenter"><tbody><tr valign="middle"><td class="dcell"><table cellpadding="0" cellspacing="6"><tbody><tr><td align="right" nowrap="nowrap">		<a href="#name:choice"><i>choice</i></a><a name="name:choice"></a></td><td align="center" nowrap="nowrap"><tt>::=</tt></td><td align="left" nowrap="nowrap"><tt><font color="#9C10A8">choice</font></tt>&nbsp;<tt><font color="#9C10A8">at</font></tt>&nbsp;<a href="#name:role-name"><i>role-name</i></a>
+		&nbsp;<a href="#name:global-interaction-block"><i>global-interaction-block</i></a>&nbsp;&nbsp;(&nbsp;<tt><font color="#9C10A8">or</font></tt>
+		&nbsp;<a href="#name:global-interaction-block"><i>global-interaction-block</i></a>&nbsp;&nbsp;)*</td></tr>
+</tbody></table></td><td class="dcell">
+	</td></tr>
+</tbody></table>
+					
+</div>
+</blockquote>
+</div><p>A choice starts with the keywords <tt><font color="#9C10A8">choice</font></tt>&nbsp;<tt><font color="#9C10A8">at</font></tt>,
+followed by a <a href="#name:role-name"><i>role-name</i></a> designating the role responsible for the choice.
+This is followed by a list of global interaction blocks separated by the keyword
+<tt><font color="#9C10A8">or</font></tt>. The interaction block list cannot be empty.</p><hr size="2"><!--TOC subsection Parallel-->
+<h3 class="subsection"><!--SEC ANCHOR --><a name="htoc23">3.5.4</a>&nbsp;&nbsp;<a name="name:parallel">P</a>arallel</h3><!--SEC END --><p>The parallel construct specifies a set of interactions that can
+happen concurrently.</p><div class="center"><blockquote class="quote"><div class="ruled">
+
+	<table class="display dcenter"><tbody><tr valign="middle"><td class="dcell"><table cellpadding="0" cellspacing="6"><tbody><tr><td align="right" nowrap="nowrap">		<a href="#name:parallel"><i>parallel</i></a><a name="name:parallel"></a></td><td align="center" nowrap="nowrap"><tt>::=</tt></td><td align="left" nowrap="nowrap">								<tt><font color="#9C10A8">par</font></tt>&nbsp;<a href="#name:global-interaction-block"><i>global-interaction-block</i></a>&nbsp;&nbsp;(&nbsp;<tt><font color="#9C10A8">and</font></tt>
+		<a href="#name:global-interaction-block"><i>global-interaction-block</i></a>&nbsp;&nbsp;)*</td></tr>
+</tbody></table></td><td class="dcell">
+	</td></tr>
+</tbody></table>
+
+</div>
+</blockquote>
+</div><p>A parallel starts with the keyword <tt><font color="#9C10A8">par</font></tt>,
+followed by a list of global interaction blocks separated by the keyword
+<tt><font color="#9C10A8">and</font></tt>. The interaction block list cannot be empty.</p><hr size="2"><!--TOC subsection Recursion-->
+<h3 class="subsection"><!--SEC ANCHOR --><a name="htoc24">3.5.5</a>&nbsp;&nbsp;<a name="name:recursion">R</a>ecursion</h3><!--SEC END --><p>The recursion construct is used to specify loops in the control flow of a protocol.</p><div class="center"><blockquote class="quote"><div class="ruled">
+
+	<table class="display dcenter"><tbody><tr valign="middle"><td class="dcell"><table cellpadding="0" cellspacing="6"><tbody><tr><td align="right" nowrap="nowrap">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#name:recursion"><i>recursion</i></a><a name="name:recursion"></a></td><td align="center" nowrap="nowrap"><tt>::=</tt></td><td align="left" nowrap="nowrap"><tt><font color="#9C10A8">rec</font></tt>&nbsp;<a href="#name:identifier"><i>identifier</i></a>&nbsp;<a href="#name:global-interaction-block"><i>global-interaction-block</i></a></td></tr>
+<tr><td align="right" nowrap="nowrap">		<a href="#name:continue"><i>continue</i></a><a name="name:continue"></a></td><td align="center" nowrap="nowrap"><tt>::=</tt></td><td align="left" nowrap="nowrap"><tt><font color="#9C10A8">continue</font></tt>&nbsp;<a href="#name:identifier"><i>identifier</i></a>&nbsp;<tt><font color="#9C10A8">;</font></tt></td></tr>
+</tbody></table></td><td class="dcell">
+	</td></tr>
+</tbody></table>
+
+</div>
+</blockquote>
+</div><p>A
+<em>recursion point</em> is specified by the keyword <tt><font color="#9C10A8">rec</font></tt> and an <a href="#name:identifier"><i>identifier</i></a>
+label for this point.
+Within the following global interaction block, the keyword
+<tt><font color="#9C10A8">continue</font></tt> followed by a recursion point <a href="#name:identifier"><i>identifier</i></a> specifes that the control flow of the protocol should
+return to that point.</p><hr size="2"><!--TOC subsection Interruptible-->
+<h3 class="subsection"><!--SEC ANCHOR --><a name="htoc25">3.5.6</a>&nbsp;&nbsp;<a name="name:try">I</a>nterruptible</h3><!--SEC END --><p>The interruptible construct specifies a sequence of interactions that may be interrupted by the specified roles.
+A raised interrupt is
+communicated
+to all other
+roles
+in the conversation. On raising or receiving an interrupt, the role
+exits the interruptible block, activating the subsequent action(s).
+In the present version, this means the endpoint will exit
+the conversation.</p><div class="center"><blockquote class="quote"><div class="ruled">
+
+	<table class="display dcenter"><tbody><tr valign="middle"><td class="dcell"><table cellpadding="0" cellspacing="6"><tbody><tr><td align="right" nowrap="nowrap">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#name:interruptible"><i>interruptible</i></a><a name="name:interruptible"></a>
+																								</td><td align="center" nowrap="nowrap"><tt>::=</tt></td><td align="left" nowrap="nowrap"><tt><font color="#9C10A8">interruptible</font></tt>&nbsp;<a href="#name:global-interaction-block"><i>global-interaction-block</i></a>
+								<tt><font color="#9C10A8">with</font></tt>&nbsp;<tt><font color="#9C10A8">{</font></tt>&nbsp;(&nbsp;<a href="#name:interrupt"><i>interrupt</i></a>&nbsp;)+&nbsp;<tt><font color="#9C10A8">}</font></tt></td></tr>
+<tr><td align="right" nowrap="nowrap">																																																				<a href="#name:interrupt"><i>interrupt</i></a><a name="name:interrupt"></a>
+				</td><td align="center" nowrap="nowrap"><tt>::=</tt></td><td align="left" nowrap="nowrap">				<a href="#name:message-signature"><i>message-signature</i></a>&nbsp;(&nbsp;<tt><font color="#9C10A8">,</font></tt>&nbsp;<a href="#name:message-signature"><i>message-signature</i></a>&nbsp;)*&nbsp;<tt><font color="#9C10A8">by</font></tt>
+								<a href="#name:role-name"><i>role-name</i></a>&nbsp;(&nbsp;<tt><font color="#9C10A8">,</font></tt>&nbsp;<a href="#name:role-name"><i>role-name</i></a>&nbsp;)*&nbsp;<tt><font color="#9C10A8">;</font></tt></td></tr>
+</tbody></table></td><td class="dcell">
+	</td></tr>
+</tbody></table>
+
+</div>
+</blockquote>
+</div><p>An interruptible starts with the keyword <tt><font color="#9C10A8">interruptible</font></tt> followed by a global
+interaction block. This is followed by a list of the keyword <tt><font color="#9C10A8">with</font></tt>, each followed by a message signature and a global interaction block.</p><hr size="2"><!--TOC subsection Do-->
+<h3 class="subsection"><!--SEC ANCHOR --><a name="htoc26">3.5.7</a>&nbsp;&nbsp;<a name="name:inlinedprotocols">D</a>o</h3><!--SEC END --><p>...visibility...</p><p>The do construct specifies that
+the interactions specified by another protocol (called the <em>target protocol</em>)
+should be performed
+inline with the current conversation. Note that the Scribble do construct should not be confused with <tt>do</tt> statements found in other languages,
+such as for performing loops or for performing a sequence of
+imperative actions.</p><div class="center"><blockquote class="quote"><div class="ruled">
+
+	<table class="display dcenter"><tbody><tr valign="middle"><td class="dcell"><table cellpadding="0" cellspacing="6"><tbody><tr><td align="right" nowrap="nowrap">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#name:do"><i>do</i></a><a name="name:do"></a></td><td align="center" nowrap="nowrap"><tt>::=</tt></td><td align="left" nowrap="nowrap"><tt><font color="#9C10A8">do</font></tt>&nbsp;<a href="#name:identifier"><i>identifier</i></a>&nbsp;[&nbsp;<tt><font color="#9C10A8">&lt;</font></tt>&nbsp;<a href="#name:argument-list"><i>argument-list</i></a>&nbsp;<tt><font color="#9C10A8">&gt;</font></tt>&nbsp;]&nbsp;<tt><font color="#9C10A8">(</font></tt>
+								<a href="#name:role-instantiation-list"><i>role-instantiation-list</i></a>
+				<tt><font color="#9C10A8">)</font></tt>&nbsp;<tt><font color="#9C10A8">;</font></tt></td></tr>
+<tr><td align="right" nowrap="nowrap"><a href="#name:role-instantiation-list"><i>role-instantiation-list</i></a></td><td align="center" nowrap="nowrap"><tt>::=</tt></td><td align="left" nowrap="nowrap"><a href="#name:role-name"><i>role-name</i></a>&nbsp;<tt><font color="#9C10A8">as</font></tt>&nbsp;<a href="#name:role-name"><i>role-name</i></a>&nbsp;(&nbsp;<tt><font color="#9C10A8">,</font></tt>&nbsp;<a href="#name:role-name"><i>role-name</i></a>&nbsp;<tt><font color="#9C10A8">as</font></tt>&nbsp;<a href="#name:role-name"><i>role-name</i></a>&nbsp;)<sup>*</sup></td></tr>
+</tbody></table></td><td class="dcell">
+	</td></tr>
+</tbody></table>
+
+</div>
+</blockquote>
+</div><p>A do
+starts with the keyword <tt><font color="#9C10A8">do</font></tt>
+followed by the name of the target protocol, a
+an optional argument list and a role instantiation list, and is terminated by a semicolon.</p><p>The protocol identifier should correspond to a known protocol. The parameter list and role list in the definition of the
+target protocol must respectively be of the same length as the argument list and role instantiation list present in the
+do construct.
+For each <tt>R</tt><sub>1</sub> <tt><font color="#9C10A8">as</font></tt> <tt>R</tt><sub>2</sub> element where specified, where <tt>R</tt><sub>1</sub> and <tt>R</tt><sub>2</sub> are <a href="#name:role-name"><i>role-name</i></a>s, in the role instantiation
+list, <tt>R</tt><sub>1</sub> must be a role of the current protocol and
+<tt>R</tt><sub>2</sub> a role of the target protocol.
+</p><hr size="2"><!--TOC subsection Spawn-->
+<h3 class="subsection"><!--SEC ANCHOR --><a name="htoc27">3.5.8</a>&nbsp;&nbsp;<a name="name:subsessionspawn">S</a>pawn</h3><!--SEC END --><p>The spawn construct specifies that
+an external conversation should be spawned
+to perform
+the interactions specified by another protocol (called the <em>target protocol</em>).</p><div class="center"><blockquote class="quote"><div class="ruled">
+
+	<table class="display dcenter"><tbody><tr valign="middle"><td class="dcell"><table cellpadding="0" cellspacing="6"><tbody><tr><td align="right" nowrap="nowrap"><a href="#name:spawn"><i>spawn</i></a><a name="name:subsessionlet"></a></td><td align="center" nowrap="nowrap"><tt>::=</tt></td><td align="left" nowrap="nowrap"><a href="#name:role-name"><i>role-name</i></a>&nbsp;<tt><font color="#9C10A8">spawns</font></tt>&nbsp;<a href="#name:identifier"><i>identifier</i></a>&nbsp;<tt><font color="#9C10A8">&lt;</font></tt>&nbsp;[&nbsp;<a href="#name:argument-list"><i>argument-list</i></a>&nbsp;]&nbsp;<tt><font color="#9C10A8">&gt;</font></tt>&nbsp;<tt><font color="#9C10A8">(</font></tt>&nbsp;<a href="#name:role-instantiation-list"><i>role-instantiation-list</i></a>&nbsp;<tt><font color="#9C10A8">)</font></tt>&nbsp;<tt>;</tt></td></tr>
+</tbody></table></td><td class="dcell">
+	</td></tr>
+</tbody></table>
+
+</div>
+</blockquote>
+</div><p>A spawn
+starts with the name of the role performing the call followed by the keyword <tt><font color="#9C10A8">spawns</font></tt>,
+followed by the name of the target protocol, a
+an optional argument list and a role instantiation list, and is terminated by a semicolon.</p><p>The protocol identifier should correspond to a known protocol. The argument list in the definition of the
+target protocol must be of the same length as the argument list present in the
+spawn construct.
+For each <tt>R</tt><sub>1</sub> <tt><font color="#9C10A8">as</font></tt> <tt>R</tt><sub>2</sub> element, where <tt>R</tt><sub>1</sub> and <tt>R</tt><sub>2</sub> are <a href="#name:role-name"><i>role-name</i></a>s, in the role instantiation
+list, <tt>R</tt><sub>1</sub> must be a role of the current protocol and
+<tt>R</tt><sub>2</sub> a role of the target protocol.</p><hr size="2"><!--TOC section Local Protocols-->
+<h2 class="section"><!--SEC ANCHOR --><a name="htoc28">3.6</a>&nbsp;&nbsp;Local Protocols</h2><!--SEC END --><p>A <em>local protocol declaration</em> has the following syntax.</p><p>	</p><div class="center"><blockquote class="quote"><div class="ruled">
+
+	<table class="display dcenter"><tbody><tr valign="middle"><td class="dcell"><table cellpadding="0" cellspacing="6"><tbody><tr><td align="right" nowrap="nowrap">		<a href="#name:local-protocol-decl"><i>local-protocol-decl</i></a>
+		<a name="name:local-protocol-decl"></a>
+	</td><td align="center" nowrap="nowrap"><tt>::=</tt></td><td align="left" nowrap="nowrap">		<tt><font color="#9C10A8">local protocol</font></tt>&nbsp;<a href="#name:identifier"><i>identifier</i></a>&nbsp;<tt><font color="#9C10A8">at</font></tt>&nbsp;<a href="#name:role-name"><i>role-name</i></a>&nbsp;<tt><font color="#9C10A8">(</font></tt>&nbsp;[&nbsp;<a href="#name:role-list"><i>role-list</i></a>&nbsp;]&nbsp;<tt><font color="#9C10A8">)</font></tt>&nbsp;<a href="#name:local-protocol-body"><i>local-protocol-body</i></a></td></tr>
+<tr><td align="right" nowrap="nowrap"></td></tr>
+</tbody></table></td></tr>
+</tbody></table>
+	</div>
+</blockquote>
+</div><p>A local protocol declaration starts with the keywords <tt><font color="#9C10A8">local
+protocol</font></tt>. It is followed by a name for the protocol, the name of the local
+role, a list of roles
+and a local protocol body. The role list is a comma-separated list of
+<a href="#name:identifier">identifiers</a> each preceded by the keyword <tt><font color="#9C10A8">role</font></tt>.</p><hr size="2"><!--TOC subsection Local Interaction Blocks and Sequences-->
+<h3 class="subsection"><!--SEC ANCHOR --><a name="htoc29">3.6.1</a>&nbsp;&nbsp;Local Interaction Blocks and Sequences</h3><!--SEC END --><p>The body of a local protocol declaration is a <em>local interaction block</em>. A
+local interaction block is a <em>local interaction sequence</em> enclosed by curly
+braces <tt><font color="#9C10A8">{</font></tt>&nbsp;<tt><font color="#9C10A8">}</font></tt>.</p><p>	</p><div class="center"><blockquote class="quote"><div class="ruled">
+
+	<table class="display dcenter"><tbody><tr valign="middle"><td class="dcell"><table cellpadding="0" cellspacing="6"><tbody><tr><td align="right" nowrap="nowrap">		<a href="#name:local-protocol-body"><i>local-protocol-body</i></a><a name="name:local-protocol-body"></a></td><td align="center" nowrap="nowrap"><tt>::=</tt></td><td align="left" nowrap="nowrap"><a href="#name:local-interaction-block"><i>local-interaction-block</i></a></td></tr>
+<tr><td align="right" nowrap="nowrap">		<a href="#name:local-interaction-block"><i>local-interaction-block</i></a><a name="name:local-interaction-block"></a></td><td align="center" nowrap="nowrap"><tt>::=</tt></td><td align="left" nowrap="nowrap"><tt><font color="#9C10A8">{</font></tt>&nbsp;<a href="#name:local-interaction-sequence"><i>local-interaction-sequence</i></a>&nbsp;<tt><font color="#9C10A8">}</font></tt>&nbsp;</td></tr>
+<tr><td align="right" nowrap="nowrap">		<a href="#name:local-interaction-sequence"><i>local-interaction-sequence</i></a><a name="name:local-interaction-sequence"></a></td><td align="center" nowrap="nowrap"><tt>::=</tt></td><td align="left" nowrap="nowrap">(&nbsp;<a href="#name:local-interaction"><i>local-interaction</i></a>&nbsp;)*&nbsp;</td></tr>
+<tr><td align="right" nowrap="nowrap">				<a href="#name:local-interaction"><i>local-interaction</i></a><a name="name:local-interaction"></a></td><td align="center" nowrap="nowrap"><tt>::=</tt></td><td align="left" nowrap="nowrap"><a href="#name:send"><i>send</i></a>&nbsp;</td></tr>
+<tr><td align="right" nowrap="nowrap">		</td><td align="center" nowrap="nowrap">|</td><td align="left" nowrap="nowrap"><a href="#name:receive"><i>receive</i></a>&nbsp;</td></tr>
+<tr><td align="right" nowrap="nowrap">		</td><td align="center" nowrap="nowrap">|</td><td align="left" nowrap="nowrap"><a href="#name:local-choice"><i>local-choice</i></a>&nbsp;</td></tr>
+<tr><td align="right" nowrap="nowrap">		</td><td align="center" nowrap="nowrap">|</td><td align="left" nowrap="nowrap"><a href="#name:local-parallel"><i>local-parallel</i></a>&nbsp;</td></tr>
+<tr><td align="right" nowrap="nowrap">		</td><td align="center" nowrap="nowrap">|</td><td align="left" nowrap="nowrap"><a href="#name:local-recursion"><i>local-recursion</i></a>&nbsp;</td></tr>
+<tr><td align="right" nowrap="nowrap">		</td><td align="center" nowrap="nowrap">|</td><td align="left" nowrap="nowrap"><a href="#name:local-continue"><i>local-continue</i></a>&nbsp;</td></tr>
+<tr><td align="right" nowrap="nowrap">		</td><td align="center" nowrap="nowrap">|</td><td align="left" nowrap="nowrap"><a href="#name:local-interruptible"><i>local-interruptible</i></a>&nbsp;</td></tr>
+<tr><td align="right" nowrap="nowrap"></td></tr>
+</tbody></table></td><td class="dcell">
+	</td></tr>
+</tbody></table>
+</div>
+</blockquote>
+</div><p>A local interaction sequence is
+a possibly empty sequence of <em>local interactions</em>: send and receive <a href="#name:localmessagetransfer">message transfer</a>, <a href="#name:localchoice">choice</a>, <a href="#name:localparallel">parallel</a>, <a href="#name:localrecursion">recursion</a> and <a href="#name:localrecursionlabel">continue</a>.
+interruptible</p><hr size="2"><!--TOC subsection Point-to-Point Message Transfer-->
+<h3 class="subsection"><!--SEC ANCHOR --><a name="htoc30">3.6.2</a>&nbsp;&nbsp;<a name="name:localmessagetransfer">P</a>oint-to-Point Message Transfer</h3><!--SEC END --><p>A local <em>message transfer</em> is either a send or a receive of a message to or
+from a role.</p><div class="center"><blockquote class="quote"><div class="ruled">
+
+	<table class="display dcenter"><tbody><tr valign="middle"><td class="dcell"><table cellpadding="0" cellspacing="6"><tbody><tr><td align="right" nowrap="nowrap">		<a href="#name:send"><i>send</i></a><a name="name:send"></a></td><td align="center" nowrap="nowrap"><tt>::=</tt></td><td align="left" nowrap="nowrap"><a href="#name:message-signature"><i>message-signature</i></a>
+		&nbsp;<tt><font color="#9C10A8">to</font></tt>&nbsp;<a href="#name:role-name"><i>role-name</i></a>&nbsp;<tt><font color="#9C10A8">;</font></tt></td></tr>
+<tr><td align="right" nowrap="nowrap">		<a href="#name:receive"><i>receive</i></a><a name="name:receive"></a></td><td align="center" nowrap="nowrap"><tt>::=</tt></td><td align="left" nowrap="nowrap"><a href="#name:message-signature"><i>message-signature</i></a>&nbsp;<tt><font color="#9C10A8">from</font></tt>&nbsp;<a href="#name:role-name"><i>role-name</i></a>
+		&nbsp;<tt><font color="#9C10A8">;</font></tt></td></tr>
+<tr><td align="right" nowrap="nowrap"></td></tr>
+</tbody></table></td></tr>
+</tbody></table>
+
+</div>
+</blockquote>
+</div><p>Both send and receive start with a <a href="#name:message-signature"><i>message-signature</i></a>. The
+<a href="#name:role-name"><i>role-name</i></a> immediately after the <tt><font color="#9C10A8">from</font></tt> keyword specifies the sender of
+the message that has to be sent. The
+<a href="#name:role-name"><i>role-name</i></a> after the <tt><font color="#9C10A8">to</font></tt> keyword specifies the receiver of a message that
+is expected to be received.</p><hr size="2"><!--TOC subsection Choice-->
+<h3 class="subsection"><!--SEC ANCHOR --><a name="htoc31">3.6.3</a>&nbsp;&nbsp;<a name="name:localchoice">C</a>hoice</h3><!--SEC END --><p>The
+ choice construct specifies that one role chooses one out of a set of 
+interaction blocks for the protocol to follow. The choice of interaction
+ block is mutually
+exclusive; the conversation follows exactly one interaction block.</p><div class="center"><blockquote class="quote"><div class="ruled">
+
+	<table class="display dcenter"><tbody><tr valign="middle"><td class="dcell"><table cellpadding="0" cellspacing="6"><tbody><tr><td align="right" nowrap="nowrap">		<a href="#name:local-choice"><i>local-choice</i></a><a name="name:localchoice"></a></td><td align="center" nowrap="nowrap"><tt>::=</tt></td><td align="left" nowrap="nowrap"><tt><font color="#9C10A8">choice</font></tt>&nbsp;<tt><font color="#9C10A8">at</font></tt>&nbsp;<a href="#name:role-name"><i>role-name</i></a>
+		&nbsp;<a href="#name:local-interaction-block"><i>local-interaction-block</i></a>&nbsp;&nbsp;(&nbsp;<tt><font color="#9C10A8">or</font></tt>
+		&nbsp;<a href="#name:local-interaction-block"><i>local-interaction-block</i></a>&nbsp;&nbsp;)*</td></tr>
+</tbody></table></td><td class="dcell">
+	</td></tr>
+</tbody></table>
+					
+</div>
+</blockquote>
+</div><p>A choice starts with the keywords <tt><font color="#9C10A8">choice</font></tt>&nbsp;<tt><font color="#9C10A8">at</font></tt>,
+followed by a <a href="#name:role-name"><i>role-name</i></a> designating the role responsible for the choice.
+This is followed by a list of global interaction blocks separated by the keyword
+<tt><font color="#9C10A8">or</font></tt>. The interaction block list cannot be empty.</p><hr size="2"><!--TOC subsection Parallel-->
+<h3 class="subsection"><!--SEC ANCHOR --><a name="htoc32">3.6.4</a>&nbsp;&nbsp;<a name="name:localparallel">P</a>arallel</h3><!--SEC END --><p>The parallel construct specifies a set of interactions that can
+happen concurrently.</p><div class="center"><blockquote class="quote"><div class="ruled">
+
+	<table class="display dcenter"><tbody><tr valign="middle"><td class="dcell"><table cellpadding="0" cellspacing="6"><tbody><tr><td align="right" nowrap="nowrap">		<a href="#name:local-parallel"><i>local-parallel</i></a><a name="name:localparallel"></a></td><td align="center" nowrap="nowrap"><tt>::=</tt></td><td align="left" nowrap="nowrap">								<tt><font color="#9C10A8">par</font></tt>&nbsp;<a href="#name:local-interaction-block"><i>local-interaction-block</i></a>&nbsp;&nbsp;(&nbsp;<tt><font color="#9C10A8">and</font></tt>
+		<a href="#name:local-interaction-block"><i>local-interaction-block</i></a>&nbsp;&nbsp;)*</td></tr>
+</tbody></table></td><td class="dcell">
+	</td></tr>
+</tbody></table>
+
+</div>
+</blockquote>
+</div><p>A parallel starts with the keyword <tt><font color="#9C10A8">par</font></tt>,
+followed by a list of global interaction blocks separated by the keyword
+<tt><font color="#9C10A8">and</font></tt>. The interaction block list cannot be empty.</p><hr size="2"><!--TOC subsection Recursion-->
+<h3 class="subsection"><!--SEC ANCHOR --><a name="htoc33">3.6.5</a>&nbsp;&nbsp;<a name="name:localrecursion">R</a>ecursion</h3><!--SEC END --><p>The recursion construct is used to specify loops in the control flow
+of a protocol.</p><div class="center"><blockquote class="quote"><div class="ruled">
+
+	<table class="display dcenter"><tbody><tr valign="middle"><td class="dcell"><table cellpadding="0" cellspacing="6"><tbody><tr><td align="right" nowrap="nowrap">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#name:local-recursion"><i>local-recursion</i></a><a name="name:localrecursion"></a></td><td align="center" nowrap="nowrap"><tt>::=</tt></td><td align="left" nowrap="nowrap"><tt><font color="#9C10A8">rec</font></tt>&nbsp;<a href="#name:identifier"><i>identifier</i></a>&nbsp;<a href="#name:local-interaction-block"><i>local-interaction-block</i></a></td></tr>
+<tr><td align="right" nowrap="nowrap">		<a href="#name:local-continue"><i>local-continue</i></a><a name="name:localcontinue"></a></td><td align="center" nowrap="nowrap"><tt>::=</tt></td><td align="left" nowrap="nowrap"><tt><font color="#9C10A8">continue</font></tt>&nbsp;<a href="#name:identifier"><i>identifier</i></a>&nbsp;<tt><font color="#9C10A8">;</font></tt></td></tr>
+</tbody></table></td><td class="dcell">
+	</td></tr>
+</tbody></table>
+
+</div>
+</blockquote>
+</div><p>A
+<em>recursion point</em> is specified by the keyword <tt><font color="#9C10A8">rec</font></tt> and an <a href="#name:identifier"><i>identifier</i></a>
+label for this point.
+Within the following global interaction block, the keyword
+<tt><font color="#9C10A8">continue</font></tt> followed by a recursion point <a href="#name:identifier"><i>identifier</i></a> specifes that the control flow of the protocol should
+return to that point.</p><hr size="2"><!--TOC subsection Interruptible-->
+<h3 class="subsection"><!--SEC ANCHOR --><a name="htoc34">3.6.6</a>&nbsp;&nbsp;<a name="name:localtry">I</a>nterruptible</h3><!--SEC END --><p>The interruptible construct is used to specify the
+interrupts that can be thrown or caught within an interaction block.</p><div class="center"><blockquote class="quote"><div class="ruled">
+
+	<table class="display dcenter"><tbody><tr valign="middle"><td class="dcell"><table cellpadding="0" cellspacing="6"><tbody><tr><td align="right" nowrap="nowrap">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#name:interruptible"><i>interruptible</i></a><a name="name:localtry"></a>
+				</td><td align="center" nowrap="nowrap"><tt>::=</tt></td><td align="left" nowrap="nowrap"><tt><font color="#9C10A8">interruptible</font></tt>
+								<a href="#name:local-interaction-block"><i>local-interaction-block</i></a>
+								[&nbsp;<a href="#name:throw"><i>throw</i></a>&nbsp;|&nbsp;<a href="#name:catch"><i>catch</i></a>&nbsp;|&nbsp;<a href="#name:throw"><i>throw</i></a>&nbsp;<a href="#name:catch"><i>catch</i></a>&nbsp;]&nbsp;<tt><font color="#9C10A8">;</font></tt></td></tr>
+<tr><td align="right" nowrap="nowrap">																																								<a href="#name:throw"><i>throw</i></a><a name="name:localthrow"></a>
+				</td><td align="center" nowrap="nowrap"><tt>::=</tt></td><td align="left" nowrap="nowrap">				(<tt><font color="#9C10A8">throw</font></tt>&nbsp;<a href="#name:message-signature"><i>message-signature</i></a>&nbsp;(&nbsp;<tt><font color="#9C10A8">,</font></tt>&nbsp;<a href="#name:message-signature"><i>message-signature</i></a>&nbsp;)*</td></tr>
+<tr><td align="right" nowrap="nowrap">				<a href="#name:catch"><i>catch</i></a><a name="name:localcatch"></a>
+				</td><td align="center" nowrap="nowrap"><tt>::=</tt></td><td align="left" nowrap="nowrap">				(<tt><font color="#9C10A8">catch</font></tt>&nbsp;<a href="#name:message-signature"><i>message-signature</i></a>&nbsp;(&nbsp;<tt><font color="#9C10A8">,</font></tt>&nbsp;<a href="#name:message-signature"><i>message-signature</i></a>&nbsp;)*</td></tr>
+</tbody></table></td><td class="dcell">
+	</td></tr>
+</tbody></table>
+
+</div>
+</blockquote>
+</div><p>An interruptible starts with a keyword <tt><font color="#9C10A8">interruptible</font></tt> followed by a local
+interaction block specifying the main behaviour. This is followed by either a list of the keyword
+<tt><font color="#9C10A8">throw</font></tt> or the keyword <tt><font color="#9C10A8">catch</font></tt>, each followed by a message signature.
+</p><hr size="2"><!--TOC subsection Protocol Creation and
+Entrance-->
+<h3 class="subsection"><!--SEC ANCHOR --><a name="htoc35">3.6.7</a>&nbsp;&nbsp;<a name="name:localsubsessionlet">P</a>rotocol Creation and
+Entrance</h3><!--SEC END --><p>The create construct is used to specify the creation part of the call
+to another external protocol. The enter construct, its counterpart, is
+used to specify joining a newly created external protocol. Both
+constructs are the projection of the global <tt><font color="#9C10A8">calls</font></tt> construct.</p><div class="center"><blockquote class="quote"><div class="ruled">
+
+	<table class="display dcenter"><tbody><tr valign="middle"><td class="dcell"><table cellpadding="0" cellspacing="6"><tbody><tr><td align="right" nowrap="nowrap"><a href="#name:create"><i>create</i></a><a name="name:localsubsessionlet"></a></td><td align="center" nowrap="nowrap"><tt>::=</tt></td><td align="left" nowrap="nowrap"><tt><font color="#9C10A8">create</font></tt>&nbsp;<a href="#name:identifier"><i>identifier</i></a>&nbsp;<tt><font color="#9C10A8">&lt;</font></tt>&nbsp;<a href="#name:parameter-list"><i>parameter-list</i></a>&nbsp;<tt><font color="#9C10A8">&gt;</font></tt>&nbsp;<tt><font color="#9C10A8">(</font></tt>&nbsp;[&nbsp;<a href="#name:role-instantiation-list"><i>role-instantiation-list</i></a>&nbsp;]&nbsp;<tt><font color="#9C10A8">)</font></tt>
+<tt>;</tt>&nbsp;</td></tr>
+<tr><td align="right" nowrap="nowrap">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#name:enter"><i>enter</i></a></td><td align="center" nowrap="nowrap"><tt>::=</tt></td><td align="left" nowrap="nowrap"><tt><font color="#9C10A8">enter</font></tt>&nbsp;<a href="#name:identifier"><i>identifier</i></a>&nbsp;<tt><font color="#9C10A8">as</font></tt>&nbsp;<a href="#name:role-name"><i>role-name</i></a></td></tr>
+</tbody></table></td><td class="dcell">
+	</td></tr>
+</tbody></table>
+
+</div>
+</blockquote>
+</div><p>A protocol creation is specified by the word <tt><font color="#9C10A8">create</font></tt>, the
+identifier of the protocol being created, a parameter list and an
+instantiation list.</p><p>A protocol entrance is specified by the word <tt><font color="#9C10A8">enter</font></tt>, the
+identifier of the protocol being joined, the word <tt><font color="#9C10A8">as</font></tt> and the
+role played inside the external protocol.</p><hr size="2"><!--TOC chapter Well-Formed Protocols-->
+<h1 class="chapter"><!--SEC ANCHOR --><a name="htoc36">Chapter&nbsp;4</a>&nbsp;&nbsp;<a name="name:wellformed">W</a>ell-Formed Protocols</h1><!--SEC END --><p>...annotations...</p><p>This chapter describes the conditions for Scribble protocols to be
+<em>well-formed</em>, i.e. giving meaningful protocols, beyond the basic
+syntax defined by the language grammar. This is necessary because some
+of the protocols are unsafe or inconsistent even if they follow the
+grammar (for example, two parallel interactions from the same sender
+to the same receiver with the same message signature violates
+linearity and leads to a confusion at the receiver). Therefore,
+understanding well-formendess is also useful for writing safe
+protocols. In the following we outline key conditions for
+well-formedness, which will be enough for most protocols.</p><p>It is notable that you can check the well-formedness of your protocols
+by validating your protocols by the Scribble tool: therefore, you can
+also come back to this section when you try out your protocol and
+it is refused by the provided Scribble tool.</p><hr size="2"><!--TOC section Global Protocols-->
+<h2 class="section"><!--SEC ANCHOR --><a name="htoc37">4.1</a>&nbsp;&nbsp;Global Protocols</h2><!--SEC END --><p>A well-formed Scribble global protocol observes the following conditions.</p><hr size="2"><!--TOC subsection General Conditions-->
+<h3 class="subsection"><!--SEC ANCHOR --><a name="htoc38">4.1.1</a>&nbsp;&nbsp;General Conditions</h3><!--SEC END --><!--TOC subsubsection Syntax Conditions-->
+<h4 class="subsubsection"><!--SEC ANCHOR -->Syntax Conditions</h4><!--SEC END --><ul class="itemize"><li class="li-itemize">
+Roles in the protocol declaration should be distinct.
+All payload types should be imported before being used.
+</li><li class="li-itemize">In protocol declarations, Any role appearing inside the global
+interaction block must have been previously declared in the global
+protocol signature.
+</li></ul><!--TOC subsubsection Name Conditions-->
+<h4 class="subsubsection"><!--SEC ANCHOR -->Name Conditions</h4><!--SEC END --><ul class="itemize"><li class="li-itemize">
+Unless specified otherwise, multiple bindings to a same name are
+authorised, although only the last definition in scope counts.
+</li></ul><hr size="2"><!--TOC subsection Local Choice Conditions-->
+<h3 class="subsection"><!--SEC ANCHOR --><a name="htoc39">4.1.2</a>&nbsp;&nbsp;Local Choice Conditions</h3><!--SEC END --><p>In a <a href="#name:choice"><i>choice</i></a>, of the form <tt><font color="#9C10A8">choice</font></tt> <tt><font color="#9C10A8">at</font></tt> <tt>A</tt>
+ <tt>block</tt><sub>1</sub> <tt><font color="#9C10A8">or</font></tt> &#8230; <tt><font color="#9C10A8">or</font></tt> <tt>block</tt><sub><i>n</i></sub>, the
+following conditions should be satisfied.</p><ul class="itemize"><li class="li-itemize">
+There should be strictly more than one block: <i>n</i> &gt; 1.</li><li class="li-itemize">For 0&lt;<i>i</i>&#8804; <i>n</i>, in each <tt>block</tt><sub><i>i</i></sub>, A should send the
+first message. All the other participants appearing in the block should
+appear first as receivers, before possibly be senders.</li><li class="li-itemize">Any participant <i>B</i>, different from <i>A</i>, receiving a message in
+<tt>block</tt><sub><i>i</i></sub>, should also be receiving a message in all other
+blocks. The messages received by <i>B</i> in the other blocks should however
+be distinct if <i>B</i>&#8217;s following actions are different.</li><li class="li-itemize">The messages that <i>A</i> sends should be different in each block.
+</li></ul><hr size="2"><!--TOC subsection Parallel Conditions-->
+<h3 class="subsection"><!--SEC ANCHOR --><a name="htoc40">4.1.3</a>&nbsp;&nbsp;Parallel Conditions</h3><!--SEC END --><!--TOC subsubsection Linearity-->
+<h4 class="subsubsection"><!--SEC ANCHOR -->Linearity</h4><!--SEC END --><p>In a <a href="#name:parallel"><i>parallel</i></a>, of the form <tt><font color="#9C10A8">par</font></tt> <tt>block</tt><sub>1</sub> <tt><font color="#9C10A8">and</font></tt>&nbsp;
+&#8230; <tt><font color="#9C10A8">and</font></tt> <tt>block</tt><sub><i>n</i></sub>, the following conditions should be
+satisfied.</p><ul class="itemize"><li class="li-itemize">
+There should not be any <a href="#name:continue"><i>continue</i></a> in any of the
+<tt>block</tt><sub><i>i</i></sub>, unless the <a href="#name:recursion"><i>recursion</i></a> is also defined in the
+same block <tt>block</tt><sub><i>i</i></sub>.
+</li><li class="li-itemize">If, in <tt>block</tt><sub><i>i</i></sub>, there is a message with label
+<tt>msg</tt> is send by <tt>A</tt> to <tt>B</tt>, then such a
+message cannot appear in any other <tt>block</tt><sub><i>j</i></sub>.
+</li></ul><hr size="2"><!--TOC subsection Recursion Conditions-->
+<h3 class="subsection"><!--SEC ANCHOR --><a name="htoc41">4.1.4</a>&nbsp;&nbsp;Recursion Conditions</h3><!--SEC END --><!--TOC subsubsection Name Conditions-->
+<h4 class="subsubsection"><!--SEC ANCHOR -->Name Conditions</h4><!--SEC END --><ul class="itemize"><li class="li-itemize">
+A <a href="#name:continue"><i>continue</i></a>, of the form <tt><font color="#9C10A8">continue</font></tt> <tt>label</tt>,
+should only appear in a <a href="#name:recursion"><i>recursion</i></a>&nbsp;block introduced by <tt><font color="#9C10A8">rec</font></tt>
+ <tt>label</tt>. If a <tt><font color="#9C10A8">continue</font></tt> <tt>label</tt> is within several
+nested <tt><font color="#9C10A8">rec</font></tt> <tt>label</tt> blocks, it refers to the inner most
+one.
+</li></ul><hr size="2"><!--TOC subsection Interruptible Conditions-->
+<h3 class="subsection"><!--SEC ANCHOR --><a name="htoc42">4.1.5</a>&nbsp;&nbsp;Interruptible Conditions</h3><!--SEC END --><ul class="itemize"><li class="li-itemize">
+Nothing should follow an interruptible block. If an
+interruptible block appears in a <a href="#name:global-interaction-sequence"><i>global-interaction-sequence</i></a>, then
+it is in the last element.</li><li class="li-itemize">All interrupt messages should be sent from the same role.</li><li class="li-itemize">No <a href="#name:continue"><i>continue</i></a> should appear inside an interruptible block
+unless it is inside a matching <a href="#name:recursion"><i>recursion</i></a> block.
+</li></ul><hr size="2"><!--TOC subsection Spawn Conditions-->
+<h3 class="subsection"><!--SEC ANCHOR --><a name="htoc43">4.1.6</a>&nbsp;&nbsp;Spawn Conditions</h3><!--SEC END --><!--TOC subsubsection Recursive Spawns-->
+<h4 class="subsubsection"><!--SEC ANCHOR -->Recursive Spawns</h4><!--SEC END --><ul class="itemize"><li class="li-itemize">
+A <a href="#name:spawns"><i>spawns</i></a> <tt>A</tt> <tt><font color="#9C10A8">spawns</font></tt> <tt>Prot</tt> &#8230;
+must not occur inside the <i>Prot</i> protocol.
+</li></ul><!--TOC subsubsection Role Conditions-->
+<h4 class="subsubsection"><!--SEC ANCHOR -->Role Conditions</h4><!--SEC END --><ul class="itemize"><li class="li-itemize">
+In every <a href="#name:spawns"><i>spawns</i></a> <tt>A</tt> <tt><font color="#9C10A8">spawns</font></tt>
+<tt>Prot</tt> <tt>rolelist</tt>, <tt>A</tt> must appear in
+<tt>rolelist</tt>.
+</li></ul><hr size="2"><!--TOC chapter Semantics-->
+<h1 class="chapter"><!--SEC ANCHOR --><a name="htoc44">Chapter&nbsp;5</a>&nbsp;&nbsp;Semantics</h1><!--SEC END --><p>This chapter describes
+a denotational semantics
+for the Scribble language.
+The semantics is given by the <a href="#name:globalmodel">communication model</a>.</p><hr size="2"><!--TOC section Communication Model-->
+<h2 class="section"><!--SEC ANCHOR --><a name="htoc45">5.1</a>&nbsp;&nbsp;<a name="name:globalmodel">C</a>ommunication Model</h2><!--SEC END --><p>The
+<em>communication model</em>
+prescribes a denotational semantics for
+Scribble protocols.
+The communication model
+correlates each
+(<a href="#name:wellformed">well-formed</a>)
+protocol with a set of sequences
+(<a href="#name:eventtraces">traces</a>)
+of <a href="#name:communicationevents">communication events</a>
+that are deemed valid for the protocol.
+The communication model is <em>asynchronous</em>, meaning that the event of sending a message is
+decoupled from the corresponding receive event,
+but message order is preserved
+between each pair of roles in a conversation.</p><hr size="2"><!--TOC subsection Communication Events-->
+<h3 class="subsection"><!--SEC ANCHOR --><a name="htoc46">5.1.1</a>&nbsp;&nbsp;<a name="name:communicationevents">C</a>ommunication Events</h3><!--SEC END --><p>In the
+<em>communication model</em>,
+a distributed system that implements a
+Scribble protocol consists of <em>principals</em> communicating via a
+<em>network</em>.
+Three kinds of <em>communication events</em> (simply called <em>events</em> for short) are modelled: message <em>dispatch</em>, <em>delivery</em> and <em>consume</em>. These events represent the actions, either performed by a principal (<em>consume</em> and
+<em>dispatch</em>) or the network itself (<em>delivery</em>),
+involved in
+the transfer of a message from the sender to the receiver.
+The formulation of the communication model is intended to cater for diverse Scribble Runtime and network implementations.</p><blockquote class="figure"><div class="center"><div class="center"><hr size="2" width="80%"></div>
+<a name="fig:commmodel"></a>
+
+
+<img src="langref_files/ConversationCommunicationmodel.png">
+
+<div class="caption"><table cellpadding="0" cellspacing="6"><tbody><tr><td align="left" valign="top">Figure 5.1: The three kinds of communication events in the communication model</td></tr>
+</tbody></table></div>
+<div class="center"><hr size="2" width="80%"></div></div></blockquote><p><a href="#fig:commmodel">Figure 1</a>
+depicts a network configuration that supports conversations between three principals.
+Assume that the lower and the right-hand principals are
+engaged in
+a conversation.
+The red arrows illustrate the three kinds of events:
+</p><ul class="itemize"><li class="li-itemize">
+<em>Dispatch</em>. A principal commits an outgoing message, addressed
+to the receiver, to the network.
+</li><li class="li-itemize"><em>Delivery</em>.
+		The network delivers a dispatched message to the target principal.</li><li class="li-itemize"><em>Consume</em>. A principal consumes a message delivered by the
+network.
+</li></ul><p>A Scribble protocol
+imposes
+constraints on the events and the order in
+which they can occur during a conversation
+instance of the protocol.
+The communication model expresses these constraints by defining the
+execution <a href="#name:eventraces">traces</a> of events that are valid for the protocol.
+</p><!--TOC subsubsection Notation for Events-->
+<h4 class="subsubsection"><!--SEC ANCHOR -->Notation for Events</h4><!--SEC END --><blockquote class="quote">
+	The following notation is used for communication
+	events. Each event
+		specifies the <em>source</em>
+	role, the <em>target</em> role and the
+	<a href="#name:messagesignatures">message signature</a> of the
+	message involved in the event.
+																		<dl class="description"><dt class="dt-description">
+<b><tt>A!B:op(T)</tt></b></dt><dd class="dd-description"> <em>Dispatch</em> event,
+by a principal playing source role <tt>A</tt>, of a message of
+signature <tt>op(T)</tt>, addressed to the principal playing the
+target role <tt>B</tt>.
+	</dd><dt class="dt-description"><b><tt>A&gt;B:op(T)</tt></b></dt><dd class="dd-description">
+<em>Delivery</em> event by the network of a message of signature <tt>op(T)</tt>, dispatched by the principal playing source role <tt>A</tt>, to the principal playing the target role <tt>B</tt>.
+	</dd><dt class="dt-description"><b><tt>B?A:op(T)</tt></b></dt><dd class="dd-description"> <em>Consume</em> event, by
+the principal playing target role <tt>B</tt>, of a message of
+signature <tt>op(T)</tt>, dispatched by the principal playing the
+source role <tt>A</tt>.
+	</dd></dl><p>The source role of a dispatch or consume event is also called the <em>subject</em> of the event.</p></blockquote><hr size="2"><!--TOC subsection Communication Event Traces-->
+<h3 class="subsection"><!--SEC ANCHOR --><a name="htoc47">5.1.2</a>&nbsp;&nbsp;<a name="name:eventtraces">C</a>ommunication Event Traces</h3><!--SEC END --><p>
+<a name="sub:globaltraces"></a></p><p>A <em>communication event trace</em> (<em>event trace</em>, or simply <em>trace</em>, for short) is a finte sequence of
+<a href="#name:communicationevents">events</a>. The communication model
+associates a
+Scribble protocol with a (possibly infinite) set of traces called the
+<em>event trace set</em> (<em>trace set</em> for short). Each trace in 
+the trace set
+represents an execution order of events that is valid
+for the
+protocol, i.e. the trace may be exhibited by a system in which the 
+conversation principals conform to the protocol according to their 
+roles.
+</p><!--TOC subsubsection Notation for Traces and Trace Sets-->
+<h4 class="subsubsection"><!--SEC ANCHOR --><a name="name:tracenotation">N</a>otation for Traces and Trace Sets</h4><!--SEC END --><ul class="itemize"><li class="li-itemize">
+A trace <tt>t</tt> consisting of the event sequence
+<tt>e</tt><sub>1</sub>, <tt>e</tt><sub>2</sub>, &#8230;, <tt>e</tt><sub><i>i</i></sub>, &#8230; is
+written [<tt>e</tt><sub>1</sub>, <tt>e</tt><sub>2</sub>, &#8230;, <tt>e</tt><sub><i>i</i></sub>, &#8230;].
+	The notation [<tt>e</tt><sub><i>i</i></sub>]<sub>1 &#8804; <i>i</i> &#8804; <i>n</i></sub> with
+	<i>n</i> &#8712; &#8469;
+	is also used for a sequence of <i>n</i> events.
+	The empty trace, i.e. the trace with no events in its sequence, is denoted by &#1108;.</li><li class="li-itemize">	A trace set <tt>T</tt> consisting of the traces
+	<tt>t</tt><sub>1</sub>, <tt>t</tt><sub>2</sub>, &#8230;, <tt>t</tt><sub><i>n</i></sub>, &#8230;
+	is written {<tt>t</tt><sub>1</sub>, <tt>t</tt><sub>2</sub>, &#8230;,
+	<tt>t</tt><sub><i>n</i></sub>, &#8230;}.
+</li></ul><p>The <em>length</em> of a trace is the number of events in its sequence.</p><!--TOC subsubsection Operations on Traces-->
+<h4 class="subsubsection"><!--SEC ANCHOR --><a name="name:traceoperations">O</a>perations on Traces</h4><!--SEC END --><ul class="itemize"><li class="li-itemize">
+<b>Concatenation.</b>
+	The <em>concatentation</em> of two event traces
+<tt>t</tt> and <tt>t&#8217;</tt>, written
+<tt>t</tt> &#183; <tt>t&#8217;</tt>, is defined 	as the trace given
+by appending the event sequence of <tt>t&#8217;</tt> after that of <tt>t</tt>.
+</li><li class="li-itemize"><b>Safe transposition.</b>
+	Trace <tt>t</tt><sub>2</sub> is a <em>transposition</em> of
+trace <tt>t</tt><sub>1</sub> whenever <tt>t</tt><sub>1</sub> = [<tt>e</tt><sub><i>i</i></sub>]<sub>1 &#8804; <i>i</i> &#8804; <i>n</i></sub> and
+<tt>t</tt><sub>2</sub> = [<tt>e</tt><sub><i>i</i></sub>]<sub>1 &#8804; <i>i</i> &lt; <i>j</i></sub> &#183;
+[<tt>e</tt><sub><i>j</i>+1</sub>, <tt>e</tt><sub><i>j</i></sub>] &#183; [<tt>e</tt><sub><i>i</i></sub>]<sub><i>j</i>+2 &#8804; <i>i</i>
+&#8804; <i>n</i></sub> with 1 &#8804; <i>j</i> &lt; <i>n</i>.<p><tt>t</tt><sub>2</sub> is an <em>unsafe</em> transposition of <tt>t</tt><sub>1</sub> whenever, additionally:</p><ol class="enumerate" type="1"><li class="li-enumerate">
+	<tt>e</tt><sub><i>j</i></sub> is a dispatch
+or consume event and <tt>e</tt><sub><i>j</i>+1</sub> is a dispatch or consume event with the same subject;
+		</li><li class="li-enumerate">	<tt>e</tt><sub><i>j</i></sub> = <tt>A&gt;B:op(T)</tt> and <tt>e</tt><sub><i>j</i>+1</sub> = <tt>A&gt;B:op&#8217;(T&#8217;)</tt>;
+		</li><li class="li-enumerate">	<tt>e</tt><sub><i>j</i></sub> = <tt>A!B:op(T)</tt> and <tt>e</tt><sub><i>j</i>+1</sub> =
+<tt>A&gt;B:op(T)</tt>;</li><li class="li-enumerate">	<tt>e</tt><sub><i>j</i></sub> = <tt>A&gt;B:op(T)</tt> and <tt>e</tt><sub><i>j</i>+1</sub> =
+<tt>B?A:op(T)</tt>.<p>	</p></li></ol><p>A transposition that is not unsafe is a <em>safe</em> transposition. Note that unsafe, and hence safe, transposition is not symmetric.
+</p></li><li class="li-itemize"><b>Safe permutation.</b>
+	Trace <tt>t</tt><sub>2</sub> is a <em>safe
+permutation</em> (or simply <em>permutation</em>) of trace <tt>t</tt><sub>1</sub>
+when:<ol class="enumerate" type="1"><li class="li-enumerate">
+	<tt>t</tt><sub>1</sub> is of the same length as <tt>t</tt><sub>2</sub>;</li><li class="li-enumerate">there exists a finite sequence of traces
+(<tt>t&#8217;</tt><sub><i>k</i></sub>)<sub>1 &#8804; <i>k</i> &#8804; <i>m</i></sub> such that <tt>t&#8217;</tt><sub>1</sub> = <tt>t</tt><sub>1</sub>,
+<tt>t&#8217;</tt><sub><i>m</i></sub> = <tt>t</tt><sub>2</sub> and &#8704; <i>k</i>, 1 &#8804; <i>k</i> &#8804; <i>m</i>,
+<tt>t&#8217;</tt><sub><i>k</i>+1</sub> is a safe transposition of <tt>t&#8217;</tt><sub><i>k</i></sub>.</li></ol><p>Note that pemutation is not symmetric.
+</p></li></ul><!--TOC subsubsection Operations on Trace Sets-->
+<h4 class="subsubsection"><!--SEC ANCHOR --><a name="name:tracesetoperations">O</a>perations on Trace Sets</h4><!--SEC END --><ul class="itemize"><li class="li-itemize">
+<b>Permutation-closure.</b><a name="name:permutationclosure"></a>
+	A trace set <tt>T</tt> is
+<em>permutation-closed</em> whenever <tt>t</tt><sub>1</sub> &#8712; <tt>T</tt> and <tt>t</tt><sub>2</sub> is a
+permutation of <tt>t</tt><sub>1</sub> implies <tt>t</tt><sub>2</sub> &#8712; <tt>T</tt>. The
+<em>permutation-closure</em> of a trace set <tt>T</tt>, written
+&#928;(<tt>T</tt>), is the smallest permutation-closed trace set
+containing <tt>T</tt>.<p>	Note that the permutation-closed trace sets, 
+with standard set inclusion as an order relation and standard set union 
+and intersection as join and meet, form a complete lattice.</p></li><li class="li-itemize"><b>Shuffling.</b>
+		The <em>shuffling</em> of two traces <tt>t</tt><sub>1</sub> and <tt>t</tt><sub>2</sub>, written <tt>t</tt><sub>1</sub> <tt><i>w</i></tt> <tt>t</tt><sub>2</sub>, is
+	inductively
+		defined as:
+		<ol class="enumerate" type="1"><li class="li-enumerate">
+	if <tt>t</tt><sub><i>i</i></sub> = &#1108; then {<tt>t</tt><sub>3&#8722;<i>i</i></sub>} = <tt>t</tt><sub>1</sub> <tt><i>w</i></tt> <tt>t</tt><sub>2</sub>;
+		</li><li class="li-enumerate">	otherwise <tt>t</tt><sub>1</sub> = <tt>e</tt><sub>1</sub>&#183;<tt>t</tt><sub>1</sub>&#8242;, <tt>t</tt><sub>2</sub> = <tt>e</tt><sub>2</sub>&#183;<tt>t</tt><sub>2</sub>&#8242; and
+<tt>t</tt><sub>1</sub> <tt><i>w</i></tt> <tt>t</tt><sub>2</sub> =
+		{<tt>e</tt><sub>1</sub>.<tt>t</tt>&#8242; | <tt>t</tt>&#8242; &#8712; <tt>t</tt><sub>1</sub>&#8242; <tt><i>w</i></tt> <tt>t</tt><sub>2</sub>} &#8746; {<tt>e</tt><sub>2</sub>.<tt>t</tt>&#8242; | <tt>t</tt>&#8242; &#8712; <tt>t</tt><sub>1</sub> <tt><i>w</i></tt> <tt>t</tt><sub>2</sub>&#8242;}.
+	</li></ol><p>	</p><p>	The shuffling of two trace sets <tt>T</tt><sub>1</sub>, <tt>T</tt><sub>2</sub>, written <tt>T</tt><sub>1</sub> <tt><i>w</i></tt> <tt>T</tt><sub>2</sub>, is the trace set
+		given by
+	&#8746;(<tt>t</tt><sub>1</sub> <tt><i>w</i></tt> <tt>t</tt><sub>2</sub>) for all <tt>t</tt><sub>1</sub> &#8712; <tt>T</tt><sub>1</sub> and <tt>t</tt><sub>2</sub> &#8712; <tt>T</tt><sub>2</sub>.</p></li></ul><hr size="2"><!--TOC section Global Interaction Semantics-->
+<h2 class="section"><!--SEC ANCHOR --><a name="htoc48">5.2</a>&nbsp;&nbsp;Global Interaction Semantics</h2><!--SEC END --><p>The <em>denotation</em> of a <a href="#name:global-interaction"><i>global-interaction</i></a>, <a href="#name:global-interaction-sequence"><i>global-interaction-sequence</i></a>, <a href="#name:global-interaction-block"><i>global-interaction-block</i></a> or a <a href="#name:global-protocol-decl"><i>global-protocol-decl</i></a> is written <font color="red"><i>D</i></font>(<em><tt>g</tt></em>), where <em><tt>g</tt></em> belongs to one of the aforementioned syntax categories. The denotation is the <a href="#name:eventtraces">trace set</a>
+representing all the execution orders of <a href="#name:communicationevents">events</a> that are valid according to
+the
+specified protocol or protocol fragment. Two variants of the <font color="red"><i>D</i></font>(<em><tt>g</tt></em>) notation are also used:</p><blockquote class="quote">
+<table cellpadding="0" cellspacing="6"><tbody><tr><td align="left" nowrap="nowrap" valign="top">	<font color="red"><i>D</i></font><sup><a href="#name:identifier"><i>identifier</i></a></sup>(<em><tt>g</tt></em>)</td><td align="left" valign="top">&nbsp;</td><td align="left" nowrap="nowrap" valign="top">	i.e. <font color="red"><i>D</i></font><sup><em><tt>X</tt></em></sup>(<em><tt>g</tt></em>) for some <a href="#name:identifier"><i>identifier</i></a> <em><tt>X</tt></em>;</td></tr>
+<tr><td align="left" nowrap="nowrap" valign="top">	<font color="red"><i>D</i></font><sup>&#8226;</sup>(<em><tt>g</tt></em>)</td><td align="left" valign="top">&nbsp;</td><td align="left" nowrap="nowrap" valign="top">	stands for either <font color="red"><i>D</i></font>(<em><tt>g</tt></em>) or <font color="red"><i>D</i></font><sup><a href="#name:identifier"><i>identifier</i></a></sup>(<em><tt>g</tt></em>).</td></tr>
+</tbody></table>
+</blockquote><p><font color="red"><i>D</i></font><sup>&#8226;</sup>(<em><tt>g</tt></em>) is called the <em>&#8226;</em><em>-denotation</em>, and <font color="red"><i>D</i></font><sup><em><tt>X</tt></em></sup>(<em><tt>g</tt></em>) the
+<tt>X</tt><em>-denotation</em>,
+of the syntax <em><tt>g</tt></em>.
+The <em><tt>X</tt></em>-denotation is used in the treatment of protocol <a href="#name:recursion">recursion</a> to parameterise the denotation by
+an <a href="#name:identifier"><i>identifier</i></a> label.
+</p><hr size="2"><!--TOC subsection Global Protocol Declaration and Global Interaction Block-->
+<h3 class="subsection"><!--SEC ANCHOR --><a name="htoc49">5.2.1</a>&nbsp;&nbsp;Global Protocol Declaration and Global Interaction Block</h3><!--SEC END --><p>The denotations of <a href="#name:global-protocol-decl"><i>global-protocol-decl</i></a> and <a href="#name:global-interaction-block"><i>global-interaction-block</i></a> are defined in the table below. The denotations of <a href="#name:global-interaction-sequence"><i>global-interaction-sequence</i></a> and the <a href="#name:global-interaction"><i>global-interaction</i></a> constructs are defined in the following subsections.</p><table cellpadding="0" cellspacing="6"><tbody><tr><td align="left" nowrap="nowrap" valign="top">	Category</td><td align="left" valign="top">&nbsp;</td><td align="left" nowrap="nowrap" valign="top">	Denotation</td></tr>
+<tr><td class="hbar" colspan="5"></td></tr>
+<tr><td align="left" nowrap="nowrap" valign="top">	<em><tt>p</tt></em> is a <a href="#name:global-protocol-decl"><i>global-protocol-decl</i></a></td><td align="left" valign="top">&nbsp;</td><td align="left" nowrap="nowrap" valign="top">	<font color="red"><i>D</i></font><sup>&#8226;</sup>(<em><tt>p</tt></em>) = <font color="red"><i>D</i></font><sup>&#8226;</sup>(<em><tt>b</tt></em>)</td><td align="left" valign="top">&nbsp;</td><td align="left" nowrap="nowrap" valign="top">	where <em><tt>b</tt></em> is the <a href="#name:global-interaction-block"><i>global-interaction-block</i></a> specified by the <a href="#name:global-protocol-body"><i>global-protocol-body</i></a> of <em><tt>p</tt></em></td></tr>
+<tr><td align="left" nowrap="nowrap" valign="top">	<em><tt>b</tt></em> is a <a href="#name:global-interaction-block"><i>global-interaction-block</i></a></td><td align="left" valign="top">&nbsp;</td><td align="left" nowrap="nowrap" valign="top">	<font color="red"><i>D</i></font><sup>&#8226;</sup>(<em><tt>b</tt></em>) = <font color="red"><i>D</i></font><sup>&#8226;</sup>(<em><tt>s</tt></em>)</td><td align="left" valign="top">&nbsp;</td><td align="left" nowrap="nowrap" valign="top">	where <em><tt>s</tt></em> is the <a href="#name:global-interaction-sequence"><i>global-interaction-sequence</i></a> contained by <em><tt>b</tt></em></td></tr>
+<tr><td align="left" nowrap="nowrap" valign="top">	<a href="#name:global-interaction-sequence"><i>global-interaction-sequence</i></a></td><td align="left" valign="top">&nbsp;</td><td align="left" nowrap="nowrap" valign="top">	Section&nbsp;<a href="#sub:interactionsequencedenotation">5.2.2</a></td></tr>
+<tr><td align="left" nowrap="nowrap" valign="top">	<a href="#name:global-interaction"><i>global-interaction</i></a></td><td align="left" valign="top">&nbsp;</td><td colspan="3" align="left" nowrap="nowrap">		<a href="#name:interactionsequencedenotation">point-to-point message transfer</a>, <a href="#name:choicedenotation">choice</a>, <a href="#name:paralleldenotation">parallel</a>, <a href="#name:recursiondenotation">recursion</a>, <a href="#name:trydenotation">interruptible</a>, <a href="#name:dodenotation">do</a></td></tr>
+</tbody></table><hr size="2"><!--TOC subsection Interaction Sequence-->
+<h3 class="subsection"><!--SEC ANCHOR --><a name="htoc50">5.2.2</a>&nbsp;&nbsp;<a name="sub:interactionsequencedenotation"></a><a name="name:interactionsequencedenotation">I</a>nteraction Sequence</h3><!--SEC END --><p>A <a href="#name:global-interaction-sequence"><i>global-interaction-sequence</i></a> is a (possibly empty) list of <a href="#name:global-interaction"><i>global-interaction</i></a> elements.
+The denotation of an interaction sequence <em><tt>s</tt></em>, <font color="red"><i>D</i></font><sup>&#8226;</sup>(<em><tt>s</tt></em>), is defined as:</p><ol class="enumerate" type="1"><li class="li-enumerate">
+	if <em><tt>s</tt></em> is the empty sequence, then <font color="red"><i>D</i></font><sup>&#8226;</sup>(<em><tt>s</tt></em>) = {<a href="#name:tracenotation">&#1108;</a>};</li><li class="li-enumerate">	otherwise, <em><tt>s</tt></em> is a global interaction <em><tt>i</tt></em> followed by a (possibly empty) interaction sequence <tt><em><tt>s</tt></em></tt><tt>&#8217;</tt>. Then the &#8226;-denotation of <em><tt>s</tt></em> is the
+<a href="#name:tracesetoperations">permutation-closure</a> of the trace set given by recursively concatenating
+to traces in the &#8226;-denotation of <em><tt>i</tt></em>,
+the traces in the &#8226;-denotation of
+<tt><em><tt>s</tt></em></tt><tt>&#8217;</tt>. Formally:<div class="center">	<font color="red"><i>D</i></font><sup>&#8226;</sup>(<em><tt>s</tt></em>)
+= &#928;({<tt>t</tt> &#183; <tt>t&#8217;</tt> | <tt>t</tt> &#8712;
+<font color="red"><i>D</i></font>(<em><tt>i</tt></em>), <tt>t&#8217;</tt> &#8712; <font color="red"><i>D</i></font><sup>&#8226;</sup>(<em><tt>s</tt></em><tt>&#8217;</tt>)})
+</div></li></ol><hr size="2"><!--TOC subsection Point-to-Point Message Transfer-->
+<h3 class="subsection"><!--SEC ANCHOR --><a name="htoc51">5.2.3</a>&nbsp;&nbsp;<a name="sub:transferdenotation"></a><a name="name:transferdenotation">P</a>oint-to-Point Message Transfer</h3><!--SEC END --><p>Recall the syntax of the <a href="#name:messagetransfer">point-to-point message transfer</a>, which belongs to the <a href="#name:global-interaction"><i>global-interaction</i></a> syntactic category:</p><div class="center"><blockquote class="quote"><div class="ruled">
+
+	<table class="display dcenter"><tbody><tr valign="middle"><td class="dcell"><table cellpadding="0" cellspacing="6"><tbody><tr><td align="right" nowrap="nowrap">		<a href="#name:message"><i>message</i></a></td><td align="center" nowrap="nowrap"><tt>::=</tt></td><td align="left" nowrap="nowrap">[&nbsp;<a href="#name:message-signature"><i>message-signature</i></a>&nbsp;|&nbsp;<a href="#name:identifier"><i>identifier</i></a>&nbsp;]&nbsp;&nbsp;<tt><font color="#9C10A8">from</font></tt>&nbsp;<a href="#name:role-name"><i>role-name</i></a>
+		&nbsp;<tt><font color="#9C10A8">to</font></tt>&nbsp;<a href="#name:role-name"><i>role-name</i></a>&nbsp;<tt>;</tt></td></tr>
+<tr><td align="right" nowrap="nowrap"></td></tr>
+</tbody></table></td></tr>
+</tbody></table>
+
+</div>
+</blockquote>
+</div><p>The denotation of a message transfer</p><div class="center">	<tt>MsgSig </tt><tt><font color="#9C10A8">from</font></tt><tt> Sender </tt><tt><font color="#9C10A8">to</font></tt><tt> Receiver </tt><tt><font color="#9C10A8">;</font></tt></div><p>is defined as the <a href="#name:eventtraces">trace set</a>:</p><div class="center">	{[<tt>Sender!Receiver:MsgSig</tt>,
+<tt>Sender&gt;Receiver:MsgSig</tt>,
+<tt>Receiver?Sender:MsgSig</tt>]}.
+</div><p>Formally:</p><div class="center"><font color="red"><i>D</i></font><sup>&#8226;</sup>(<tt>M </tt><tt><font color="#9C10A8">from</font></tt><tt> R </tt><tt><font color="#9C10A8">to</font></tt><tt> R&#8217;</tt>)
+=
+	{[<tt>R!R&#8217;:M</tt>,
+<tt>R&gt;R&#8217;:M</tt>,
+<tt>R&#8217;?R:M</tt>]}
+</div><p>Note that the denotation is <a href="#name:tracesetoperations">permutation-closed</a> by definition.</p><hr size="2"><!--TOC subsection Choice-->
+<h3 class="subsection"><!--SEC ANCHOR --><a name="htoc52">5.2.4</a>&nbsp;&nbsp;<a name="sub:choicedenotation"></a><a name="name:choicedenotation">C</a>hoice</h3><!--SEC END --><p>Recall the syntax of the <a href="#name:choice">choice</a> construct, which belongs to the
+<a href="#name:global-interaction"><i>global-interaction</i></a> syntactic category:</p><div class="center"><blockquote class="quote"><div class="ruled">
+
+	<table class="display dcenter"><tbody><tr valign="middle"><td class="dcell"><table cellpadding="0" cellspacing="6"><tbody><tr><td align="right" nowrap="nowrap">		<a href="#name:choice"><i>choice</i></a></td><td align="center" nowrap="nowrap"><tt>::=</tt></td><td align="left" nowrap="nowrap"><tt><font color="#9C10A8">choice</font></tt>&nbsp;<tt><font color="#9C10A8">at</font></tt>&nbsp;<a href="#name:role-name"><i>role-name</i></a>
+		&nbsp;<a href="#name:global-interaction-block"><i>global-interaction-block</i></a>&nbsp;&nbsp;(&nbsp;<tt><font color="#9C10A8">or</font></tt>
+		&nbsp;<a href="#name:global-interaction-block"><i>global-interaction-block</i></a>&nbsp;&nbsp;)*</td></tr>
+</tbody></table></td><td class="dcell">
+	</td></tr>
+</tbody></table>
+					
+</div>
+</blockquote>
+</div><p>The &#8226;-denotation of a choice</p><div class="center"><tt><font color="#9C10A8">choice</font></tt><tt> </tt><tt><font color="#9C10A8">at</font></tt><tt>
+R </tt><em><tt>b</tt></em><sub>1</sub><tt> </tt><tt><font color="#9C10A8">or</font></tt><tt>
+&#8230; </tt><tt><font color="#9C10A8">or</font></tt><tt> </tt><em><tt>b</tt></em><sub><i>n</i></sub>
+</div><p>is defined as union of the
+&#8226;-denotations of the global interaction blocks <em><tt>b</tt></em><sub><i>i</i></sub> for 1 &#8804; <i>i</i> &#8804; <i>n</i>. Formally:</p><div class="center">	<font color="red"><i>D</i></font><sup>&#8226;</sup>(<tt><font color="#9C10A8">choice</font></tt> <tt><font color="#9C10A8">at</font></tt> <tt>R</tt> <em><tt>b</tt></em><sub>1</sub> <tt><font color="#9C10A8">or</font></tt> &#8230; <tt><font color="#9C10A8">or</font></tt>
+	<em><tt>b</tt></em><sub><i>n</i></sub>) =
+			&#8746;<sub><i>i</i> = 1..<i>n</i></sub> <font color="red"><i>D</i></font><sup>&#8226;</sup>(<em><tt>b</tt></em><sub><i>i</i></sub>)
+</div><p>Note that the <a href="#name:tracesetoperations">permutation-closure</a> of each <font color="red"><i>D</i></font><sup>&#8226;</sup>(<em><tt>b</tt></em><sub><i>i</i></sub>) implies the permutation-closure of the denotation of the choice.
+</p><hr size="2"><!--TOC subsection Parallel-->
+<h3 class="subsection"><!--SEC ANCHOR --><a name="htoc53">5.2.5</a>&nbsp;&nbsp;<a name="sub:paralleldenotation"></a><a name="name:paralleldenotation">P</a>arallel</h3><!--SEC END --><p>Recall the syntax of the <a href="#name:parallel">parallel</a> construct, which belongs to the
+<a href="#name:global-interaction"><i>global-interaction</i></a> syntactic category:</p><div class="center"><blockquote class="quote"><div class="ruled">
+
+	<table class="display dcenter"><tbody><tr valign="middle"><td class="dcell"><table cellpadding="0" cellspacing="6"><tbody><tr><td align="right" nowrap="nowrap">		<a href="#name:parallel"><i>parallel</i></a></td><td align="center" nowrap="nowrap"><tt>::=</tt></td><td align="left" nowrap="nowrap">								<tt><font color="#9C10A8">par</font></tt>&nbsp;<a href="#name:global-interaction-block"><i>global-interaction-block</i></a>&nbsp;&nbsp;(&nbsp;<tt><font color="#9C10A8">and</font></tt>
+		<a href="#name:global-interaction-block"><i>global-interaction-block</i></a>&nbsp;&nbsp;)*</td></tr>
+</tbody></table></td><td class="dcell">
+	</td></tr>
+</tbody></table>
+
+</div>
+</blockquote>
+</div><p>The &#8226;-denotation of a parallel</p><div class="center"><tt><font color="#9C10A8">par</font></tt><tt>
+</tt><tt><em><tt>b</tt></em></tt><sub><tt>1</tt></sub><tt> </tt><tt><font color="#9C10A8">and</font></tt><tt> &#8230;
+</tt><tt><font color="#9C10A8">and</font></tt><tt> </tt><tt><em><tt>b</tt></em></tt><sub><tt><i>n</i></tt></sub>
+</div><p>is defined as the
+<a href="#name:tracesetoperations">shuffling</a> of the &#8226;-denotations of
+the global interaction blocks <em><tt>b</tt></em><sub><i>i</i></sub> for all 1 &#8804; <i>i</i> &#8804; <i>n</i>. Formally:</p><div class="center"><font color="red"><i>D</i></font><sup>&#8226;</sup>(<tt><font color="#9C10A8">par</font></tt> <em><tt>b</tt></em><sub>1</sub> <tt><font color="#9C10A8">and</font></tt> &#8230;
+ <tt><font color="#9C10A8">and</font></tt> <em><tt>b</tt></em><sub><i>n</i></sub>) =
+			<font color="red"><i>D</i></font><sup>&#8226;</sup>(<em><tt>b</tt></em><sub>1</sub>) <tt><i>w</i></tt> &#8230; <tt><i>w</i></tt> <font color="red"><i>D</i></font><sup>&#8226;</sup>(<em><tt>b</tt></em><sub><i>n</i></sub>)
+</div><p>Note that, by the definition of shuffling, the <a href="#name:tracesetoperations">permutation-closure</a> of each <font color="red"><i>D</i></font><sup>&#8226;</sup>(<tt>b</tt><i>i</i>) implies the permutation-closure of the denotation of the parallel.
+</p><hr size="2"><!--TOC subsection Recursion-->
+<h3 class="subsection"><!--SEC ANCHOR --><a name="htoc54">5.2.6</a>&nbsp;&nbsp;<a name="sub:recursiondenotation"></a><a name="name:recursiondenotation">R</a>ecursion</h3><!--SEC END --><p>Recall the syntax of the <a href="#name:recursion">recursion</a> and <a href="#name:recursion">continuation</a> constructs, which
+belong to the <a href="#name:global-interaction"><i>global-interaction</i></a> syntactic category:</p><div class="center"><blockquote class="quote"><div class="ruled">
+
+	<table class="display dcenter"><tbody><tr valign="middle"><td class="dcell"><table cellpadding="0" cellspacing="6"><tbody><tr><td align="right" nowrap="nowrap">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#name:recursion"><i>recursion</i></a></td><td align="center" nowrap="nowrap"><tt>::=</tt></td><td align="left" nowrap="nowrap"><tt><font color="#9C10A8">rec</font></tt>&nbsp;<a href="#name:identifier"><i>identifier</i></a>&nbsp;<a href="#name:global-interaction-block"><i>global-interaction-block</i></a></td></tr>
+<tr><td align="right" nowrap="nowrap">		<a href="#name:continue"><i>continue</i></a></td><td align="center" nowrap="nowrap"><tt>::=</tt></td><td align="left" nowrap="nowrap"><tt><font color="#9C10A8">continue</font></tt>&nbsp;<a href="#name:identifier"><i>identifier</i></a>&nbsp;<tt><font color="#9C10A8">;</font></tt></td></tr>
+</tbody></table></td><td class="dcell">
+	</td></tr>
+</tbody></table>
+
+</div>
+</blockquote>
+</div><p>The &#8226;-denotation of a recursion</p><div class="center"><tt><font color="#9C10A8">rec</font></tt><tt> X
+</tt><tt><em><tt>b</tt></em></tt>
+</div><p>comprises the traces in the
+&#8226;-denotation of the block <em><tt>b</tt></em>, along with the traces in the <tt>X</tt>-denotation of <em><tt>b</tt></em> (i.e. the traces that flow through a <tt><font color="#9C10A8">continue</font></tt> specifying <tt>X</tt>) concatenated,
+recursively, with traces in the &#8226;-denotation of the recursion.</p><p>Formally, the &#8226;-denotation of a recursion is defined as the <a href="#name:eventtraces">permutation-closure</a> of the least fixed point of the generator function <i>F</i><sup>&#8226;, <tt>X</tt></sup>, i.e.</p><div class="center"><font color="red"><i>D</i></font><sup>&#8226;</sup>(<tt><font color="#9C10A8">rec</font></tt><tt> X</tt> <em><tt>b</tt></em>) = &#928;(<font color="purple"><i>fix</i></font>  <i>F</i><sup>&#8226;, <tt>X</tt></sup>)
+</div><p>where <i>F</i> is the following function over permutation-closed trace sets:</p><div class="center"><i>F</i><sup>&#8226;, <tt>X</tt></sup> = <tt>T</tt> &#8614; <font color="red"><i>D</i></font><sup>&#8226;</sup>(<em><tt>b</tt></em>) &#8746;
+&#928;({<tt>t&#8217;</tt> &#183; <tt>t</tt> | <tt>t</tt> &#8712; <tt>T</tt>, <tt>t&#8217;</tt>
+&#8712; <font color="red"><i>D</i></font><sup><tt>X</tt></sup>(<em><tt>b</tt></em>)})
+</div><p>The &#8226;-denotation of a continue is defined, for some <a href="#name:identifier"><i>identifier</i></a> label <tt>X</tt>, as:</p><div class="center"><table cellpadding="0" cellspacing="6"><tbody><tr><td align="right" nowrap="nowrap" valign="top">	<font color="red"><i>D</i></font><sup>&#8226;</sup>(<tt><font color="#9C10A8">continue</font></tt><tt> X </tt><tt><font color="#9C10A8">;</font></tt>)</td><td align="center" nowrap="nowrap" valign="top">=</td><td align="left" nowrap="nowrap" valign="top">	{<a href="#name:tracenotation">&#1108;</a>}</td><td align="left" valign="top">&nbsp;</td><td align="left" nowrap="nowrap" valign="top">	if &#8226; is <tt>X</tt>;</td></tr>
+<tr><td align="right" nowrap="nowrap" valign="top">	<font color="red"><i>D</i></font><sup>&#8226;</sup>(<tt><font color="#9C10A8">continue</font></tt><tt> X </tt><tt><font color="#9C10A8">;</font></tt>)</td><td align="center" nowrap="nowrap" valign="top">=</td><td align="left" nowrap="nowrap" valign="top">	&#8709;</td><td align="left" valign="top">&nbsp;</td><td align="left" nowrap="nowrap" valign="top">	otherwise.</td></tr>
+</tbody></table>
+</div><hr size="2"><!--TOC subsection Interruptible-->
+<h3 class="subsection"><!--SEC ANCHOR --><a name="htoc55">5.2.7</a>&nbsp;&nbsp;<a name="name:trydenotation">I</a>nterruptible</h3><!--SEC END --><p>The <em>pre-denotation</em> of a global interaction block <em><tt>b</tt></em>, written <font color="red"><i>D</i></font><sub><tt><i>pre</i></tt></sub><sup>&#8226;</sup>(<em><tt>b</tt></em>), where <em><tt>b</tt></em> contains the global interaction sequence <em><tt>s</tt></em>, is
+given by:</p><ol class="enumerate" type="1"><li class="li-enumerate">
+	if <em><tt>s</tt></em> is the empty sequence, then <font color="red"><i>D</i></font><sub><tt><i>pre</i></tt></sub><sup>&#8226;</sup>(<em><tt>s</tt></em>) = {<a href="#name:tracenotation">&#1108;</a>};</li><li class="li-enumerate">	otherwise <font color="red"><i>D</i></font><sup>&#8226;</sup>(<em><tt>i</tt></em>, <em><tt>s</tt></em>
+	<tt>&#8217;</tt>) = &#928;({<tt>t</tt> &#183;
+<tt>t&#8217;</tt> | <tt>t</tt> &#8712; <font color="red"><i>D</i></font>(<em><tt>i</tt></em>), <tt>t&#8217;</tt> &#8712;
+<font color="red"><i>D</i></font><sup>&#8226;</sup>(<em><tt>s</tt></em><tt>&#8217;</tt>)}) &#8746; <font color="red"><i>D</i></font><sup>&#8226;</sup>(<i>i</i>).
+</li></ol><p>Note that <font color="red"><i>D</i></font><sub><tt><i>pre</i></tt></sub><sup>&#8226;</sup>(<em><tt>b</tt></em>) is the same as <font color="red"><i>D</i></font><sup>&#8226;</sup>(<i>b</i>)
+ except for interactions sequences, in which case the pre-denotation 
+additionally includes the denotations of the sub-sequences that are 
+syntactic prefixes of <em><tt>s</tt></em>.</p><p>Recall the syntax of the <a href="#name:interruptible">interruptible</a> construct, which
+belongs to the <a href="#name:global-interaction"><i>global-interaction</i></a> syntactic category:</p><div class="center"><blockquote class="quote"><div class="ruled">
+
+	<table class="display dcenter"><tbody><tr valign="middle"><td class="dcell"><table cellpadding="0" cellspacing="6"><tbody><tr><td align="right" nowrap="nowrap">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#name:interruptible"><i>interruptible</i></a>
+																								</td><td align="center" nowrap="nowrap"><tt>::=</tt></td><td align="left" nowrap="nowrap"><tt><font color="#9C10A8">interruptible</font></tt>&nbsp;<a href="#name:global-interaction-block"><i>global-interaction-block</i></a>
+								<tt><font color="#9C10A8">with</font></tt>&nbsp;<tt><font color="#9C10A8">{</font></tt>&nbsp;(&nbsp;<a href="#name:interrupt"><i>interrupt</i></a>&nbsp;)+&nbsp;<tt><font color="#9C10A8">}</font></tt></td></tr>
+<tr><td align="right" nowrap="nowrap">																																																				<a href="#name:interrupt"><i>interrupt</i></a>
+				</td><td align="center" nowrap="nowrap"><tt>::=</tt></td><td align="left" nowrap="nowrap">				<a href="#name:message-signature"><i>message-signature</i></a>&nbsp;(&nbsp;<tt><font color="#9C10A8">,</font></tt>&nbsp;<a href="#name:message-signature"><i>message-signature</i></a>&nbsp;)*&nbsp;<tt><font color="#9C10A8">by</font></tt>
+								<a href="#name:role-name"><i>role-name</i></a>&nbsp;(&nbsp;<tt><font color="#9C10A8">,</font></tt>&nbsp;<a href="#name:role-name"><i>role-name</i></a>&nbsp;)*&nbsp;<tt><font color="#9C10A8">;</font></tt></td></tr>
+</tbody></table></td><td class="dcell">
+	</td></tr>
+</tbody></table>
+
+</div>
+</blockquote>
+</div><p>
+
+Assume that the roles that occur in the <a href="#name:global-interaction-block"><i>global-interaction-block</i></a> of the interruptible are
+<i>R</i><sub>1</sub>,&#8230;,<i>R</i><sub><i>m</i></sub>. The denotation is &#8226;-denotation of the interruptible is given by:</p><div class="center"><font color="red"><i>D</i></font><sup>&#8226;</sup>(<tt><font color="#9C10A8">interruptible</font></tt>&nbsp;<i>b</i>&nbsp;<tt><font color="#9C10A8">by</font></tt>&nbsp;<i>r</i><sub>1</sub>&nbsp;<tt><font color="#9C10A8">with</font></tt>&nbsp;<i>I</i><sub>1</sub>,&#8230;,
+<i>r</i><sub><i>n</i></sub>&nbsp;<tt><font color="#9C10A8">with</font></tt>&nbsp;<i>I</i><sub><i>n</i></sub>) =
+{<tt>t</tt>=&#928;(<tt>t</tt><sub>1</sub>&nbsp;&#183;&nbsp;<i>Int</i>(<i>r</i><sub><i>i</i></sub>,<i>I</i><sub><i>i</i></sub>))|
+<tt>t</tt><sub>1</sub>&#183;<tt>t</tt>&#8242;<sub>1</sub> &#8712; <font color="red"><i>D</i></font><sub><tt><i>pre</i></tt></sub><sup>&#8226;</sup>(<i>b</i>) &#8743;
+<i>Correct</i>(<tt>t</tt>) &#8743; <i>i</i> &#8712; {1,&#8230;,<i>n</i>}}</div><p>with (supposing&nbsp;<i>r</i><sub><i>i</i></sub> = <i>R</i><sub><i>j</i></sub>&nbsp;) <i>Int</i>(<i>r</i><sub><i>i</i></sub>,<i>I</i><sub><i>i</i></sub>) defined as:</p><div class="center"><tt><i>r</i></tt><sub><tt><i>i</i></tt></sub><tt>!</tt><tt><i>R</i></tt><sub><tt>1</tt></sub><tt>:</tt><tt><i>I</i></tt><sub><tt><i>i</i></tt></sub>, <tt><i>r</i></tt><sub><tt><i>i</i></tt></sub><tt>&gt;</tt><tt><i>R</i></tt><sub><tt>1</tt></sub><tt>:</tt><tt><i>I</i></tt><sub><tt><i>i</i></tt></sub>,
+<tt><i>R</i></tt><sub><tt>1</tt></sub><tt>?</tt><tt><i>r</i></tt><sub><tt><i>i</i></tt></sub><tt>:</tt><tt><i>I</i></tt><sub><tt><i>i</i></tt></sub>,&#8230;,<tt><i>r</i></tt><sub><tt><i>i</i></tt></sub><tt>!</tt><tt><i>R</i></tt><sub><tt><i>j</i>-1</tt></sub><tt>:</tt><tt><i>I</i></tt><sub><tt><i>i</i></tt></sub>,
+<tt><i>r</i></tt><sub><tt><i>i</i></tt></sub><tt>&gt;</tt><tt><i>R</i></tt><sub><tt><i>j</i>-1</tt></sub><tt>:</tt><tt><i>I</i></tt><sub><tt><i>i</i></tt></sub>,
+<tt><i>R</i></tt><sub><tt><i>j</i>-1</tt></sub><tt>?</tt><tt><i>r</i></tt><sub><tt><i>i</i></tt></sub><tt>:</tt><tt><i>I</i></tt><sub><tt><i>i</i></tt></sub>,<tt><i>r</i></tt><sub><tt><i>i</i></tt></sub><tt>!</tt><tt><i>R</i></tt><sub><tt><i>j</i>+1</tt></sub><tt>:</tt><tt><i>I</i></tt><sub><tt><i>i</i></tt></sub>,
+<tt><i>r</i></tt><sub><tt><i>i</i></tt></sub><tt>&gt;</tt><tt><i>R</i></tt><sub><tt><i>j</i>+1</tt></sub><tt>:</tt><tt><i>I</i></tt><sub><tt><i>i</i></tt></sub>,
+<tt><i>R</i></tt><sub><tt><i>j</i>+1</tt></sub><tt>?</tt><tt><i>r</i></tt><sub><tt><i>i</i></tt></sub><tt>:</tt><tt><i>I</i></tt><sub><tt><i>i</i></tt></sub>,&#8230;,
+<tt><i>r</i></tt><sub><tt><i>i</i></tt></sub><tt>!</tt><tt><i>R</i></tt><sub><tt><i>m</i></tt></sub><tt>:</tt><tt><i>I</i></tt><sub><tt><i>i</i></tt></sub>, <tt><i>r</i></tt><sub><tt><i>i</i></tt></sub><tt>&gt;</tt><tt><i>R</i></tt><sub><tt><i>m</i></tt></sub><tt>:</tt><tt><i>I</i></tt><sub><tt><i>i</i></tt></sub>,
+<tt><i>R</i></tt><sub><tt><i>m</i></tt></sub><tt>?</tt><tt><i>r</i></tt><sub><tt><i>i</i></tt></sub><tt>:</tt><tt><i>I</i></tt><sub><tt><i>i</i></tt></sub></div><p>and <i>Correct</i>(<tt>t</tt>) defined as the following predicate:</p><ul class="itemize"><li class="li-itemize">
+if <tt>t</tt>=
+<tt>t</tt><sub>1</sub>&#183;<tt><i>r</i></tt><sub><tt><i>i</i></tt></sub><tt>!</tt><tt><i>R</i></tt><sub><tt>1</tt></sub><tt>:</tt><tt><i>I</i></tt><sub><tt><i>i</i></tt></sub>&#183;<tt>t</tt><sub>2</sub>, then
+for each event <tt>e</tt> in <tt>t</tt><sub>2</sub>, if the subject of
+<tt>e</tt> is <i>r</i><sub><i>i</i></sub>, then there exists <i>k</i> s.t. <tt>e</tt> =
+<tt><i>r</i></tt><sub><tt><i>i</i></tt></sub><tt>!</tt><tt><i>R</i></tt><sub><tt><i>k</i></tt></sub><tt>:</tt><tt><i>I</i></tt><sub><tt><i>i</i></tt></sub>;
+</li><li class="li-itemize">if <tt>t</tt>=
+<tt>t</tt><sub>1</sub>&#183;<tt><i>R</i></tt><sub><tt><i>k</i></tt></sub><tt>?</tt><tt><i>r</i></tt><sub><tt><i>i</i></tt></sub><tt>:</tt><tt><i>I</i></tt><sub><tt><i>i</i></tt></sub>&#183;<tt>t</tt><sub>2</sub>, then
+for each event <tt>e</tt> in <tt>t</tt><sub>2</sub>, the subject of
+<tt>e</tt> is not <i>R</i><sub><i>k</i></sub>.
+</li></ul><hr size="2"><!--TOC subsection Do-->
+<h3 class="subsection"><!--SEC ANCHOR --><a name="htoc56">5.2.8</a>&nbsp;&nbsp;<a name="name:dodenotation">D</a>o</h3><!--SEC END --><p>Recall the syntax of the <a href="#name:do">do</a> construct, which
+belongs to the <a href="#name:global-interaction"><i>global-interaction</i></a> syntactic category:</p><div class="center"><blockquote class="quote"><div class="ruled">
+
+	<table class="display dcenter"><tbody><tr valign="middle"><td class="dcell"><table cellpadding="0" cellspacing="6"><tbody><tr><td align="right" nowrap="nowrap">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#name:do"><i>do</i></a></td><td align="center" nowrap="nowrap"><tt>::=</tt></td><td align="left" nowrap="nowrap"><tt><font color="#9C10A8">do</font></tt>&nbsp;<a href="#name:identifier"><i>identifier</i></a>&nbsp;[&nbsp;<tt><font color="#9C10A8">&lt;</font></tt>&nbsp;<a href="#name:argument-list"><i>argument-list</i></a>&nbsp;<tt><font color="#9C10A8">&gt;</font></tt>&nbsp;]&nbsp;<tt><font color="#9C10A8">(</font></tt>
+								<a href="#name:role-instantiation-list"><i>role-instantiation-list</i></a>
+				<tt><font color="#9C10A8">)</font></tt>&nbsp;<tt><font color="#9C10A8">;</font></tt></td></tr>
+<tr><td align="right" nowrap="nowrap"><a href="#name:role-instantiation-list"><i>role-instantiation-list</i></a></td><td align="center" nowrap="nowrap"><tt>::=</tt></td><td align="left" nowrap="nowrap"><a href="#name:role-name"><i>role-name</i></a>&nbsp;<tt><font color="#9C10A8">as</font></tt>&nbsp;<a href="#name:role-name"><i>role-name</i></a>&nbsp;(&nbsp;<tt><font color="#9C10A8">,</font></tt>&nbsp;<a href="#name:role-name"><i>role-name</i></a>&nbsp;<tt><font color="#9C10A8">as</font></tt>&nbsp;<a href="#name:role-name"><i>role-name</i></a>&nbsp;)<sup>*</sup></td></tr>
+</tbody></table></td><td class="dcell">
+	</td></tr>
+</tbody></table>
+
+</div>
+</blockquote>
+</div><p>The &#8226;-denotation of a do</p><div class="center"><tt><font color="#9C10A8">do</font></tt><tt> </tt><tt>p</tt><tt> </tt><tt><font color="#9C10A8">&lt;</font></tt><tt> </tt><tt>op</tt><sub><tt>1</tt></sub><tt>(Arg</tt><sub><tt>1</tt></sub><tt>)</tt><tt> </tt><tt><font color="#9C10A8">,</font></tt><tt> </tt><tt>&#8230;</tt><tt><font color="#9C10A8">,</font></tt><tt> </tt><tt>op</tt><sub><tt><i>n</i></tt></sub><tt>(Arg</tt><sub><tt><i>n</i></tt></sub><tt>)</tt><tt> </tt><tt><font color="#9C10A8">&gt;</font></tt><tt> </tt><tt><font color="#9C10A8">(</font></tt><tt> </tt><tt>R</tt><sub><tt>1</tt></sub><tt> </tt><tt><font color="#9C10A8">as</font></tt><tt> </tt><tt>R</tt><sub><tt>1</tt></sub><tt>&#8242;</tt><tt><font color="#9C10A8">,</font></tt><tt> </tt><tt>&#8230;</tt><tt><font color="#9C10A8">,</font></tt><tt> </tt><tt>R</tt><sub><tt><i>n</i></tt></sub><tt> </tt><tt><font color="#9C10A8">as</font></tt><tt> </tt><tt>R</tt><sub><tt><i>n</i></tt></sub><tt>&#8242;</tt><tt> </tt><tt><font color="#9C10A8">)</font></tt><tt> </tt><tt><font color="#9C10A8">;</font></tt>
+</div><p>where <tt>p</tt> is the name of the <a href="#...">target protocol</a>, is the
+&#8226;-denotation of <em><tt>p</tt></em> with the roles <tt>R</tt><sub>1</sub>&#8242;, &#8230;, <tt>R</tt><sub><i>n</i></sub>&#8242; in <tt>p</tt> substituted for <tt>R</tt><sub>1</sub>, &#8230;, <tt>R</tt><sub><i>n</i></sub> and the parameters
+<a href="#name:identifier"><i>identifier</i></a><sub>1</sub>, &#8230;<a href="#name:identifier"><i>identifier</i></a><sub><i>n</i></sub>
+in <tt>p</tt> substituted for <tt>op</tt><sub>1</sub><tt>(Arg</tt><sub>1</sub><tt>)</tt>, &#8230;, <tt>op</tt><sub><i>n</i></sub><tt>(Arg</tt><sub><i>n</i></sub><tt>)</tt>.</p><hr size="2"><!--TOC subsection Spawn-->
+<h3 class="subsection"><!--SEC ANCHOR --><a name="htoc57">5.2.9</a>&nbsp;&nbsp;<a name="name:semsubsessionlet">S</a>pawn</h3><!--SEC END --><p>We use the refined semantics by annotating the denotation with the
+session-id: </p><div class="center"><font color="red"><i>D</i></font><sub><tt>s</tt></sub><sup>&#8226;</sup>(<i>b</i>) =
+{<tt>s</tt>:<tt>e</tt><sub>1</sub>, &#8230;, <tt>s</tt>:<tt>e</tt><sub><i>n</i></sub> |
+<tt>e</tt><sub>1</sub>,&#8230;,<tt>e</tt><sub><i>n</i></sub> &#8712; <font color="red"><i>D</i></font><sup>&#8226;</sup>(<i>b</i>)}</div><p>We recall the syntax for spawn:</p><div class="center"><blockquote class="quote"><div class="ruled">
+
+	<table class="display dcenter"><tbody><tr valign="middle"><td class="dcell"><table cellpadding="0" cellspacing="6"><tbody><tr><td align="right" nowrap="nowrap"><a href="#name:spawn"><i>spawn</i></a></td><td align="center" nowrap="nowrap"><tt>::=</tt></td><td align="left" nowrap="nowrap"><a href="#name:role-name"><i>role-name</i></a>&nbsp;<tt><font color="#9C10A8">spawns</font></tt>&nbsp;<a href="#name:identifier"><i>identifier</i></a>&nbsp;<tt><font color="#9C10A8">&lt;</font></tt>&nbsp;[&nbsp;<a href="#name:argument-list"><i>argument-list</i></a>&nbsp;]&nbsp;<tt><font color="#9C10A8">&gt;</font></tt>&nbsp;<tt><font color="#9C10A8">(</font></tt>&nbsp;<a href="#name:role-instantiation-list"><i>role-instantiation-list</i></a>&nbsp;<tt><font color="#9C10A8">)</font></tt>&nbsp;<tt>;</tt></td></tr>
+</tbody></table></td><td class="dcell">
+	</td></tr>
+</tbody></table>
+
+</div>
+</blockquote>
+</div><p>Supposing <i>Prot</i> is defined with <tt><font color="#9C10A8">global&nbsp;protocol</font></tt>&nbsp;<i>Prot</i>&nbsp;<tt><font color="#9C10A8">&lt;</font></tt>
+<i>arg</i> <tt><font color="#9C10A8">&gt;</font></tt>&nbsp;(<tt><font color="#9C10A8">role</font></tt>&nbsp;<i>r</i>&#8242;<sub>1</sub> &#8230; <tt><font color="#9C10A8">role</font></tt>&nbsp;<i>r</i>&#8242;<sub><i>n</i></sub>) :
+</p><div class="center"><font color="red"><i>D</i></font><sub><tt>s</tt></sub><sup>&#8226;</sup>(<i>R</i>&nbsp;<tt><font color="#9C10A8">calls</font></tt>&nbsp; <i>Prot</i> <tt><font color="#9C10A8">&lt;</font></tt> <i>par</i> <tt><font color="#9C10A8">&gt;</font></tt>
+(<i>r</i><sub>1</sub> <tt><font color="#9C10A8">as</font></tt> <i>r</i>&#8242;<sub><i>i</i><sub>1</sub></sub>,&#8230;,<i>r</i><sub><i>m</i></sub> <tt><font color="#9C10A8">as</font></tt> <i>r</i>&#8242;<sub><i>i</i><sub><i>m</i></sub></sub>)
+)= {
+&#928;(<i>Invit</i>(<i>R</i>,{(<i>r</i><sub>1</sub>,<i>r</i>&#8242;<sub><i>i</i><sub>1</sub></sub>),&#8230;,(<i>r</i><sub><i>m</i></sub>,<i>r</i>&#8242;<sub><i>i</i><sub><i>m</i></sub></sub>)},<tt>k</tt>)&#183;<tt>t</tt>)| <tt>t</tt> &#8712;
+<font color="red"><i>D</i></font><sub><tt>k</tt></sub><sup>&#8226;</sup>(<i>Prot</i>){<i>par</i>/<i>arg</i>}{<i>r</i><sub>1</sub>/<i>r</i>&#8242;<sub><i>i</i><sub>1</sub></sub>}&#8230;{<i>r</i><sub><i>m</i></sub>/<i>r</i>&#8242;<sub><i>i</i><sub><i>m</i></sub></sub>}, <i>k</i>  fresh
+}</div><p>with <i>Invit</i>(<i>R</i>,{(<i>r</i><sub>1</sub>,<i>r</i>&#8242;<sub><i>i</i><sub>1</sub></sub>),&#8230;,(<i>r</i><sub><i>m</i></sub>,<i>r</i>&#8242;<sub><i>i</i><sub><i>m</i></sub></sub>)},<tt>k</tt>)
+defined as (supposing <i>R</i> = <i>r</i><sub><i>j</i></sub>):
+</p><div class="center"><tt><i>R</i></tt><tt>!</tt><tt><i>r</i></tt><sub><tt>1</tt></sub><tt>:</tt><tt>k</tt>,
+<tt><i>R</i></tt><tt>&gt;</tt><tt><i>r</i></tt><sub><tt>1</tt></sub><tt>:</tt><tt>k</tt>,
+<tt><i>r</i></tt><sub><tt>1</tt></sub><tt>?</tt><tt><i>R</i></tt><tt>:</tt><tt><i>I</i></tt><sub><tt><i>i</i></tt></sub>,&#8230;,<tt><i>R</i></tt><tt>!</tt><tt><i>r</i></tt><sub><tt><i>j</i>-1</tt></sub><tt>:</tt><tt>k</tt>,
+<tt><i>R</i></tt><tt>&gt;</tt><tt><i>r</i></tt><sub><tt><i>j</i>-1</tt></sub><tt>:</tt><tt>k</tt>,
+<tt><i>r</i></tt><sub><tt><i>j</i>-1</tt></sub><tt>?</tt><tt><i>R</i></tt><tt>:</tt><tt>k</tt>,<tt><i>R</i></tt><tt>!</tt><tt><i>r</i></tt><sub><tt><i>j</i>+1</tt></sub><tt>:</tt><tt>k</tt>,
+<tt><i>R</i></tt><tt>&gt;</tt><tt><i>r</i></tt><sub><tt><i>j</i>+1</tt></sub><tt>:</tt><tt>k</tt>,
+<tt><i>r</i></tt><sub><tt><i>j</i>+1</tt></sub><tt>?</tt><tt><i>R</i></tt><tt>:</tt><tt>k</tt>,&#8230;,
+<tt><i>R</i></tt><tt>!</tt><tt><i>r</i></tt><sub><tt><i>m</i></tt></sub><tt>:</tt><tt>k</tt>, <tt><i>R</i></tt><tt>&gt;</tt><tt><i>r</i></tt><sub><tt><i>m</i></tt></sub><tt>:</tt><tt>k</tt>,
+<tt><i>r</i></tt><sub><tt><i>m</i></tt></sub><tt>?</tt><tt><i>R</i></tt><tt>:</tt><tt>k</tt></div><hr size="2"><!--TOC section Local Interaction Semantics-->
+<h2 class="section"><!--SEC ANCHOR --><a name="htoc58">5.3</a>&nbsp;&nbsp;Local Interaction Semantics</h2><!--SEC END --><p><em>&#8211; similar setup to global traces</em></p><hr size="2"><!--TOC section Global-to-Local Protocol Projection-->
+<h2 class="section"><!--SEC ANCHOR --><a name="htoc59">5.4</a>&nbsp;&nbsp;Global-to-Local Protocol Projection</h2><!--SEC END --><p><em>&#8211; trace filtering</em></p><!--CUT END -->
+<!--HTMLFOOT-->
+<!--ENDHTML-->
+<!--FOOTER-->
+<hr size="2"><blockquote class="quote"><em>This document was translated from L<sup>A</sup>T<sub>E</sub>X by
+</em><a href="http://hevea.inria.fr/index.html"><em>H</em><em><font size="2"><sup>E</sup></font></em><em>V</em><em><font size="2"><sup>E</sup></font></em><em>A</em></a><em>.</em></blockquote>
+
+</body></html>
