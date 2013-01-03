@@ -101,7 +101,7 @@ header h2 {
 }
 
 #main-content {
-  width: 690px;
+  width: 640px;
   float: left;
 }
 
@@ -110,7 +110,7 @@ header h2 {
 }
 
 aside#sidebar {
-  width: 200px;
+  width: 250px;
   padding-left: 20px;
   min-height: 504px;
   float: right;
@@ -260,7 +260,16 @@ form {
   margin-bottom: 8px;
   color: #474747;
 } 
- 
+
+aside#sidebar h3 {
+  font-family: 'Architects Daughter', 'Helvetica Neue', Helvetica, Arial, serif; 
+  font-size: 18px;
+  font-weight: bold;
+  margin-top: 24px;
+  margin-bottom: 8px;
+  color: #474747;
+}
+
 #main-content h3:before {
   content: "///";
   color: #9ddcff;
@@ -274,6 +283,20 @@ form {
   font-weight: bold;
   color: #474747;
 } 
+
+aside#sidebar h4 {
+  font-family: 'Architects Daughter', 'Helvetica Neue', Helvetica, Arial, serif; 
+  font-size: 15px;
+  font-weight: bold;
+  color: #474747;
+} 
+
+aside#sidebar h4:before {
+  content: ">";
+  color: #9ddcff;
+  padding-right: 0.3em;
+  margin-left: 1.0em;
+}
 
 h4:before {
   content: "////";
@@ -347,6 +370,7 @@ footer {
   padding-bottom: 30px;
   font-size: 13px;
   color: #aaa;
+  text-align: center;
 }
 
 footer a {
