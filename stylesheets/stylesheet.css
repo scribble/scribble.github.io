@@ -317,6 +317,18 @@ h5:before {
   margin-left: -3.2em;
 }
 
+aside#sidebar h5 {
+  font-family: 'Architects Daughter', 'Helvetica Neue', Helvetica, Arial, serif; 
+  font-size: 14px;
+  color: #474747;
+} 
+aside#sidebar h5:before {
+  content: "";
+  color: #9ddcff;
+  padding-right: 0.3em;
+  margin-left: 3.0em;
+}
+
 #main-content h6 {
   font-family: 'Architects Daughter', 'Helvetica Neue', Helvetica, Arial, serif; 
   font-size: .8em;
@@ -346,6 +358,12 @@ blockquote {
   border-left: 10px solid #e9e9e9;
   margin-bottom: 20px;
   padding: 0 0 0 30px;
+}
+
+quotation {
+  font-size: 0.8em;
+  margin-bottom: 30px;
+  font-style: italic;
 }
 
 ul li {
