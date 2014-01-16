@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="shortcut icon" href="imgs/pi-32x32x32.png">
+
+    <title>Scribble</title>
+
+    <link href="css/bootstrap.css" rel="stylesheet">
+    <link href="css/scribble.css" rel="stylesheet">
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="js/html5shiv.js"></script>
+      <script src="js/respond.min.js"></script>
+    <![endif]-->
+
+  </head>
+
+  <body>
+
+    <div class="container">
+      <div class="jumbotron" style="position:relative">
+<!--
+        <h1><i>Scribble</i></h1>
+        <span class="lead">SOA Repository Artifact Model and Protocol</span>
+-->
+<!--
+        <p><a class="btn btn-lg btn-success" href="#">Get Started Now</a>
+        <a class="btn btn-lg btn-warning" href="http://downloads.jboss.org/overlord/sramp/s-ramp-0.3.0.Final.zip">Download Now</a></p>
+-->
+        <a href="https://github.com/Scribble"><img style="position: absolute; top: 0; right: 0; border: 0;" src="imgs/forkme_right_red_aa0000.png" alt=""></a>
+      </div>
+      
+      <div class="inner">
+
+          <div class="overview row">
+            <div class="col-lg-6">
+              <h3>What is Scribble?</h3>
+              <p>Scribble is a language to describe application-level protocols among communicating systems. A protocol represents an agreement on how participating systems interact with each other. Without a protocol, it is hard to do meaningful interaction: participants simply cannot communicate effectively, since they do not know when to expect the other parties to send data, or whether the other party is ready to receive data.</p>
+
+              <p><b>NEEDS A DISCUSSION ON THE IMPORTANCE OF A THEORETICAL BASIS, BUT IN LAYMANS TERMS</b></p>
+	
+		<br>
+
+	      <h4>Find out more ...</h4>
+
+              <div class="buttons">
+		<a class="btn btn-lg btn-success" href="http://scribble.github.io/langref.html">Language Spec</a>
+		<div class="btn-group">
+        	  <button type="button" class="btn btn-lg btn-warning dropdown-toggle" data-toggle="dropdown">Implementations <span class="caret"></span></button>
+        	  <ul class="dropdown-menu" role="menu">
+          	    <li><a href="scribble-java_inprogress.html">Java</a></li>
+          	    <li><a href="scribble-python_inprogress.html">Python</a></li>
+        	  </ul>
+      		</div>
+	      </div>
+
+            </div>
+
+            <div class="col-lg-6">
+              <h3>An example</h3>
+<pre><code>
+<a style="color:blue">module</a> examples;
+
+<a style="color:blue">global protocol</a> HelloWorld(<a style="color:blue">role</a> Me, <a style="color:blue">role</a> World) {
+	Hello <a style="color:blue">from</a> Me <a style="color:blue">to</a> World;
+	<a style="color:blue">choice at</a> World {
+		GoodMorning <a style="color:blue">from</a> World <a style="color:blue">to</a> Me;
+	} <a style="color:blue">or</a> {
+		GoodAfternoon <a style="color:blue">from</a> World <a style="color:blue">to</a> Me;
+	}
+}
+</code></pre>
+		<p>
+		A very simply example, but this illustrates the basic syntax for a hello world interaction, where a party performing the role <emphasis>Me</emphasis> sends a message of type <i>Hello</i> to another party performing the role 'World', who subsequently makes a decision which determines which path of the choice will be followed, resulting in a <i>GoodMorning</i> or <i>GoodAfternoon</i> message being exchanged.
+		</p>
+            </div>
+          </div>
+
+
+          <!-- *** Features *** -->
+          <div class="features row">
+            <div class="col-lg-3">
+              <h3>Describe</h3>
+              <p>Scribble is a language for describing multiparty protocols from a global, or endpoint neutral, perspective.</p>
+            </div>
+            <div class="col-lg-3">
+              <h3>Verify</h3>
+              <p>Scribble has a theoretical foundation, based on the Pi Calculus and Session Types, to ensure that protocols
+		described using the language are sound, and do not suffer from deadlocks or livelocks.</p>
+           </div>
+            <div class="col-lg-3">
+              <h3>Project</h3>
+              <p>Endpoint projection is the term used for identifying the responsibility of a particular role (or endpoint)
+		within a protocol. The result of a projection can be used to generate the template behaviour of an
+		endpoint implementing the behaviour, statically compare the required behaviour against an implementation,
+		or monitor the endpoint's behaviour.</p>
+            </div>
+            <div class="col-lg-3">
+              <h3>Monitor</h3>
+              <p>Use the endpoint projection for roles defined within a Scribble protocol, to monitor the activity of
+		a particular endpoint, to ensure it correctly implements the expected behaviour.</p>
+            </div>
+          </div>
+
+          <div class="collaborators row">
+            <div class="col-lg-6">
+              <h3>Academia</h3>
+
+              <div class="collaborator-icons row">
+                <div class="col-lg-2">
+		  <a href="http://www3.imperial.ac.uk">
+		    <img src="imgs/imperial_college.png" alt="Imperial College London" height="44" width="168"> 
+		  </a>
+                </div>
+              </div>
+
+            </div>
+            <div class="col-lg-6">
+              <h3>Industry</h3>
+
+              <div class="collaborator-icons row">
+                <div class="col-lg-2">
+		  <a href="http://www.redhat.com">
+		    <img src="imgs/redhat.jpg" alt="RedHat" height="100" width="100"> 
+		  </a>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+      </div>
+
+      <!-- Site footer -->
+      <div class="footer">
+        scribble.org 2009-14
+      </div>
+
+    </div> <!-- /container -->
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+  
+
+<!--
+<iframe style="display: none;" allowtransparency="true" id="rufous-sandbox" frameborder="0" scrolling="no"></iframe>
+-->
+    <script src="js/jquery.js"></script>
+    <script src="js/bootstrap.js"></script>
+
+</body></html>
