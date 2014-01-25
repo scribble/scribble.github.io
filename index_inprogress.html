@@ -67,16 +67,16 @@
 <a style="color:blue">module</a> examples;
 
 <a style="color:blue">global protocol</a> HelloWorld(<a style="color:blue">role</a> Me, <a style="color:blue">role</a> World) {
-	Hello <a style="color:blue">from</a> Me <a style="color:blue">to</a> World;
+	hello(Greetings) <a style="color:blue">from</a> Me <a style="color:blue">to</a> World;
 	<a style="color:blue">choice at</a> World {
-		GoodMorning <a style="color:blue">from</a> World <a style="color:blue">to</a> Me;
+		hello(GoodMorning) <a style="color:blue">from</a> World <a style="color:blue">to</a> Me;
 	} <a style="color:blue">or</a> {
-		GoodAfternoon <a style="color:blue">from</a> World <a style="color:blue">to</a> Me;
+		hello(GoodAfternoon) <a style="color:blue">from</a> World <a style="color:blue">to</a> Me;
 	}
 }
 </code></pre>
 		<p>
-		A very simply example, but this illustrates the basic syntax for a hello world interaction, where a party performing the role <emphasis>Me</emphasis> sends a message of type <i>Hello</i> to another party performing the role 'World', who subsequently makes a decision which determines which path of the choice will be followed, resulting in a <i>GoodMorning</i> or <i>GoodAfternoon</i> message being exchanged.
+		A very simply example, but this illustrates the basic syntax for a hello world interaction, where a party performing the role <emphasis>Me</emphasis> sends a message of type <i>Greetings</i> to another party performing the role 'World', who subsequently makes a decision which determines which path of the choice will be followed, resulting in a <i>GoodMorning</i> or <i>GoodAfternoon</i> message being exchanged.
 		</p>
             </div>
           </div>
