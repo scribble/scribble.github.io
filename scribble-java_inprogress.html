@@ -30,27 +30,58 @@
 
         <h2><i>Java Implementation</i></h2>
 
-	<p>
-	The Java tools are provided as a set of plugins within the Eclipse IDE (Integrated Development Environment).
-	</p>
+          <div class="community row">
+            <!-- Left side -->
+            <div class="col-lg-9">
+	      <p>
+	      The Java tools are provided as a set of plugins within the Eclipse IDE (Integrated Development Environment). To install the tools:
+	      </p>
+<ul>
+	<li>Download Eclipse (see button on the right)</li>
+	<li>When Eclipse has been launched, go to the <i>Help-> Install New Software...</i> menu item.
+	This will show a dialog window.</li>
+	<li>Enter the URL <a>http://download.jboss.org/scribble/tools/latest</a> into the <i>Work With</i> field and 
+	press the <i>return</i> key.</li>
+	<li>Select the <b>Scribble</b> top level node and press the <i>Next</i> button.</li>
+	<li>Follow the instructions and restart the Eclipse tooling when requested.</li>
+	<li>See the <i>Tools Guide</i> for information on how to use the tools.</li>
+</ul>
+	    </div>
 
-        <p><a class="btn btn-lg btn-success" href="#">Get Eclipse</a></p>
-
+            <div class="col-lg-3">
+	      <p>
+		<div class="btn-group">
+        	  <button type="button" class="btn btn-lg btn-success dropdown-toggle" data-toggle="dropdown">Tools Guide <span class="caret"></span></button>
+        	  <ul class="dropdown-menu" role="menu">
+          	    <li><a href="http://docs.jboss.org/scribble/tools/latest/html/">HTML</a></li>
+          	    <li><a href="http://docs.jboss.org/scribble/tools/latest/pdf/Scribble_Java_Eclipse_Guide.pdf">PDF</a></li>
+        	  </ul>
+      		</div>
+	      </p>
+       	      <p><a class="btn btn-lg btn-warning" href="https://community.jboss.org/en/scribble">User Forum</a></p>
+       	      <p><a class="btn btn-lg btn-danger" href="https://issues.jboss.org/browse/SCRIBBLE">Report an Issue</a></p>
+       	      <p><a class="btn btn-lg btn-info" href="http://www.eclipse.org/downloads/">Get Eclipse</a></p>
+	    </div>
+ 
+	  </div>
 
           <!-- *** Community *** -->
           <div class="community row">
             <!-- Left side -->
             <div class="col-lg-6">
               <div class="citem">
-                <h3>Latest Version <span class="version pull-right hide-480">0.3.0.Final</span></h3>
-                <p>The first stable release of S-RAMP - released on July 17, 2013.</p>
+                <h3>Latest Version <span class="version pull-right hide-480">0.3.0.M2</span></h3>
+                <p>Second milestone of version 0.3 - released on 31st Jan, 2014.</p>
+		<p>This version contains a basic editor, protocol parser, validator and projection.</p>
                 <div class="links">
-                  <a href="https://github.com/Scribble/scribble-java/archive/scribble-0.3.0.Final.zip">Source</a> |
-                  <a href="http://downloads.jboss.org/scribble/release/scribble-java-0.3.0.Final.zip">Binary</a> |
-                  <a href="http://docs.jboss.org/overlord/sramp/0.3.0.Final/html/">Docs</a> |
-                  <a href="https://groups.google.com/forum/?fromgroups#!forum/scribble-lang">Forum</a>
+                  <a href="https://github.com/scribble/scribble-java/archive/0.3.0.M2.zip">Source</a> |
+                  <a href="http://downloads.jboss.org/scribble/tools/latest">Update Site</a> |
+                  <a href="http://docs.jboss.org/scribble/tools/latest/html">Docs (html)</a> |
+                  <a href="http://docs.jboss.org/scribble/tools/latest/pdf/Scribble_Java_Eclipse_Guide.pdf">Docs (pdf)</a>
                 </div>
               </div>
+
+<!--
               <div class="citem minor">
                 <h3>Next Version (in dev) <span class="version pull-right hide-480">0.4.0-SNAPSHOT</span></h3>
                 <p>This is what we're currently working on.  Now's a great time to take a look and offer suggestions!</p>
@@ -60,6 +91,7 @@
                   <a href="https://groups.google.com/forum/?fromgroups#!forum/scribble-lang">Forum</a>
                 </div>
               </div>
+-->
               <div class="citem">
                 <h3>Join the community</h3>
                 <p>
@@ -67,7 +99,7 @@
                   offering feedback or suggesting features, or developing code, here some some places you can find us:
                 </p>
                 <div class="links">
-                  <a href="https://groups.google.com/forum/?fromgroups#!forum/scribble-lang">Forum Discussions</a> |
+                  <a href="https://community.jboss.org/en/scribble/dev">Developer Forum</a> |
                   <a href="https://github.com/scribble/scribble-java/issues">Report a Bug or Feature Request</a>
                 </div>
               </div>
@@ -96,4 +128,10 @@
     <!-- Placed at the end of the document so the pages load faster -->
   
 
-<iframe style="display: none;" allowtransparency="true" id="rufous-sandbox" frameborder="0" scrolling="no"></iframe></body></html>
+<!--
+<iframe style="display: none;" allowtransparency="true" id="rufous-sandbox" frameborder="0" scrolling="no"></iframe>
+-->
+    <script src="js/jquery.js"></script>
+    <script src="js/bootstrap.js"></script>
+
+</body></html>
