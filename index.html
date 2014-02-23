@@ -1,116 +1,181 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <meta charset='utf-8'>
-    <meta http-equiv="X-UA-Compatible" content="chrome=1">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <link href='https://fonts.googleapis.com/css?family=Architects+Daughter' rel='stylesheet' type='text/css'>
-    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen" />
-    <link rel="stylesheet" type="text/css" href="stylesheets/pygment_trac.css" media="screen" />
-    <link rel="stylesheet" type="text/css" href="stylesheets/print.css" media="print" />
-
-    <!--[if lt IE 9]>
-    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-    <![endif]-->
+<html lang="en"><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="shortcut icon" href="imgs/pi-32x32x32.png">
 
     <title>Scribble</title>
+
+    <link href="css/bootstrap.css" rel="stylesheet">
+    <link href="css/scribble.css" rel="stylesheet">
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="js/html5shiv.js"></script>
+      <script src="js/respond.min.js"></script>
+    <![endif]-->
+
   </head>
 
   <body>
-    <header>
-      <div class="inner">
-        <h1>Scribble</h1>
-        <h2>Protocol Language</h2>
-        <a href="https://github.com/scribble" class="button"><small>Follow me on</small>GitHub</a>
+
+    <div class="container">
+      <div class="jumbotron" style="position:relative">
+<!--
+        <h1><i>Scribble</i></h1>
+        <span class="lead">SOA Repository Artifact Model and Protocol</span>
+-->
+<!--
+        <p><a class="btn btn-lg btn-success" href="#">Get Started Now</a>
+        <a class="btn btn-lg btn-warning" href="http://downloads.jboss.org/overlord/sramp/s-ramp-0.3.0.Final.zip">Download Now</a></p>
+-->
+        <a href="https://github.com/Scribble"><img style="position: absolute; top: 0; right: 0; border: 0;" src="imgs/forkme_right_red_aa0000.png" alt=""></a>
       </div>
-    </header>
+      
+      <div class="inner">
 
-    <div id="content-wrapper">
-      <div class="inner clearfix">
-        <section id="main-content">
+          <div class="overview row">
+            <div class="col-lg-6">
+              <h3>What is Scribble?</h3>
 
-<quotation>
-"Scribbling is necessary for architects, either physical or computing, since all great ideas of architectural construction come from that unconscious moment, when you do not realise what it is, when there is no concrete shape, only a whisper which is not a whisper, an image which is not an image, somehow it starts to urge you in your mind, in so small a voice but how persistent it is, at that point you start scribbling." Kohei Honda 2007.
-</quotation>
+	      <br>
 
-          <h3>What is Scribble?</h3>
+              <p>Scribble is a language to describe application-level protocols among communicating systems. A protocol represents an agreement on how participating systems interact with each other. Without a protocol, it is hard to do meaningful interaction: participants simply cannot communicate effectively, since they do not know when to expect the other parties to send data, or whether the other party is ready to receive data.</p>
 
-<p>Scribble is a language to describe application-level protocols among communicating systems. A protocol represents an agreement on how participating systems interact with each other. Without a protocol, it is hard to do a meaningful interaction: participants simply cannot communicate effectively, since they do not know when to expect the other parties to send their data, or whether the other party is ready to receive a datum it is sending. In fact it is not clear what kinds of data is to be used for each interaction. It is too costly to carry out communications based on guess works and with inevitable communication mismatch (synchronisation bugs). Simply, it is not feasible as an engineering practice.</p>
+	      <p>However, having a description of a protocol has further benefits. It enables verification to ensure
+	      that the protocol can be implemented without resulting in unintended consequences, such as deadlocks.</p>
 
-<p>Scribble presents a stratified description language:</p>
+	      <br>
 
-<ul>
-<li>The bottom layer is the type layer, in which we describe the bare skeleton of conversations structures as types for interactions (known in the literature as session type).</li>
-<li>The assertion layer allows elaboration of a type-layer description using assertions.</li>
-<li>Finally the third layer, protocol document layer, allows description of multiple protocols and constraints over them.</li>
-</ul>
+	      <h4>Find out more ...</h4>
 
-<h3>A Simple Example</h3>
+              <div class="buttons">
+		<a class="btn btn-lg btn-success" href="docs/Scribble_Protocol_Language_Guide.pdf">Language Guide</a>
+		<div class="btn-group">
+        	  <button type="button" class="btn btn-lg btn-primary dropdown-toggle" data-toggle="dropdown">Tools <span class="caret"></span></button>
+        	  <ul class="dropdown-menu" role="menu">
+          	    <li><a href="scribble-java.html">Java</a></li>
+          	    <li><a href="scribble-python.html">Python</a></li>
+        	  </ul>
+      		</div>
+		<a class="btn btn-lg btn-info" href="docs/langref.html">Specification</a>
+		<a class="btn btn-lg btn-warning" href="https://groups.google.com/forum/?fromgroups#!forum/scribble-lang">Forum</a>
+	      </div>
 
-<pre><code>package example;
+            </div>
 
-global protocol HelloWorld (role Me, role World) {
-    say(Hello) from Me to World;
-}</code></pre>
+            <div class="col-lg-6">
+              <h3>An example</h3>
+<pre><code>
+<a style="color:blue">module</a> examples;
 
-<h3>How can it be used?</h3>
+<a style="color:blue">global protocol</a> HelloWorld(<a style="color:blue">role</a> Me, <a style="color:blue">role</a> World) {
+	hello(Greetings) <a style="color:blue">from</a> Me <a style="color:blue">to</a> World;
+	<a style="color:blue">choice at</a> World {
+		hello(GoodMorning) <a style="color:blue">from</a> World <a style="color:blue">to</a> Me;
+	} <a style="color:blue">or</a> {
+		hello(GoodAfternoon) <a style="color:blue">from</a> World <a style="color:blue">to</a> Me;
+	}
+}
+</code></pre>
+		<p>
+		A very simply example, but this illustrates the basic syntax for a hello world interaction, where a party performing the role <emphasis>Me</emphasis> sends a message of type <i>Greetings</i> to another party performing the role 'World', who subsequently makes a decision which determines which path of the choice will be followed, resulting in a <i>GoodMorning</i> or <i>GoodAfternoon</i> message being exchanged.
+		</p>
+            </div>
+          </div>
 
-<p>The development and validation of programs against protocol descriptions could proceed as follows:</p>
 
-<ul>
-<li>A programmer specifies a set of protocols to be used in her application.</li>
-<li>She can verify that those protocols are valid, free from livelocks and deadlocks.</li>
-<li>She develops her application referring to those protocols, potentially using communication constructs available in the chosen programming language.</li>
-<li>She validates her programs against protocols using a protocol checker, which detects lack of conformance.</li>
-<li>At the execution time, a local monitor can validate messages with respect to given protocols, optionally blocking invalid messages from being delivered.</li>
-</ul>
-        </section>
+          <!-- *** Features *** -->
+          <div class="features row">
+            <div class="col-lg-2">
+              <h3>Describe <span class="glyphicon glyphicon-pencil"></span></h3>
+              <p>Scribble is a language for describing multiparty protocols from a global, or endpoint neutral, perspective.</p>
+            </div>
+            <div class="col-lg-3">
+              <h3>Verify <span class="glyphicon glyphicon-thumbs-up"></span></h3>
+              <p>Scribble has a theoretical foundation, based on the Pi Calculus and Session Types, to ensure that protocols
+		described using the language are sound, and do not suffer from deadlocks or livelocks.</p>
+           </div>
+            <div class="col-lg-2">
+              <h3>Project <span class="glyphicon glyphicon-fullscreen"></h3>
+              <p>Endpoint projection is the term used for identifying the responsibility of a particular role (or endpoint)
+		within a protocol.</p>
+            </div>
+            <div class="col-lg-3">
+              <h3>Implement <span class="glyphicon glyphicon-tasks"></h3>
+              <p>Various options exist, including (a) using the endpoint projection for a role to generate a skeleton code, (b) using session type APIs to clearly describe the behaviour, and (c) statically verify the code against the projection.</p>
+            </div>
+            <div class="col-lg-2">
+              <h3>Monitor <span class="glyphicon glyphicon-search"></h3>
+              <p>Use the endpoint projection for roles defined within a Scribble protocol, to monitor the activity of
+		a particular endpoint, to ensure it correctly implements the expected behaviour.</p>
+            </div>
+          </div>
 
-        <aside id="sidebar">
+          <div class="row">
+            <div class="col-lg-12">
+	      <br>
+<p>
+<i>"Scribbling is necessary for architects, either physical or computing, since all great ideas of architectural construction come from that unconscious moment, when you do not realise what it is, when there is no concrete shape, only a whisper which is not a whisper, an image which is not an image, somehow it starts to urge you in your mind, in so small a voice but how persistent it is, at that point you start scribbling."</i> (Dr. Kohei Honda, 2007)
+</p>
+	      <br>
+            </div>
+          </div>
 
-		<h3>Documents</h3>
-		<h4>Protocol Language Guide <i>(To be done)</i></h4>
+          <div class="collaborators row">
+            <div class="col-lg-6">
+              <h3>Academia</h3>
+                <div>
+		  <a href="http://www3.imperial.ac.uk">
+		    <img src="imgs/imperial_college.png" alt="Imperial College London" height="44" width="168"> 
+		  </a>
+                </div>
+		<br>
+                <div>
+		  <a href="http://www.qmul.ac.uk/">
+		    <img src="imgs/queen_mary.png" alt="Query Mary University" height="44" width="168"> 
+		  </a>
+                </div>
 
-		<h3>Downloads</h3>
-		<h4><a href="https://github.com/scribble/scribble-java/wiki/Downloads">Java Tools</a></h4>
+            </div>
+            <div class="col-lg-6">
+              <h3>Industry</h3>
+		<div>
+		  <a href="http://oceanobservatories.org/">
+		    <img src="imgs/ooi.png" alt="Ocean Observatories Initiative" height="50" width="150"> 
+		  </a>
+		</div>
+		<br>
+		<div>
+		  <a href="http://www.redhat.com">
+		    <img src="imgs/redhat.jpg" alt="RedHat" height="50" width="150"> 
+		  </a>
+		</div>
 
-		<h3>Community</h3>
-		<h4><a href="https://groups.google.com/forum/?fromgroups#!forum/scribble-lang">Discussion Forum</a></h4>
-		<h4><a href="https://github.com/scribble/scribble-java">Java Tools</a></h4>
-		<h5><a href="https://github.com/scribble/scribble-java/issues">Issues</a></h5>
-		<h5><a href="https://github.com/scribble/scribble-java/wiki">Wiki</a></h5>
-		<h4><a href="https://github.com/scribble/scribble-python">Python Tools</a></h4>
-		<h5><a href="https://github.com/scribble/scribble-python/issues">Issues</a></h5>
-		<h5><a href="https://github.com/scribble/scribble-python/wiki">Wiki</a></h5>
+            </div>
+          </div>
 
-		<h3>Specifications</h3>
-		<h4><a href="docs/langref.html">Protocol Language</a></h4>
+      </div>
 
-		<h3>Research Institutions</h3>
-		<h4><a href="http://www3.imperial.ac.uk/">Imperial College</a></h4>
-		<h4><a href="http://www.qmul.ac.uk/">Queey Mary</a></h4>
+      <!-- Site footer -->
+      <div class="footer">
+        scribble.org 2009-14
+      </div>
 
-		<h3>Industry Partners</h3>
-		<h4><a href="http://www.oceanobservatories.org/">Ocean Observatories Initiative</a></h4>
-		<h4><a href="http://www.redhat.com">Red Hat</a></h4>
+    </div> <!-- /container -->
 
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+  
 
 <!--
-	 <div id="menu" >
-	   <section id="useful-links">
-		<mh3>Documents</mh3>
-		<mh4><a href="langref.html">Protocol Language Reference</a></p></mh4>
- 	   </section>
-	 </div>
+<iframe style="display: none;" allowtransparency="true" id="rufous-sandbox" frameborder="0" scrolling="no"></iframe>
 -->
+    <script src="js/jquery.js"></script>
+    <script src="js/bootstrap.js"></script>
 
-        </aside>
-      </div>
-    </div>
-
-  
-  </body>
-  <footer>
-          <p>This page was generated by <a href="pages.github.com">GitHub Pages</a> using the Architect theme by <a href="http://twitter.com/jasonlong">Jason Long</a>.</p>
-  </footer>
-</html>
+</body></html>
