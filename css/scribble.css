@@ -151,6 +151,15 @@ body {
   color: #999;
 }
 
+.inner .collaborators {
+  background-color: white;
+  padding: 40px;
+  padding-top: 20px;
+  border-bottom: 1px solid #ccc;
+  margin-left: -20px;
+  margin-right: -20px;
+}
+
 
 @media ( min-width : 768px) {
   .nav-justified {

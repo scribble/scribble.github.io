@@ -40,11 +40,15 @@
           <div class="overview row">
             <div class="col-lg-6">
               <h3>What is Scribble?</h3>
+
+	      <br>
+
               <p>Scribble is a language to describe application-level protocols among communicating systems. A protocol represents an agreement on how participating systems interact with each other. Without a protocol, it is hard to do meaningful interaction: participants simply cannot communicate effectively, since they do not know when to expect the other parties to send data, or whether the other party is ready to receive data.</p>
 
-              <p><b>NEEDS A DISCUSSION ON THE IMPORTANCE OF A THEORETICAL BASIS, BUT IN LAYMANS TERMS</b></p>
-	
-		<br>
+	      <p>However, having a description of a protocol has further benefits. It enables verification to ensure
+	      that the protocol can be implemented without resulting in unintended consequences, such as deadlocks.</p>
+
+	      <br>
 
 	      <h4>Find out more ...</h4>
 
@@ -87,29 +91,37 @@
           <!-- *** Features *** -->
           <div class="features row">
             <div class="col-lg-2">
-              <h3>Describe</h3>
+              <h3>Describe <span class="glyphicon glyphicon-pencil"></span></h3>
               <p>Scribble is a language for describing multiparty protocols from a global, or endpoint neutral, perspective.</p>
             </div>
-            <div class="col-lg-2">
-              <h3>Verify</h3>
+            <div class="col-lg-3">
+              <h3>Verify <span class="glyphicon glyphicon-thumbs-up"></span></h3>
               <p>Scribble has a theoretical foundation, based on the Pi Calculus and Session Types, to ensure that protocols
 		described using the language are sound, and do not suffer from deadlocks or livelocks.</p>
            </div>
-            <div class="col-lg-3">
-              <h3>Project</h3>
+            <div class="col-lg-2">
+              <h3>Project <span class="glyphicon glyphicon-fullscreen"></h3>
               <p>Endpoint projection is the term used for identifying the responsibility of a particular role (or endpoint)
-		within a protocol. The result of a projection can be used to generate the template behaviour of an
-		endpoint implementing the behaviour, statically compare the required behaviour against an implementation,
-		or monitor the endpoint's behaviour.</p>
+		within a protocol.</p>
             </div>
             <div class="col-lg-3">
-              <h3>Implement</h3>
+              <h3>Implement <span class="glyphicon glyphicon-wrench"></h3>
               <p>Various options exist, including (a) using the endpoint projection for a role to generate a skeleton code, (b) using session type APIs to clearly describe the behaviour, and (c) statically verify the code against the projection.</p>
             </div>
             <div class="col-lg-2">
-              <h3>Monitor</h3>
+              <h3>Monitor <span class="glyphicon glyphicon-search"></h3>
               <p>Use the endpoint projection for roles defined within a Scribble protocol, to monitor the activity of
 		a particular endpoint, to ensure it correctly implements the expected behaviour.</p>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-lg-12">
+	      <br>
+<p>
+<i>"Scribbling is necessary for architects, either physical or computing, since all great ideas of architectural construction come from that unconscious moment, when you do not realise what it is, when there is no concrete shape, only a whisper which is not a whisper, an image which is not an image, somehow it starts to urge you in your mind, in so small a voice but how persistent it is, at that point you start scribbling."</i> (Dr. Kohei Honda, 2007)
+</p>
+	      <br>
             </div>
           </div>
 
@@ -121,6 +133,11 @@
                 <div class="col-lg-2">
 		  <a href="http://www3.imperial.ac.uk">
 		    <img src="imgs/imperial_college.png" alt="Imperial College London" height="44" width="168"> 
+		  </a>
+                </div>
+                <div class="col-lg-2">
+		  <a href="http://www.qmul.ac.uk/">
+		    <img src="imgs/queen_mary.png" alt="Query Mary University" height="44" width="168"> 
 		  </a>
                 </div>
               </div>
