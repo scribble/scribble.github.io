@@ -75,9 +75,9 @@
 <a style="color:blue">global protocol</a> HelloWorld(<a style="color:blue">role</a> Me, <a style="color:blue">role</a> World) {
 	hello(Greetings) <a style="color:blue">from</a> Me <a style="color:blue">to</a> World;
 	<a style="color:blue">choice at</a> World {
-		hello(GoodMorning) <a style="color:blue">from</a> World <a style="color:blue">to</a> Me;
+		goodMorning(Compliments) <a style="color:blue">from</a> World <a style="color:blue">to</a> Me;
 	} <a style="color:blue">or</a> {
-		hello(GoodAfternoon) <a style="color:blue">from</a> World <a style="color:blue">to</a> Me;
+		goodAfternoon(Salutations) <a style="color:blue">from</a> World <a style="color:blue">to</a> Me;
 	}
 }
 </code></pre>
