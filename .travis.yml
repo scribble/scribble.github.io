@@ -1,0 +1,25 @@
+language: java
+jdk:
+- oraclejdk8
+
+notifications:
+  irc:
+    channels:
+    - chat.freenode.net#jbossoverlord
+    on_success: change
+    on_failure: change
+
+env:
+  global:
+    secure: "GsVWW5tTX3LZhiuC4/T3rLNOfIjGcdLfBhKKk4My3/urSAcVPmLyS7fjtpJ4Eh6zw1a1ArtPEB4G46afW+z/LtGOVPg28VWOm5QBaKGvr4rzOfJLtB7PMuMbklCA0lBfTjp6VYOPicrJkIkWoVu9QYc3Zh4SEO8yHVENdHzmh3c="
+
+install:
+  # download all the universe
+  - mvn -version -B
+script:
+  # bake the pages
+  - mvn install -B
+
+after_success:
+  # push to master
+  - test "${TRAVIS_BRANCH}" = "pages" && test "${TRAVIS_PULL_REQUEST}" = "false" && mvn -s .travis.settings.xml site

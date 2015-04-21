@@ -1,0 +1,16 @@
+= How to develop with Scribble
+Gary Brown
+2015-04-21
+:description: Developing with Scribble
+:icons: font
+:jbake-type: page
+:jbake-status: published
+:toc: macro
+:toc-title: 
+
+
+toc::[]
+
+== Developing Scribble
+
+

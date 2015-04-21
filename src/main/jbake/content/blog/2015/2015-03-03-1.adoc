@@ -1,0 +1,10 @@
+= Placeholder blog
+Gary Brown
+2015-03-03
+:jbake-type: post
+:jbake-status: published
+:jbake-tags: blog, placeholder, integration
+:idprefix:
+
+This is a placeholder for a blog entry.
+

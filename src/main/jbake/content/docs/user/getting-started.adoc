@@ -1,0 +1,20 @@
+= Getting Started
+Gary Brown
+2015-04-21
+:description: How to get started with Scribble
+:jbake-type: page
+:jbake-status: published
+:icons: font
+
+== Getting Started with Scribble.
+
+.NOTE
+Right now there is no Scribble distribution to download and go. We are working on it.
+
+
+=== Working on Scribble source
+
+If you are interested in building Scribble from source, then check out
+link:/docs/dev/development.html[Development resources]
+
+

@@ -1,0 +1,13 @@
+= Documentation
+Gary Brown
+2015-04-21
+:description: Documentation for Scribble
+:jbake-type: page
+:jbake-status: published
+
+
+Documentation for Scribble
+
+* link:user/getting-started.html[Getting started guide]
+* link:dev/development.html[Developer guide]
+

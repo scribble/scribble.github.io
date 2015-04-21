@@ -1,0 +1,22 @@
+= Join Scribble
+Gary Brown
+2015-04-21
+:jbake-type: page
+:jbake-status: published
+:jbake-tags: community
+:description: Are you interested in Scribble and would like to know where to start?
+
+== Contribute code, use cases or ideas
+
+All code lives on GitHub under https://github.com/scribble[https://github.com/scribble]. To contribute, fork the
+respective project(s), implement your changes and open a pull-request.
+
+
+== Contribute documentation
+
+Similar to code, the Scribble website and documentation lives under
+https://github.com/scribble/scribble.github.io[https://github.com/scribble/scribble.github.io]. And as with the code,
+fork the repo, create your changes and open a pull-request.
+
+
+
