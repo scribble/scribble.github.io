@@ -6439,11 +6439,11 @@ table {
   border-right: 3px solid #428bca;
 }
 .navbar-brand {
-  background: url(../img/Scribble.png) no-repeat 15px center;
+  background: url(../img/scribble.svg) no-repeat 15px center;
   text-indent: -999999px;
   margin-top: 8px;
   margin-right: 10px;
-  width: 75px;
+  width: 225px;
   height: 50px;
 }
 .navbar-toggle {

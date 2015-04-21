@@ -11,39 +11,13 @@
       </section>
 
     <section class="description">
-
-        <div class="row">
-            <div class="col-xs-6">
-                <div class="content">
 <p>
 Scribble is a language to describe application-level protocols among communicating systems. A protocol represents an agreement on how participating systems interact with each other. Without a protocol, it is hard to do meaningful interaction: participants simply cannot communicate effectively, since they do not know when to expect the other parties to send data, or whether the other party is ready to receive data.
 
 However, having a description of a protocol has further benefits. It enables verification to ensure that the protocol can be implemented without resulting in unintended consequences, such as deadlocks.
 </p>
-                </div>
-            </div>
-            <div class="box col-sm-6">
-                <div class="content">
-              <h3>An example</h3>
-<pre><code>
-<a style="color:blue">module</a> examples;
-
-<a style="color:blue">global protocol</a> HelloWorld(<a style="color:blue">role</a> Me, <a style="color:blue">role</a> World) {
-	hello(Greetings) <a style="color:blue">from</a> Me <a style="color:blue">to</a> World;
-	<a style="color:blue">choice at</a> World {
-		goodMorning(Compliments) <a style="color:blue">from</a> World <a style="color:blue">to</a> Me;
-	} <a style="color:blue">or</a> {
-		goodAfternoon(Salutations) <a style="color:blue">from</a> World <a style="color:blue">to</a> Me;
-	}
-}
-</code></pre>
-		<p>
-		A very simply example, but this illustrates the basic syntax for a hello world interaction, where a party performing the role <emphasis>Me</emphasis> sends a message of type <i>Greetings</i> to another party performing the role 'World', who subsequently makes a decision which determines which path of the choice will be followed, resulting in a <i>GoodMorning</i> or <i>GoodAfternoon</i> message being exchanged.
-		</p>
-                </div>
-            </div>
-        </div>
     </section>
+
     <section class="main-features">
         <div class="container">
             <div class="row">
