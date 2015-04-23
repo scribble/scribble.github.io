@@ -8,8 +8,20 @@ Gary Brown
 
 == Getting Started with Scribble.
 
-.NOTE
-Right now there is no Scribble distribution to download and go. We are working on it.
+----
+module examples;
+
+global protocol HelloWorld(role Me, role World) {
+	hello(Greetings) from Me to World;
+	choice at World {
+		goodMorning(Compliments) from World to Me;
+	} or {
+		goodAfternoon(Salutations) from World to Me;
+	}
+}
+----
+
+A very simply example, but this illustrates the basic syntax for a hello world interaction, where a party performing the role Me sends a message of type Greetings to another party performing the role 'World', who subsequently makes a decision which determines which path of the choice will be followed, resulting in a GoodMorning or GoodAfternoon message being exchanged.
 
 
 === Working on Scribble source

@@ -3,7 +3,7 @@
     
     <section>
       <div class="container">
-        <p class="muted credit">&copy; Scribble.org, 2015 | Baked with <a href="http://jbake.org">JBake ${version}</a></p>
+        <p class="muted credit">&copy; Scribble.org, 2009-2015 | Baked with <a href="http://jbake.org">JBake ${version}</a></p>
     <p id="forkongithubp"><span id="forkongithub">
       <a href="https://github.com/scribble" class="bg-grey">
         Fork me on GitHub
