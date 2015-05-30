@@ -1,25 +1,19 @@
 language: java
 jdk:
 - oraclejdk8
-
 notifications:
   irc:
     channels:
-    - chat.freenode.net#jbossoverlord
+    - chat.freenode.net#scribble
     on_success: change
     on_failure: change
-
 env:
   global:
-    secure: "GsVWW5tTX3LZhiuC4/T3rLNOfIjGcdLfBhKKk4My3/urSAcVPmLyS7fjtpJ4Eh6zw1a1ArtPEB4G46afW+z/LtGOVPg28VWOm5QBaKGvr4rzOfJLtB7PMuMbklCA0lBfTjp6VYOPicrJkIkWoVu9QYc3Zh4SEO8yHVENdHzmh3c="
-
+  - secure: GlQi/m4dxO5OP+cxM4sk2Ka34sHFbDuiQVUtwls8Z3pTF0f+84z/UfM6jFPrTvrfG8xtlj7AX5BEsxnPFPBKkqmyFiQjfOlq6GJllTqpXJWc5IwKs/4uv2XkJIwZ+z3I6ICAfU/imZJfCPYmODwUsoR6bP3gbQaH/b4/oRXtAd4=
 install:
-  # download all the universe
-  - mvn -version -B
+- mvn -version -B
 script:
-  # bake the pages
-  - mvn install -B
-
+- mvn install -B
 after_success:
-  # push to master
-  - test "${TRAVIS_BRANCH}" = "pages" && test "${TRAVIS_PULL_REQUEST}" = "false" && mvn -s .travis.settings.xml site
+- test "${TRAVIS_BRANCH}" = "pages" && test "${TRAVIS_PULL_REQUEST}" = "false" &&
+  mvn -s .travis.settings.xml site
