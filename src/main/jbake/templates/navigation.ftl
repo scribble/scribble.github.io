@@ -52,6 +52,9 @@
                 <a href="<#if (content.rootpath)??>${content.rootpath}<#else></#if>blog.html">Blog</a>
               </li>
               <li>
+                <a href="<#if (content.rootpath)??>${content.rootpath}<#else></#if>community/collaborators.html">Collaborators</a>
+              </li>
+              <li>
                 <a href="<#if (content.rootpath)??>${content.rootpath}<#else></#if>license.html">License</a>
               </li>
               <li>
