@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
+    <url>
+        <loc>http://www.scribble.orgcommunity/discussions.html</loc>
+        <lastmod>2015-04-21</lastmod>
+    </url>
+    <url>
+        <loc>http://www.scribble.orgcommunity/issues.html</loc>
+        <lastmod>2015-04-21</lastmod>
+    </url>
+    <url>
+        <loc>http://www.scribble.orgdocs/dev/developer-guide.html</loc>
+        <lastmod>2015-04-21</lastmod>
+    </url>
+    <url>
+        <loc>http://www.scribble.orgdocs/index.html</loc>
+        <lastmod>2015-04-21</lastmod>
+    </url>
+    <url>
+        <loc>http://www.scribble.orgdocs/overview/getting-started.html</loc>
+        <lastmod>2015-04-21</lastmod>
+    </url>
+    <url>
+        <loc>http://www.scribble.orgdocs/user/user-guide.html</loc>
+        <lastmod>2015-04-21</lastmod>
+    </url>
+    <url>
+        <loc>http://www.scribble.orgdownloads.html</loc>
+        <lastmod>2015-02-27</lastmod>
+    </url>
+    <url>
+        <loc>http://www.scribble.orglicense.html</loc>
+        <lastmod>2015-01-23</lastmod>
+    </url>
+    <url>
+        <loc>http://www.scribble.orgblog/2015/2015-03-03-1.html</loc>
+        <lastmod>2015-03-03</lastmod>
+    </url>
+</urlset>

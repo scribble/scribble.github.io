@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8"/>
-    <title>Scribble</title>
+    <title>Scribble - Documentation</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="">
@@ -11,15 +11,15 @@
 
     <!-- css -->
     <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
-    <link href="css/bootstrap.min.css" rel="stylesheet">
-    <link href="css/asciidoctor.css" rel="stylesheet">
-    <link href="css/base.css" rel="stylesheet">
-    <link href="css/styles.css" rel="stylesheet">
-    <link href="css/prettify.css" rel="stylesheet">
+    <link href="../css/bootstrap.min.css" rel="stylesheet">
+    <link href="../css/asciidoctor.css" rel="stylesheet">
+    <link href="../css/base.css" rel="stylesheet">
+    <link href="../css/styles.css" rel="stylesheet">
+    <link href="../css/prettify.css" rel="stylesheet">
 
     <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
     <!--[if lt IE 9]>
-      <script src="js/html5shiv.min.js"></script>
+      <script src="../js/html5shiv.min.js"></script>
     <![endif]-->
 
     <!-- Fav and touch icons -->
@@ -27,7 +27,7 @@
     <link rel="apple-touch-icon-precomposed" sizes="114x114" href="../assets/ico/apple-touch-icon-114-precomposed.png">
     <link rel="apple-touch-icon-precomposed" sizes="72x72" href="../assets/ico/apple-touch-icon-72-precomposed.png">
     <link rel="apple-touch-icon-precomposed" href="../assets/ico/apple-touch-icon-57-precomposed.png">-->
-    <link rel="shortcut icon" href="favicon.ico">
+    <link rel="shortcut icon" href="../favicon.ico">
   </head>
   <body onload="prettyPrint()" data-spy="scroll" data-offset="80" data-target="#toc">
     <div id="wrap">
@@ -38,6 +38,7 @@
             }, false);
         </script>
       </div>
+
 	<!-- Fixed navbar -->
     <nav class="navbar navbar-fixed-top" role="navigation">
       <div class="container">
@@ -55,22 +56,22 @@
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
           <ul class="nav navbar-nav">
-            <li><a href="index.html">Home</a></li>
+            <li><a href="../index.html">Home</a></li>
             <li>
-              <a href="docs/overview/getting-started.html">Getting
+              <a href="../docs/overview/getting-started.html">Getting
                   Started</a>
             </li>
-            <li class=""><a href="downloads.html">Downloads</a></li>
+            <li class=""><a href="../downloads.html">Downloads</a></li>
             <li class="dropdown"><a aria-expanded="false" class="dropdown-toggle" data-toggle="dropdown" href="#" role="button">
               Documentation
               <span class="caret"></span>
             </a>
             <ul class="dropdown-menu" role="menu">
               <li>
-                <a href="docs/user/user-guide.html">User Documentation</a>
+                <a href="../docs/user/user-guide.html">User Documentation</a>
               </li>
               <li>
-                <a href="docs/dev/developer-guide.html">Developer Documentation</a>
+                <a href="../docs/dev/developer-guide.html">Developer Documentation</a>
               </li>
             </ul>
             <li class="dropdown"><a aria-expanded="false" class="dropdown-toggle" data-toggle="dropdown" href="#" role="button">
@@ -86,13 +87,13 @@
                 <a href="https://groups.google.com/forum/#!forum/scribble-lang">Scribble Language Forum</a>
               </li>
               <li>
-                <a href="community/issues.html">Reporting Issues</a>
+                <a href="../community/issues.html">Reporting Issues</a>
               </li>
               <li>
-                <a href="blog.html">Blog</a>
+                <a href="../blog.html">Blog</a>
               </li>
               <li>
-                <a href="license.html">License</a>
+                <a href="../license.html">License</a>
               </li>
               <li>
                 <a href="https://travis-ci.org/scribble">CI Builds</a>
@@ -103,61 +104,32 @@
       </div>
     </nav>
 
-<div class="homepage">
-    <section class="main-banner">
+      <section class="main-banner">
         <div class="container">
-          <h1 class="fade-in-up one">
-            Scribble: Describing Multi Party Protocols
-          </h1>
+          <h1>Documentation</h1>
+          <p>Documentation for Scribble</p>
         </div>
       </section>
 
-    <section class="description">
-<p>
-Scribble is a language to describe application-level protocols among communicating systems. A protocol represents an agreement on how participating systems interact with each other. Without a protocol, it is hard to do meaningful interaction: participants simply cannot communicate effectively, since they do not know when to expect the other parties to send data, or whether the other party is ready to receive data.
+	<!--<p><em>21 April 2015</em></p>-->
 
-However, having a description of a protocol has further benefits. It enables verification to ensure that the protocol can be implemented without resulting in unintended consequences, such as deadlocks.
-</p>
-    </section>
-
-    <section class="main-features">
-        <div class="container">
-            <div class="row">
-            <div class="col-lg-2">
-              <h3>Describe <span class="fa fa-pencil"></span></h3>
-              <p>Scribble is a language for describing multiparty protocols from a global, or endpoint neutral, perspective.</p>
-            </div>
-            <div class="col-lg-3">
-              <h3>Verify <span class="fa fa-thumbs-up"></span></h3>
-              <p>Scribble has a theoretical foundation, based on the Pi Calculus and Session Types, to ensure that protocols
-		described using the language are sound, and do not suffer from deadlocks or livelocks.</p>
-           </div>
-            <div class="col-lg-2">
-              <h3>Project <span class="fa fa-arrows-alt"></h3>
-              <p>Endpoint projection is the term used for identifying the responsibility of a particular role (or endpoint)
-		within a protocol.</p>
-            </div>
-            <div class="col-lg-3">
-              <h3>Implement <span class="fa fa-tasks"></h3>
-              <p>Various options exist, including (a) using the endpoint projection for a role to generate a skeleton code, (b) using session type APIs to clearly describe the behaviour, and (c) statically verify the code against the projection.</p>
-            </div>
-            <div class="col-lg-2">
-              <h3>Monitor <span class="fa fa-search"></h3>
-              <p>Use the endpoint projection for roles defined within a Scribble protocol, to monitor the activity of
-		a particular endpoint, to ensure it correctly implements the expected behaviour.</p>
-            </div>
-
-            </div>
-
-	  <hr>
-
-          <h5><i>
-"Scribbling is necessary for architects, either physical or computing, since all great ideas of architectural construction come from that unconscious moment, when you do not realise what it is, when there is no concrete shape, only a whisper which is not a whisper, an image which is not an image, somehow it starts to urge you in your mind, in so small a voice but how persistent it is, at that point you start scribbling." (Dr. Kohei Honda, 2007)
-          </i></h5>
-
-        </div>
-    </section>
+	<section>
+      <div class="container">
+        <div class="paragraph">
+<p>Documentation for Scribble</p>
 </div>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="user/userguide.html">User guide</a></p>
+</li>
+<li>
+<p><a href="dev/developerguide.html">Developer guide</a></p>
+</li>
+</ul>
+</div>
+      </div>
+    </section>
 
 		</div>
     </div>
@@ -176,10 +148,10 @@ However, having a description of a protocol has further benefits. It enables ver
     <!-- javascript -->
     <!-- Placed at the end of the document so the pages load faster -->
     <!-- js -->
-    <script src="js/jquery-1.11.2.min.js"></script>
+    <script src="../js/jquery-1.11.2.min.js"></script>
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
-    <script src="js/behavior.js"></script>
-    <script src="js/prettify.js"></script>
+    <script src="../js/behavior.js"></script>
+    <script src="../js/prettify.js"></script>
     
 <script type="text/javascript">
 
