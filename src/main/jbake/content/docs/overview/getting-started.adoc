@@ -27,7 +27,7 @@ A very simply example, but this illustrates the basic syntax for a hello world i
 === Working on Scribble source
 
 If you are interested in building Scribble from source, then check out
-link:/docs/dev/development.html[Development resources]
+link:/docs/dev/developer-guide.html[Development resources]
 
 
 

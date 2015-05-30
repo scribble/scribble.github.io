@@ -13,4 +13,5 @@ toc::[]
 
 == Developing Scribble
 
+Documentation for the current version can be found http://docs.jboss.org/scribble/latest/developerguide/html[here].
 

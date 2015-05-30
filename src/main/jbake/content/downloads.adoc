@@ -6,8 +6,24 @@ Gary Brown
 :jbake-status: published
 
 
-== Downloads
+See the http://docs.jboss.org/scribble/latest/userguide/html[User Guide] for information on how to use the tools within Eclipse or via the command line.
 
-.NOTE
-To be defined.
+=== Command Line
+
+The command line tools can be downloaded from http://downloads.jboss.org/scribble/tools/cli/scribble-0.3.0.Final.zip[here].
+
+=== Eclipse
+
+The Java tools are provided as a set of plugins within the Eclipse IDE (Integrated Development Environment), or a command line distribution. To install the tools into Eclipse:
+
+* Download Eclipse (see button on the right)
+* When Eclipse has been launched, go to the _Help-> Install New Software..._ menu item.
+This will show a dialog window.
+* Enter the URL http://download.jboss.org/scribble/tools/latest into the _Work With_ field and 
+press the _return_ key.
+* Select the *Scribble* top level node and press the _Next_ button.
+* Follow the instructions and restart the Eclipse tooling when requested.
+
+
+
 

@@ -17,7 +17,7 @@
           <ul class="nav navbar-nav">
             <li><a href="<#if (content.rootpath)??>${content.rootpath}<#else></#if>index.html">Home</a></li>
             <li>
-              <a href="<#if (content.rootpath)??>${content.rootpath}<#else></#if>docs/user/getting-started.html">Getting
+              <a href="<#if (content.rootpath)??>${content.rootpath}<#else></#if>docs/overview/getting-started.html">Getting
                   Started</a>
             </li>
             <li class=""><a href="<#if (content.rootpath)??>${content.rootpath}<#else></#if>downloads.html">Downloads</a></li>
@@ -27,10 +27,10 @@
             </a>
             <ul class="dropdown-menu" role="menu">
               <li>
-                <a href="<#if (content.rootpath)??>${content.rootpath}<#else></#if>docs/user/getting-started.html">User Documentation</a>
+                <a href="<#if (content.rootpath)??>${content.rootpath}<#else></#if>docs/user/user-guide.html">User Documentation</a>
               </li>
               <li>
-                <a href="<#if (content.rootpath)??>${content.rootpath}<#else></#if>docs/dev/development.html">Developer Documentation</a>
+                <a href="<#if (content.rootpath)??>${content.rootpath}<#else></#if>docs/dev/developer-guide.html">Developer Documentation</a>
               </li>
             </ul>
             <li class="dropdown"><a aria-expanded="false" class="dropdown-toggle" data-toggle="dropdown" href="#" role="button">
@@ -38,20 +38,26 @@
               <span class="caret"></span>
             </a>
             <ul class="dropdown-menu" role="menu">
+
               <li>
-                <a href="<#if (content.rootpath)??>${content.rootpath}<#else></#if>community/index.html">Home</a>
+                <a href="https://groups.google.com/forum/#!forum/scribble-user">User Forum</a>
               </li>
               <li>
-                <a href="<#if (content.rootpath)??>${content.rootpath}<#else></#if>community/join.html">Join</a>
+                <a href="https://groups.google.com/forum/#!forum/scribble-lang">Scribble Language Forum</a>
+              </li>
+              <li>
+                <a href="<#if (content.rootpath)??>${content.rootpath}<#else></#if>community/issues.html">Reporting Issues</a>
+              </li>
+              <li>
+                <a href="<#if (content.rootpath)??>${content.rootpath}<#else></#if>blog.html">Blog</a>
               </li>
               <li>
                 <a href="<#if (content.rootpath)??>${content.rootpath}<#else></#if>license.html">License</a>
               </li>
               <li>
-                <a href="https://travis-ci.org/scribble/scribble/builds">CI Builds</a>
+                <a href="https://travis-ci.org/scribble">CI Builds</a>
               </li>
             </ul></li>
-            <li class=""><a href="<#if (content.rootpath)??>${content.rootpath}<#else></#if>blog.html">Blog</a></li>
           </ul>
         </div>
       </div>

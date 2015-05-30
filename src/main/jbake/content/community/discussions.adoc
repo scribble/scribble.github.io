@@ -1,10 +1,10 @@
-= Join Scribble
+= Scribble Forums
 Gary Brown
 2015-04-21
 :jbake-type: page
 :jbake-status: published
 :jbake-tags: community
-:description: Are you interested in Scribble and would like to know where to start?
+:description: Get involved in the community
 
 == Contribute code, use cases or ideas
 

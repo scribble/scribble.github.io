@@ -1,0 +1,16 @@
+= Working with Scribble
+Gary Brown
+2015-04-21
+:description: How to describe, verify, generate artifacts and monitor protocols
+:icons: font
+:jbake-type: page
+:jbake-status: published
+:toc: macro
+:toc-title: 
+
+
+toc::[]
+
+== Using Scribble
+
+Documentation for the current version can be found http://docs.jboss.org/scribble/latest/userguide/html[here].

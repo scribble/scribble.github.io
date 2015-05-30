@@ -1,0 +1,24 @@
+= Reporting Issues
+Gary Brown
+2015-04-21
+:jbake-type: page
+:jbake-status: published
+:jbake-tags: community
+:description: Create issues to report bugs or request features/enhancements
+
+Please select the issue tracking system associated with the appropriate component.
+
+If you have a feature request, enhancement or bug report, please create an issue. If you *wish to contribute
+to the project*, then please review the reported issues and feel free to contribute a Pull Request (PR).
+
+.Components and links to their respective issue tracking systems
+|===
+|Component |Issue Tracker
+
+|Scribble Core Java libraries and CLI
+|https://github.com/scribble/scribble-java/issues
+
+|Scribble Web Tooling
+|https://github.com/scribble/scribble-web/issues
+|===
+
