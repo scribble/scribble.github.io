@@ -123,16 +123,116 @@
 <div id="toc" class="toc">
 <div id="toctitle" class="title"></div>
 <ul class="sectlevel1">
-<li><a href="#_using_scribble">Using Scribble</a></li>
+<li><a href="#_web_tooling">Web Tooling</a>
+<ul class="sectlevel2">
+<li><a href="#_installing_starting_the_server">Installing/Starting the Server</a></li>
+<li><a href="#_using_the_user_interface">Using the User Interface</a></li>
+</ul>
+</li>
 </ul>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_using_scribble">Using Scribble</h2>
+<h2 id="_web_tooling">Web Tooling</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Documentation for the current version can be found <a href="http://docs.jboss.org/scribble/latest/userguide/html">here</a>.</p>
+<p>This section describes how to use the Web tooling within the Scribble project. These tools can be downloaded
+using instructions in the <em>Downloads</em> section.</p>
+</div>
+<div class="sect2">
+<h3 id="_installing_starting_the_server">Installing/Starting the Server</h3>
+<div class="paragraph">
+<p>The Web tooling distribution provides a complete server for running the Web tooling. Simply unpack the distribution
+and running the following command from the root folder of the distribution, to start the server:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>bin/standalone.sh</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>By default, the folder containing the Scribble modules will be contained within the user&#8217;s home directory, under a hidden
+sub-folder called <em>.scribble</em>.</p>
+</div>
+<div class="paragraph">
+<p>If you wish to change this location, then include the path when starting the server:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>bin/standalone.sh -DSCRIBBLE_PATH=&lt;location of scribble modules&gt;</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Once the server has been started, simply start a web browser and navigate to the URI: <a href="http://localhost:8080" class="bare">http://localhost:8080</a></p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_using_the_user_interface">Using the User Interface</h3>
+<div class="paragraph">
+<p>The initial page shown within the Web application (located at <a href="http://localhost:8080" class="bare">http://localhost:8080</a>) is the list of modules.</p>
+</div>
+<div class="paragraph">
+<p>At the top of the page, there is a text field that can be used to specify a new module, as a dot separate name. For example, <em>dept.finance.Accounting</em>.</p>
+</div>
+<div class="paragraph">
+<p>Any existing modules will be listed in the main part of the page, with a trash symbol at the end of each module&#8217;s line, which can be used to delete the module.</p>
+</div>
+<div class="paragraph">
+<p>When either a new module is created, or an existing module selected, the browser will navigate to the editor page
+for the module.</p>
+</div>
+<div class="paragraph">
+<p>At the top of the editor page, a description text field is provided to enable a description of the module to be
+provided.</p>
+</div>
+<div class="paragraph">
+<p>The main body of the page is the editor for the module definition. Any keywords are colour coded.</p>
+</div>
+<div class="sect3">
+<h4 id="_validation">Validation</h4>
+<div class="paragraph">
+<p>When any changes are applied to the module definition and saved, this will trigger a validation step which may
+result in any warnings or errors being displayed below the editor window. For some errors, the location of the
+error can be highlighted by selecting the error message.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_roles">Roles</h4>
+<div class="paragraph">
+<p>When a valid definition has been created, with a set of roles, then the role names (that are associated with a
+local projection) will be listed on the right hand side above the editor window.</p>
+</div>
+<div class="paragraph">
+<p>By selecting a role name, the browser will navigate to the local projection of the global protocol.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+This window currently displays a graph (dot notation) that is hardcoded currently, just to show what may
+also be possible to derive from the local projection. Further work is required.
+</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Documentation for the older (no longer developed or supported) Eclipse and Command Line tools can be
+found <a href="http://docs.jboss.org/scribble/latest/userguide/html">here</a>.
+</td>
+</tr>
+</table>
+</div>
+</div>
 </div>
 </div>
 </div>
