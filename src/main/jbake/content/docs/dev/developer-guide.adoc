@@ -13,5 +13,31 @@ toc::[]
 
 == Developing Scribble
 
-Documentation for the current version can be found http://docs.jboss.org/scribble/latest/developerguide/html[here].
+=== Project Code
+
+The source code for the Scribble project is located on github in the http://www.github.com/scribble[Scribble organisation].
+
+The organisation is divided into a number of git repositories. The main repositories currently are:
+
+==== Scribble Java
+
+The repository is located http://www.github.com/scribble/scribble-java[here].
+
+This repository contains the core java code for the Scribble parser, validation, projection and monitoring capabilities.
+
+==== Scribble Web
+
+The repository is located http://www.github.com/scribble/scribble-web[here].
+
+This repository provides the web tooling. The server side capabilities are implemented in java, with the UI implemented using AngularJS/Bootstrap.
+
+
+=== Contributing to the Project
+
+The best way to initially contribute to the project is to try out the tools and provide feedback by creating issues for feature requests or problems found.
+
+The next step could be to provide contributions for the issues listed against any of the git repositories. These can be contributed as _pull requests_, which can then be reviewed by the project developers.
+
+
+WARNING: Documentation for the older version of the tools can be found http://docs.jboss.org/scribble/latest/developerguide/html[here].
 

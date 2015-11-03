@@ -5,14 +5,20 @@ Gary Brown
 :jbake-type: page
 :jbake-status: published
 
+=== Web Browser based Tooling
+
+Download the latest version of the Web tooling from the https://github.com/scribble/scribble-web/releases[Scribble Web] releases page.
+
+
+=== Old Tooling
 
 See the http://docs.jboss.org/scribble/latest/userguide/html[User Guide] for information on how to use the tools within Eclipse or via the command line.
 
-=== Command Line
+==== Command Line
 
 The command line tools can be downloaded from http://downloads.jboss.org/scribble/tools/cli/scribble-0.3.0.Final.zip[here].
 
-=== Eclipse
+==== Eclipse
 
 The Java tools are provided as a set of plugins within the Eclipse IDE (Integrated Development Environment), or a command line distribution. To install the tools into Eclipse:
 

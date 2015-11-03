@@ -11,6 +11,64 @@ Gary Brown
 
 toc::[]
 
-== Using Scribble
+== Web Tooling
 
-Documentation for the current version can be found http://docs.jboss.org/scribble/latest/userguide/html[here].
+This section describes how to use the Web tooling within the Scribble project. These tools can be downloaded
+using instructions in the _Downloads_ section.
+
+=== Installing/Starting the Server
+
+The Web tooling distribution provides a complete server for running the Web tooling. Simply unpack the distribution
+and running the following command from the root folder of the distribution, to start the server:
+
+----
+bin/standalone.sh
+----
+
+By default, the folder containing the Scribble modules will be contained within the user's home directory, under a hidden
+sub-folder called _.scribble_.
+
+If you wish to change this location, then include the path when starting the server:
+
+----
+bin/standalone.sh -DSCRIBBLE_PATH=<location of scribble modules>
+----
+
+Once the server has been started, simply start a web browser and navigate to the URI: http://localhost:8080
+
+
+=== Using the User Interface
+
+The initial page shown within the Web application (located at http://localhost:8080) is the list of modules.
+
+At the top of the page, there is a text field that can be used to specify a new module, as a dot separate name. For example, _dept.finance.Accounting_.
+
+Any existing modules will be listed in the main part of the page, with a trash symbol at the end of each module's line, which can be used to delete the module.
+
+When either a new module is created, or an existing module selected, the browser will navigate to the editor page
+for the module.
+
+At the top of the editor page, a description text field is provided to enable a description of the module to be
+provided.
+
+The main body of the page is the editor for the module definition. Any keywords are colour coded.
+
+==== Validation
+
+When any changes are applied to the module definition and saved, this will trigger a validation step which may
+result in any warnings or errors being displayed below the editor window. For some errors, the location of the
+error can be highlighted by selecting the error message.
+
+==== Roles
+
+When a valid definition has been created, with a set of roles, then the role names (that are associated with a
+local projection) will be listed on the right hand side above the editor window.
+
+By selecting a role name, the browser will navigate to the local projection of the global protocol.
+
+NOTE: This window currently displays a graph (dot notation) that is hardcoded currently, just to show what may
+also be possible to derive from the local projection. Further work is required.
+
+
+NOTE: Documentation for the older (no longer developed or supported) Eclipse and Command Line tools can be
+found http://docs.jboss.org/scribble/latest/userguide/html[here].
