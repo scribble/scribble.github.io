@@ -123,7 +123,11 @@
 <div class="sectionbody">
 <div class="listingblock">
 <div class="content">
-<pre>module examples;
+<pre>module example;
+
+type &lt;xsd&gt; "{http://www.acme.com/types}Greetings" from "http://www.acme.com/types/Greetings.xsd" as Greetings;
+type &lt;xsd&gt; "{http://www.acme.com/types}Compliments" from "http://www.acme.com/types/Compliments.xsd" as Compliments;
+type &lt;xsd&gt; "{http://www.acme.com/types}Salutations" from "http://www.acme.com/types/Salutations.xsd" as Salutations;
 
 global protocol HelloWorld(role Me, role World) {
 	hello(Greetings) from Me to World;
@@ -136,7 +140,7 @@ global protocol HelloWorld(role Me, role World) {
 </div>
 </div>
 <div class="paragraph">
-<p>A very simply example, but this illustrates the basic syntax for a hello world interaction, where a party performing the role Me sends a message of type Greetings to another party performing the role 'World', who subsequently makes a decision which determines which path of the choice will be followed, resulting in a GoodMorning or GoodAfternoon message being exchanged.</p>
+<p>A very simply example, but this illustrates the basic syntax for a hello world interaction, where a party performing the role Me sends a message of type Greetings to another party performing the role 'World', who subsequently makes a decision which determines which path of the choice will be followed, resulting in a <em>goodMorning</em> or <em>goodAfternoon</em> message being exchanged.</p>
 </div>
 <div class="sect2">
 <h3 id="_working_on_scribble_source">Working on Scribble source</h3>
