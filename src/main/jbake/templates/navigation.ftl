@@ -1,4 +1,4 @@
-	<!-- Fixed navbar -->
+  <!-- Fixed navbar -->
     <nav class="navbar navbar-fixed-top" role="navigation">
       <div class="container">
         <!-- Brand and toggle get grouped for better mobile display -->
@@ -28,12 +28,12 @@
                     <!--<li>
                       <a href="<#if (content.rootpath)??>${content.rootpath}<#else></#if>docs/user/user-guide.html">User Documentation</a>
                     </li>-->
-										<li>
-											<a href="<#if (content.rootpath)??>${content.rootpath}<#else></#if>docs/scribble-java.html#QUICK">Quick Start (Scribble-Java)</a>
-										</li>
-										<li>
-											<a href="<#if (content.rootpath)??>${content.rootpath}<#else></#if>docs/scribble-java.html#SCRIBCORE">Language Reference</a>
-										</li>
+                    <li>
+                      <a href="<#if (content.rootpath)??>${content.rootpath}<#else></#if>docs/scribble-java.html#QUICK">Quick Start (Scribble-Java)</a>
+                    </li>
+                    <li>
+                      <a href="<#if (content.rootpath)??>${content.rootpath}<#else></#if>docs/scribble-java.html#SCRIBCORE">Language Reference</a>
+                    </li>
                     <li class="menu-item dropdown dropdown-submenu">
                       <a href="#" class="dropdown-toggle" data-toggle="dropdown">Java Tooling</a>
                       <ul class="dropdown-menu">

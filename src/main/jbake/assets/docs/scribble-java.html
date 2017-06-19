@@ -11,12 +11,12 @@
 		span.code { font-family: monospace; }
 		.boxed {
 			border: 1px solid black ;
-		} 
+		}
 	</style>
 
-	<link href="Scribble-Java%20tutorial_files/style.css" rel="stylesheet" type="text/css">
-	<link href="Scribble-Java%20tutorial_files/prettify.css" rel="stylesheet" type="text/css">
-	<script type="text/javascript" src="Scribble-Java%20tutorial_files/prettify-scribble.js"></script>
+	<link href="user/Scribble-Java-tutorial_files/style.css" rel="stylesheet" type="text/css">
+	<link href="user/Scribble-Java-tutorial_files/prettify.css" rel="stylesheet" type="text/css">
+	<script type="text/javascript" src="user/Scribble-Java-tutorial_files/prettify-scribble.js"></script>
 </head>
 
 
@@ -268,30 +268,30 @@ def say_hi():
 
 <p>
   </p><ul>
-    <li>	
+    <li>
       Scribble <a href="http://www.scribble.org/">home page</a>
 
-			<ul>	
-				<li>	
-					<strong>N.B.</strong> some of the tools currently available from 
-the home page are for an older version of Scribble than presented in 
+			<ul>
+				<li>
+					<strong>N.B.</strong> some of the tools currently available from
+the home page are for an older version of Scribble than presented in
 this tutorial.  Those include:
 
-					<ul>	
-						<li>	
+					<ul>
+						<li>
 							Eclipse integration
-						</li>	
-						<li>	
+						</li>
+						<li>
 							Message trace simulation
-						</li>	
-						<li>	
+						</li>
+						<li>
 							Browser based tooling
-						</li>	
-					</ul>	
-				</li>	
-			</ul>	
-    </li>	
-    <li>	
+						</li>
+					</ul>
+				</li>
+			</ul>
+    </li>
+    <li>
 			Scribble-Java open source repository: <a href="https://github.com/scribble/scribble-java">GitHub</a>
 
 			<ul>
@@ -299,17 +299,17 @@ this tutorial.  Those include:
 					Some Scribble protocol and Java endpoint program examples: <a href="https://github.com/scribble/scribble-java/tree/master/modules/demos/scrib">GitHub</a>
 				</li>
 			</ul>
-    </li>	
-    <!--<li>	
-      Scribble language reference: <a href="langref.html">html</a> 
     </li>
-    <li>	
+    <!--<li>
+      Scribble language reference: <a href="langref.html">html</a>
+    </li>
+    <li>
       OOI use cases in Scribble taster document: <a href="./taster.html">pdf</a>
     </li>-->
     <!--
-	<li>	
+	<li>
 	  Papers ...
-	</li>	
+	</li>
 	-->
   </ul>
 <p></p>
@@ -322,7 +322,7 @@ this tutorial.  Those include:
 	<table>
 		<tbody><tr>
 			<td>
- 				<li>0.4b&nbsp;&nbsp;</li> 
+ 				<li>0.4b&nbsp;&nbsp;</li>
 			</td>
 			<td>
 				(Draft) revision for Scribble 0.4.
@@ -330,7 +330,7 @@ this tutorial.  Those include:
 		</tr>
 		<!--<tr>
 			<td>
- 				<li>0.3</li> 
+ 				<li>0.3</li>
 			</td>
 			<td>
 				Sync with Language Ref 0.3. Adding Hello World from Gary.
@@ -338,7 +338,7 @@ this tutorial.  Those include:
 		</tr>
 		<tr>
 			<td>
- 				<li>0.2</li> 
+ 				<li>0.2</li>
 			</td>
 			<td>
 				Added OOI use cases. Miscellaneous edits.
@@ -364,7 +364,7 @@ this tutorial.  Those include:
 	</p><ul>
 		<li>
 			Scribble language:
-			
+
 			<ul>
 				<li>
 					Payload type and message signature name parameters for global protocol declarations
@@ -376,7 +376,7 @@ this tutorial.  Those include:
 		</li>
 		<li>
 			Endpoint API generation:
-			
+
 			<ul>
 				<li>
 					Branch callback API
@@ -389,7 +389,7 @@ this tutorial.  Those include:
 				</li>
 				<li>
 					Abstract I/O state interfaces
-					
+
 					<ul>
 						<li>
 							Choice subtype interfaces
@@ -425,7 +425,7 @@ this tutorial.  Those include:
 	</p><ul>
 		<li>
 			Scribble language:
-			
+
 			<ul>
 				<li>
 					Protocol annotations
@@ -443,7 +443,7 @@ this tutorial.  Those include:
 		</li>
 		<li>
 			Endpoint API generation:
-			
+
 			<ul>
 				<li>
 					State name annotations
@@ -482,7 +482,7 @@ this tutorial.  Those include:
 
 <p>
 	&lt;
-	<a href="#TOP">top</a>; 
+	<a href="#TOP">top</a>;
 	<a href="#QUICK">next</a>
 	&gt;
 </p>
@@ -498,15 +498,15 @@ this tutorial.  Those include:
 </h2>
 
 <p>
-	This quick start will run through the specification of a simple 
-application protocol in Scribble, to Java implementations of client and 
+	This quick start will run through the specification of a simple
+application protocol in Scribble, to Java implementations of client and
 server endpoints using the Scribble-generated APIs.
 </p>
 
 <p>
 	&lt;
-	<a href="#ABOUT">prev</a>; 
-	<a href="#TOP">top</a>; 
+	<a href="#ABOUT">prev</a>;
+	<a href="#TOP">top</a>;
 	<a href="#ADDEROVER">next</a>
 	&gt;
 </p>
@@ -559,8 +559,8 @@ server endpoints using the Scribble-generated APIs.
 
 <p>
 	&lt;
-	<a href="#QUICK">prev</a>; 
-	<a href="#TOP">top</a>; 
+	<a href="#QUICK">prev</a>;
+	<a href="#TOP">top</a>;
 	<a href="#ADDERGLOBAL">next</a>
 	&gt;
 </p>
@@ -603,7 +603,7 @@ server endpoints using the Scribble-generated APIs.
 	</p><ul>
 		<li>
 			The <a href="#SCRIBMODULE"><em>payload type declaration</em></a>
-			
+
 <pre class="code">    type &lt;java&gt; "java.lang.Integer" from "rt.jar" as Int;
 </pre>
 
@@ -612,7 +612,7 @@ server endpoints using the Scribble-generated APIs.
 
 		<li>
 			In the <a href="#SCRIBGLOBAL"><em>global protocol declaration</em></a>:
-			
+
 <pre class="code">    global protocol Adder(role C, role S) { ... }
 </pre>
 
@@ -621,21 +621,21 @@ server endpoints using the Scribble-generated APIs.
 					<span class="code">Adder</span> is the name of the protocol;
 				</li>
 				<li>
-					<span class="code">C</span> and <span class="code">S</span> are the two participants in this protocol.  
+					<span class="code">C</span> and <span class="code">S</span> are the two participants in this protocol.
 				</li>
 			</ul>
 		</li>
 
 		<li>
 			The <a href="#SCRIBCHOICE"><span class="code">choice</span></a> statement
-			
+
 <pre class="code">    choice at C { ... } or { ... }
 </pre>
-			states that the protocol proceeds according to <em>one</em> of the <span class="code">or</span>-separated blocks.  
-			
+			states that the protocol proceeds according to <em>one</em> of the <span class="code">or</span>-separated blocks.
+
 			<ul>
 				<li>
-					In this example, <span class="code">C</span> is the <em>master</em> role that decides which block to follow.  
+					In this example, <span class="code">C</span> is the <em>master</em> role that decides which block to follow.
 				</li>
 				<li>
 					<span class="code">C</span> communicates its decision to the <em>slave</em> <span class="code">S</span> by the message passing in each case.
@@ -650,15 +650,15 @@ server endpoints using the Scribble-generated APIs.
 </pre>
 
 			specifies:
-			
-			<ul>	
-				<li>	
+
+			<ul>
+				<li>
 					<span class="code">Add</span> is the <em>operator</em> (<em>i.e.</em>, a label or header that identifies the message);
-				</li>	
-				<li>	
+				</li>
+				<li>
 					<span class="code">(Int, Int)</span> is a <em>payload</em> of two <span class="code">Int</span>s.
-				</li>	
-			</ul>	
+				</li>
+			</ul>
 		</li>
 		<li>
 			In the <a href="#SCRIBINTERACT"><em>message passing</em></a> statement:
@@ -689,8 +689,8 @@ server endpoints using the Scribble-generated APIs.
 
 <p>
 	&lt;
-	<a href="#ADDEROVER">prev</a>; 
-	<a href="#TOP">top</a>; 
+	<a href="#ADDEROVER">prev</a>;
+	<a href="#TOP">top</a>;
 	<a href="#ADDERCL">next</a>
 	&gt;
 </p>
@@ -703,7 +703,7 @@ server endpoints using the Scribble-generated APIs.
 
 <p>
 	The command given below assumes:
-	
+
 	</p><ul>
 		<li>
 			The <span class="code">scribblec.sh</span> script is installed at the current directory.
@@ -738,7 +738,7 @@ server endpoints using the Scribble-generated APIs.
 
 	</p><ul>
 		<li>
-			Checks that the Scribble module in <span class="code">Adder.scr</span> is a valid Scribble module -- this means that every global protocol (<em>i.e.</em>, <span class="code">Adder</span>) in the module must be a valid Scribble protocol (which it is).		
+			Checks that the Scribble module in <span class="code">Adder.scr</span> is a valid Scribble module -- this means that every global protocol (<em>i.e.</em>, <span class="code">Adder</span>) in the module must be a valid Scribble protocol (which it is).
 		</li>
 		<li>
 			Generates the Java Endpoint API for implementing the <span class="code">C</span> endpoint of the <span class="code">Adder</span> protocol.  The output is written to the directory specified by the <span class="code">-d</span> argument.
@@ -752,8 +752,8 @@ server endpoints using the Scribble-generated APIs.
 
 <p>
 	&lt;
-	<a href="#ADDERGLOBAL">prev</a>; 
-	<a href="#TOP">top</a>; 
+	<a href="#ADDERGLOBAL">prev</a>;
+	<a href="#TOP">top</a>;
 	<a href="#ADDERCLIENT">next</a>
 	&gt;
 </p>
@@ -773,7 +773,7 @@ server endpoints using the Scribble-generated APIs.
 		</li>
 		<li>
 			An Endpoint API comprises a <a href="#CLIENTAPI">family of Java classes</a>
- that represent the states of the protocol relevant to the target role, 
+ that represent the states of the protocol relevant to the target role,
 with methods for the I/O actions permitted in each state.
 		</li>
 	</ul>
@@ -785,8 +785,8 @@ with methods for the I/O actions permitted in each state.
 
 <p>
 	&lt;
-	<a href="#ADDERCL">prev</a>; 
-	<a href="#TOP">top</a>; 
+	<a href="#ADDERCL">prev</a>;
+	<a href="#TOP">top</a>;
 	<a href="#CLIENTFSM">next</a>
 	&gt;
 </p>
@@ -807,7 +807,7 @@ with methods for the I/O actions permitted in each state.
   </caption>
   <tbody><tr>
     <td>
-      <img src="Scribble-Java-tutorial_files/fsm-Adder-C.png" ,="" width="250">
+      <img src="user/Scribble-Java-tutorial_files/fsm-Adder-C.png" ,="" width="250">
     </td>
   </tr>
 </tbody></table>
@@ -821,7 +821,7 @@ with methods for the I/O actions permitted in each state.
 			State <span class="code">3</span> is the <em>terminal state</em>.
 		</li>
 		<li>
-			The notation <span class="code">S!Add(Int, Int)</span> denotes the action by <span class="code">C</span> to <em>send</em> <span class="code">S</span> 
+			The notation <span class="code">S!Add(Int, Int)</span> denotes the action by <span class="code">C</span> to <em>send</em> <span class="code">S</span>
 			a message with the specified <a href="#SCRIBSIG">signature</a>.
 			<!--an <span class="code">Add</span> message with a payload of two <span class="code">Int</span>s.-->
 		</li>
@@ -838,8 +838,8 @@ with methods for the I/O actions permitted in each state.
 
 <p>
 	&lt;
-	<a href="#ADDERCLIENT">prev</a>; 
-	<a href="#TOP">top</a>; 
+	<a href="#ADDERCLIENT">prev</a>;
+	<a href="#TOP">top</a>;
 	<a href="#CLIENTAPI">next</a>
 	&gt;
 </p>
@@ -883,7 +883,7 @@ with methods for the I/O actions permitted in each state.
 
 	</p><ul>
 		<li>
-			By default, Scribble names the state channel classes by a state 
+			By default, Scribble names the state channel classes by a state
 enumeration.  For example, the class for the initial state is named <span class="code">Adder_C_1</span>.  The terminal state (if any) is generated as a specially named <span class="code">EndSocket</span> class.
 		</li>
 		<li>
@@ -898,7 +898,7 @@ enumeration.  For example, the class for the initial state is named <span class=
 <p>
 	See <a href="https://www.doc.ic.ac.uk/%7Erhu/scribble/tutorial/javadoc/adder/tutorial/adder/Adder/Adder/channels/C/Adder_C_1.html">here</a> for an example Javadoc generated (by the standard <span class="code">javadoc</span> tool) from the Scribble-generated API for <span class="code">C</span> in <a href="#ADDERGLOBAL"><span class="code">Adder</span></a>.
 </p>
-	
+
 <p>
 	The following summarises the key state channel classes and their I/O methods.
 </p>
@@ -974,8 +974,8 @@ enumeration.  For example, the class for the initial state is named <span class=
 
 	<ul>
 		<li>
-			<span class="code">Buf&lt;T&gt;</span> is a utility class in the Scribble API. 
-			
+			<span class="code">Buf&lt;T&gt;</span> is a utility class in the Scribble API.
+
 			<ul>
 				<li>
 					It has a mutable field <span class="code">val</span> of type <span class="code">T</span>.
@@ -1000,8 +1000,8 @@ enumeration.  For example, the class for the initial state is named <span class=
 
 <p>
 	&lt;
-	<a href="#CLIENTFSM">prev</a>; 
-	<a href="#TOP">top</a>; 
+	<a href="#CLIENTFSM">prev</a>;
+	<a href="#TOP">top</a>;
 	<a href="#CLIENTIMPLE">next</a>
 	&gt;
 </p>
@@ -1082,8 +1082,8 @@ enumeration.  For example, the class for the initial state is named <span class=
 				</li>
 				<li>
 					<a href="#APIOVER"><span class="code">ObjectStreamFormatter</span></a>,
- provided by the Scribble API, performs the serialization and 
-deserialization of messages using the default Java object serialization 
+ provided by the Scribble API, performs the serialization and
+deserialization of messages using the default Java object serialization
 protocol.
 				</li>
 			</ul>
@@ -1133,8 +1133,8 @@ protocol.
 
 <p>
 	&lt;
-	<a href="#CLIENTAPI">prev</a>; 
-	<a href="#TOP">top</a>; 
+	<a href="#CLIENTAPI">prev</a>;
+	<a href="#TOP">top</a>;
 	<a href="#ADDERSERVER">next</a>
 	&gt;
 </p>
@@ -1217,7 +1217,7 @@ protocol.
 
 <ul>
 	<li>
-		<span class="code">SocketChannelServer</span> is used to accept TCP connections.  It is a concrete implementation of <span class="code">ScribServerSocket</span>, provided by the base API of Scribble.  
+		<span class="code">SocketChannelServer</span> is used to accept TCP connections.  It is a concrete implementation of <span class="code">ScribServerSocket</span>, provided by the base API of Scribble.
 	</li>
 
 	<li>
@@ -1229,14 +1229,14 @@ protocol.
 
 	<li>
 		<p>
-			<span class="code">Adder_S_1</span> is the initial state channel of the <a href="#APIGEN">Endpoint API</a> generated for <span class="code">S</span>.  This state is a <a href="#APIRECEIVE">non-unary receive</a> state, or <em>branch</em> state.  
+			<span class="code">Adder_S_1</span> is the initial state channel of the <a href="#APIGEN">Endpoint API</a> generated for <span class="code">S</span>.  This state is a <a href="#APIRECEIVE">non-unary receive</a> state, or <em>branch</em> state.
 			<!--Branch states were not demonstrated by the API for <span class="code">C</span>.-->
 		</p>
 
 		<p>
 			The <span class="code">Adder_S_1</span> class has an instance method:
 		</p>
-	
+
 <pre class="code">    Adder_S_1_Cases branch(C role)
 </pre>
 
@@ -1250,7 +1250,7 @@ protocol.
 </pre>
 
 		<p>
-			The name of the <span class="code">enum</span> is a mechanically 
+			The name of the <span class="code">enum</span> is a mechanically
 derived name that does not need to be exposed in endpoint implementation
  code in typical usage.  The API sets the value of the <span class="code">op</span> field of the returned <span class="code">Adder_S_1_Cases</span> according to the operator of the received message.
 		</p>
@@ -1258,12 +1258,12 @@ derived name that does not need to be exposed in endpoint implementation
 		<p>
     	<span class="code">Adder_S_1_Cases</span> has the instance methods:
 		</p>
-	
+
 <pre class="code">    Adder_S_2 receive(C role, Add op, Buf&lt;? super Integer&gt; arg1, Buf&lt;? super Integer&gt; arg2)
 
     EndSocket receive(C role, Bye op)
 </pre>
-		
+
 		<p>
 			In each case of the <span class="code">switch(cases.op)</span> statement, the corresponding method is used as a "cast" to obtain the appropriate state channel from the <span class="code">Cases</span> object.  The above methods are generated to throw a <span class="code">ScribbleRuntimeException</span> if the wrong method is used.
 		</p>
@@ -1273,8 +1273,8 @@ derived name that does not need to be exposed in endpoint implementation
 
 <p>
 	&lt;
-	<a href="#CLIENTIMPLE">prev</a>; 
-	<a href="#TOP">top</a>; 
+	<a href="#CLIENTIMPLE">prev</a>;
+	<a href="#TOP">top</a>;
 	<a href="#SCRIBCORE">next</a>
 	&gt;
 </p>
@@ -1294,8 +1294,8 @@ derived name that does not need to be exposed in endpoint implementation
 
 <p>
 	&lt;
-	<a href="#SERVERIMPLE">prev</a>; 
-	<a href="#TOP">top</a>; 
+	<a href="#SERVERIMPLE">prev</a>;
+	<a href="#TOP">top</a>;
 	<a href="#SCRIBMODULE">next</a>
 	&gt;
 </p>
@@ -1383,8 +1383,8 @@ derived name that does not need to be exposed in endpoint implementation
 
 <p>
 	&lt;
-	<a href="#SCRIBCORE">prev</a>; 
-	<a href="#TOP">top</a>; 
+	<a href="#SCRIBCORE">prev</a>;
+	<a href="#TOP">top</a>;
 	<a href="#SCRIBSIG">next</a>
 	&gt;
 </p>
@@ -1449,16 +1449,16 @@ derived name that does not need to be exposed in endpoint implementation
 <hr>
 
 
-<h3><a id="SCRIBGLOBAL">Global protocol declarations</a></h3> 
+<h3><a id="SCRIBGLOBAL">Global protocol declarations</a></h3>
 
 <p>
-	A Scribble global protocol describes the interactions between the participants of a <em>communication session</em> from the <em>global</em> (<em>i.e.</em>, neutral) perspective.  A Scribble protocol abstracts session participants as named <em>roles</em>.  Sessions are sometimes referred to as <em>conversations</em>.  
+	A Scribble global protocol describes the interactions between the participants of a <em>communication session</em> from the <em>global</em> (<em>i.e.</em>, neutral) perspective.  A Scribble protocol abstracts session participants as named <em>roles</em>.  Sessions are sometimes referred to as <em>conversations</em>.
 </p>
-	
+
 <p>
-	Scribble protocols are strictly <em>explicit</em> about session 
-interactions -- the only application-level messages to be communicated 
-in a Scribble session are those that are explicitly specified in the 
+	Scribble protocols are strictly <em>explicit</em> about session
+interactions -- the only application-level messages to be communicated
+in a Scribble session are those that are explicitly specified in the
 protocol.
 </p>
 
@@ -1481,7 +1481,7 @@ protocol.
 			</ul>
 		</li>
 		<li>
-			<span class="code">{ ... }</span> is the protocol <em>body</em>.  
+			<span class="code">{ ... }</span> is the protocol <em>body</em>.
 			<ul>
 				<li>
 					The body is a sequence of <em>global interaction statements</em>, <em>i.e.</em>, <a href="#SCRIBINTERACT">message interactions</a>, <a href="#SCRIBCONNECT">connection interactions</a>, <a href="#SCRIBCHOICE"><span class="code">choice</span> statements</a> and <a href="#SCRIBDO"><span class="code">do</span> statements</a>.
@@ -1514,7 +1514,7 @@ protocol.
 </p>
 
 <p>
-  <strong>Note (KH):</strong> 
+  <strong>Note (KH):</strong>
   multiple protocol per file? Yes I think so. That's practical, esp.
   if you wish to define multiple data types.
 </p>
@@ -1535,7 +1535,7 @@ protocol.
   to have different visibility for the same protocol: Buyer only sees
   its projection, etc.  In this case we may want to say in the first
   line we add at the end "visible(role names)". Anyway
-</p>  
+</p>
 
 <p>
   <strong>Note (KH):</strong> relationship between protocol name(s) and file
@@ -1543,7 +1543,7 @@ protocol.
   ABC", we can demand "ABC" (which means "ABC.prot") only contains
   "protocol ABC<..>(..)". Perhaps this is consistent, but in this case
   we are encouraging people to do this way - to have one protocol in one
-  protocol file. 
+  protocol file.
 </p>
 
 <p>
@@ -1558,7 +1558,7 @@ protocol.
   does a message exchange as one unit, but scribble is designed for
   asynchronous communication so output and input are actually
   decoupled; see semantics). making use of external message format languages to be used in scribble
-	
+
 	FIXME: should make declared payload type and message sig names really aliases
 	-->
 
@@ -1579,7 +1579,7 @@ what is import?? as in, what does it do (wrt. tools)? what is a
 
 <p>
   <strong>Note (KH):</strong> I think we need to define a grammar. I believe,
-  for message types, 
+  for message types,
   we need to specify its schema kinds (well it IS a kind).
   I think we can later allow to omit it by a suffix, but for now,
   we use "xsd" etc. (or "::xsd") for specifying it.
@@ -1618,7 +1618,7 @@ what is import?? as in, what does it do (wrt. tools)? what is a
     <strong>All this is for the following:</strong>
     we need to have signature abstraction, in this case
     we have just an operator name (actually a signature name)
-    and that name should be parametrised. It is the editor's 
+    and that name should be parametrised. It is the editor's
     role to make such parametrisation easier by allowing a developer
     to omit it when authoring a protocol.
   </li>
@@ -1648,7 +1648,7 @@ what is import?? as in, what does it do (wrt. tools)? what is a
 <h3><a id="SCRIBINTERACT">The message interaction statement</a></h3>
 
 <!--<p>
-  <strong>Note (RH)</strong>: 
+  <strong>Note (RH)</strong>:
 syntactically straightforward, but semantically tricky. meaning of
 semicolon depends on the causalities implies by the roles in the
 sequenced constructs
@@ -1661,7 +1661,7 @@ sequenced constructs
 </p>-->
 
 <p>
-	A <em>message interaction</em> is a role-to-role pairing of a <em>send</em> action and a <em>receive</em> action of a message. 
+	A <em>message interaction</em> is a role-to-role pairing of a <em>send</em> action and a <em>receive</em> action of a message.
 </p>
 
 <p>
@@ -1678,7 +1678,7 @@ sequenced constructs
 <pre class="code">		Msg from r<sub>1</sub> to r<sub>2</sub>;
 </pre>
 
-<p> 
+<p>
 	In both cases, <span class="code">r<sub>1</sub></span> is the <em>sender</em> role and <span class="code">r<sub>2</sub></span> is the <em>receiver</em> role.
 
 	</p><ul>
@@ -1695,7 +1695,7 @@ sequenced constructs
 <p>
 	Send actions are considered <a href="#VALIDFSM"><em>output</em></a> actions, and receive actions are considered <a href="#VALIDFSM"><em>input</em></a> actions.
 </p>
-    
+
 <!--
 <p>
 	maybe move this section after choice, recursion and parallel
@@ -1756,7 +1756,7 @@ sequenced constructs
   <strong>Note (KH)</strong>: I think all these are interesting to read and look
   good to have to give a glimpse of well-formedness in this tutorial,
   all points look good to grasp. We can end with: "you do not get it?
-  Well, for now, never mind, just write what you consider sensible, 
+  Well, for now, never mind, just write what you consider sensible,
   almost always that gives a good form of choice." etc.
 </p>
 -->
@@ -1771,7 +1771,7 @@ sequenced constructs
 <p>
 	</p><ul>
 		<li>
-			The <span class="code">at</span>-role, <span class="code">r</span>, is called the <em>choice subject</em>.  
+			The <span class="code">at</span>-role, <span class="code">r</span>, is called the <em>choice subject</em>.
 		</li>
 		<li>
 			The choice subject selects which block to follow as an <em>internal choice</em>.  A Scribble protocol leaves the actual decision procedure abstract (it is an <a href="#IMPLE">implementation</a>-level concern).
@@ -1837,11 +1837,11 @@ sequenced constructs
 </p>
 -->
 
-<!-- 
+<!--
 A
 singleton choice, i.e. a choice with a single choice block, has the
 same meaning as the interaction in the body of the choice block
-specified by itself (i.e. not in the choice). 
+specified by itself (i.e. not in the choice).
 -->
 
 <!--<div id="textbox">-->
@@ -1924,7 +1924,7 @@ global protocol BuyerBrokerSupplier(role Buyer, role Broker, role Supplier) {
 
 <!-
 <p>
-  <strong>Note (RH)</strong>: 
+  <strong>Note (RH)</strong>:
   does a recursion have to involve all roles? well-formedness of
   choice inside recursion depends on whether a choice should involve
   all roles? parallel inside recursion? if continue for that recursion
@@ -1958,20 +1958,20 @@ in some cases.</strong>
 <p>
   <strong>Note (KH)</strong>: How about when a continue for that recursion is
 inside the parallel? <strong> I wish to allow it in the end but perhaps not
-now. It depends on the tool...and anyway in the tutorial we use 
-a simpler example. Ultimately we have basic criteria: 
+now. It depends on the tool...and anyway in the tutorial we use
+a simpler example. Ultimately we have basic criteria:
 the base is no confusion, the second is no infinite threads.</strong>
 </p>
 
 <p>
-  <strong>Note (RH)</strong>: 
+  <strong>Note (RH)</strong>:
 	should definitely explain closer to loops rather than
 	e.g. syntactic unfolding. should explain operationally
 	(although at the correct level of abstraction)
 </p>
 
 <p>
-  <strong>Note (KH)</strong>: 
+  <strong>Note (KH)</strong>:
   Agreed, I think we need to also say why recursion is better, after illustrating intuitively, I can also do this. - RH: is recursion /actually/ better? or just because we have recursion so we want to say it is better? as far as i know, we have recursion because that is how it is formalised in theory, not because it was decided that recursion is better for a practical engineering language right at the start when MPST was invented
 </p>
 ->
@@ -2012,7 +2012,7 @@ the base is no confusion, the second is no infinite threads.</strong>
 <h3><a id="SCRIBDO">The <span class="code">do</span> statement</a></h3>
 
 <p>
-  <!--Inlined protocols are when you wish to refer to some other protocols 
+  <!--Inlined protocols are when you wish to refer to some other protocols
   and include them as part of your protocol.-->
 	The <tt>do</tt> statement instructs the specified roles to perform the interactions of the specified protocol inline with the current session.
 </p>
@@ -2022,7 +2022,7 @@ the base is no confusion, the second is no infinite threads.</strong>
 	continue the use of rpc to do buyer-broker-seller started in the protocol instantiation section
 </p>
 
-<p> 
+<p>
   <strong>Note (KH)</strong>: Here for the first time I think the true interest
   of decomposition arises and why not doing it here for the first
   time, then move to "do" then to "run"? I think these are very
@@ -2040,7 +2040,7 @@ the base is no confusion, the second is no infinite threads.</strong>
   chaining
 </p>
 
-<p> 
+<p>
   <strong>Note (KH)</strong>: Yes we have a chaining, it is as if we do the
    macro expansion. I do not think we should say a lot about this
    here, but in the lang-ref, yes we need to say to this effect and if
@@ -2069,7 +2069,7 @@ the base is no confusion, the second is no infinite threads.</strong>
 		</li>
 		<li>
 			The meaning of the <span class="code">do</span> statement is given by substituting every occurrence in the target protocol <a href="#SCRIBGLOBAL">body</a>
- of a role in the role declaration list of the target protocol 
+ of a role in the role declaration list of the target protocol
 declaration with the corresponding role in the role argument list.
 		</li>
 	</ul>
@@ -2095,7 +2095,7 @@ declaration with the corresponding role in the role argument list.
 <!-- message. -->
 <!-- </p> -->
 
-<!--The meaning is the same as two protocols referred to are 
+<!--The meaning is the same as two protocols referred to are
 instantiated and inlined.-->
 
 <!--
@@ -2103,7 +2103,7 @@ instantiated and inlined.-->
 	if we have "call", can we just encode/approximate subsession using parallel?
 </p>
 
-<p> 
+<p>
   <strong>Note (KH)</strong>: I think we have discussed this point before.
 </p>
 -->
@@ -2202,19 +2202,19 @@ global protocol Main(role Client, role Middleware) {
   a <tt>request</tt> (of abstract data type Req) message
   to <tt>Middleware</tt>.
 </p>
-	
+
 <p>
 Then, <tt>Middleware</tt> has two options.
 
 <ul>
-  <li> 
+  <li>
     Either it is able to treat the request directly (for instance,
     because required information is still in the cache). It sends
     an <tt>answer</tt> of abstract data type <tt>Data</tt> to
     the <tt>Client</tt> and the protocol is over.
   </li>
 
-  <li> 
+  <li>
     Or it has to contact the <tt>Server</tt>. In this case, the
     protocol <tt>Contact</tt> is launched (through the use of
     the <tt>spawns</tt> construct) with <tt>Middleware</tt> playing
@@ -2390,8 +2390,8 @@ global protocol Main(role Client, role Middleware) {
 
 <p>
 	&lt;
-	<a href="#SCRIBMORE">prev</a>; 
-	<a href="#TOP">top</a>; 
+	<a href="#SCRIBMORE">prev</a>;
+	<a href="#TOP">top</a>;
 	<a href="#SCRIBCONNECT">next</a>
 	&gt;
 </p>
@@ -2410,7 +2410,7 @@ global protocol Main(role Client, role Middleware) {
 </pre>
 
 <p>
-	The communication model of a <em>non</em>-<span class="code">explicit</span> global protocol starts with all roles <em>pairwise connected</em> by binary channels.  
+	The communication model of a <em>non</em>-<span class="code">explicit</span> global protocol starts with all roles <em>pairwise connected</em> by binary channels.
 </p>
 
 <p>
@@ -2421,7 +2421,7 @@ global protocol Main(role Client, role Middleware) {
 </pre>
 
 <p>
-	A <em>connection interaction</em> is a role-to-role pairing of a connection <em>request</em> action and a connection <em>accept</em> action.  Role <span class="code">r<sub>1</sub></span> is the <em>client</em> role, and <span class="code">r<sub>2</sub></span> is the <em>server</em> role.  
+	A <em>connection interaction</em> is a role-to-role pairing of a connection <em>request</em> action and a connection <em>accept</em> action.  Role <span class="code">r<sub>1</sub></span> is the <em>client</em> role, and <span class="code">r<sub>2</sub></span> is the <em>server</em> role.
 </p>
 
 <ul>
@@ -2444,7 +2444,7 @@ global protocol Main(role Client, role Middleware) {
 
 <p>
 	Each of the two <em>disconnect</em> actions in the above pairing is a <em>local</em> action,  <em>i.e.</em>
- it does not directly pertain to any interaction between the two roles. 
+ it does not directly pertain to any interaction between the two roles.
  A disconnect action closes the input queue at the local endpoint of the
  binary channel between these two roles.
 </p>
@@ -2472,8 +2472,8 @@ global protocol Main(role Client, role Middleware) {
 
 <p>
 	&lt;
-	<a href="#SCRIBSIGNAME">prev</a>; 
-	<a href="#TOP">top</a>; 
+	<a href="#SCRIBSIGNAME">prev</a>;
+	<a href="#TOP">top</a>;
 	<a href="#PROTOVALID">next</a>
 	&gt;
 </p>
@@ -2498,7 +2498,7 @@ global protocol Main(role Client, role Middleware) {
 
 
 <!-
-<p> 
+<p>
   <strong>Note (KH)</strong>: I hope we can use import, or for that matter
   include, for <strong>both</strong> messages and "modules", for the following
   reasons.  (1) The fewer things to learn, the better. - just because you make them the same name doesn't mean fewer things to learn. otherwise just overload the keyword foo for everything that is grammatically not ambiguous. did we learn fewer things? (2) Very
@@ -2546,7 +2546,7 @@ global protocol Main(role Client, role Middleware) {
 global protocol MyFowardingPattern&lt;sig X&gt;(role A, role B, role C) {
     X from A to B;
     X from B to C;
-} 
+}
 </pre>
 	</td></tr>
 </table>
@@ -2585,7 +2585,7 @@ global protocol MyFowardingPattern&lt;sig X&gt;(role A, role B, role C) {
   e.g. if once you abstract one data type, it may bind some name
   without being expected, but free names are not ambiguous if we put
   them so as the <strong>semantics</strong> of our language, so it is not
-  impossible). 
+  impossible).
 </p>
 
 <p>
@@ -2617,7 +2617,7 @@ global protocol MyFowardingPattern&lt;sig X&gt;(role A, role B, role C) {
 
 <p>
   <strong>Note (KH)</strong>: I think we can have "do" but not "include".
-</p>  
+</p>
 
 <p>
 	message import is also binding the instantiation arguments as
@@ -2629,13 +2629,13 @@ global protocol MyFowardingPattern&lt;sig X&gt;(role A, role B, role C) {
   then it can be bound, to which I agree, and this is a very good point
   to refer to here (with a good example if possible):
   it's a later part of the document so we can go a bit subtlety...
-</p>  
+</p>
 
 <ul>
 	<li>
 		protocol signature must be fully instantiated,
 		i.e. all roles and sig parameters substituted<p>
-		<p>  <strong>Note (KH)</strong>: Yes I agree.</p>  
+		<p>  <strong>Note (KH)</strong>: Yes I agree.</p>
 	</li>
 	<li>
 		well-formedness conditions (e.g. on use of names for operators) should hold after instantiation
@@ -2673,8 +2673,8 @@ global protocol MyFowardingPattern&lt;sig X&gt;(role A, role B, role C) {
 
 <p>
 	&lt;
-	<a href="#SCRIBCONNECT">prev</a>; 
-	<a href="#TOP">top</a>; 
+	<a href="#SCRIBCONNECT">prev</a>;
+	<a href="#TOP">top</a>;
 	<a href="#VALIDWF">next</a>
 	&gt;
 </p>
@@ -2703,10 +2703,10 @@ global protocol MyFowardingPattern&lt;sig X&gt;(role A, role B, role C) {
 <p></p>
 
 <p>
-	Specifically, the second step is conducted on a <em>1-bounded</em> 
-model of the protocol.  That is, the model given by the exhaustive 
-execution of the system of Endpoint FSMs where each communication 
-channel is limited to a maximum capacity of one message in each 
+	Specifically, the second step is conducted on a <em>1-bounded</em>
+model of the protocol.  That is, the model given by the exhaustive
+execution of the system of Endpoint FSMs where each communication
+channel is limited to a maximum capacity of one message in each
 direction.
 </p>
 
@@ -2733,8 +2733,8 @@ direction.
 
 <p>
 	&lt;
-	<a href="#PROTOVALID">prev</a>; 
-	<a href="#TOP">top</a>; 
+	<a href="#PROTOVALID">prev</a>;
+	<a href="#TOP">top</a>;
 	<a href="#VALIDFSM">next</a>
 	&gt;
 </p>
@@ -2787,8 +2787,8 @@ direction.
 
 <p>
 	&lt;
-	<a href="#VALIDWF">prev</a>; 
-	<a href="#TOP">top</a>; 
+	<a href="#VALIDWF">prev</a>;
+	<a href="#TOP">top</a>;
 	<a href="#VALIDPROP">next</a>
 	&gt;
 </p>
@@ -2858,8 +2858,8 @@ direction.
 
 <p>
 	&lt;
-	<a href="#VALIDFSM">prev</a>; 
-	<a href="#TOP">top</a>; 
+	<a href="#VALIDFSM">prev</a>;
+	<a href="#TOP">top</a>;
 	<a href="#APIGEN">next</a>
 	&gt;
 </p>
@@ -2873,13 +2873,13 @@ direction.
 </h2>
 
 <p>
-	This section describes the generation of <em>protocol-specific</em> Java <em>Endpoint APIs</em> by Scribble in more detail.  
+	This section describes the generation of <em>protocol-specific</em> Java <em>Endpoint APIs</em> by Scribble in more detail.
 </p>
 
 <p>
 	&lt;
-	<a href="#VALIDPROP">prev</a>; 
-	<a href="#TOP">top</a>; 
+	<a href="#VALIDPROP">prev</a>;
+	<a href="#TOP">top</a>;
 	<a href="#APIOVER">next</a>
 	&gt;
 </p>
@@ -2932,7 +2932,7 @@ direction.
 
 <pre class="code">    public MPSTEndpoint(P sess, R self, ScribMessageFormatter f)
 </pre>
-		
+
 		<ul>
 			<li>
 				Its type parameters are inferred from the first two constructor arguments:
@@ -2948,10 +2948,10 @@ direction.
 			</li>
 			<li>
 				The third parameter takes an instance of the <span class="code">org.scribble.net.ScribMessageFormatter</span>
- interface in the Scribble API.  This object is responsible for 
-performing the serialization and deserialization of messages on the 
+ interface in the Scribble API.  This object is responsible for
+performing the serialization and deserialization of messages on the
 underlying transport.
-				
+
 				<ul>
 					<li>
 						<span class="code">org.scribble.net.ObjectStreamFormatter</span> is an implementation of this interface provided by Scribble.  It uses the default serialization protocol implemented by <a href="https://docs.oracle.com/javase/8/docs/api/java/io/ObjectOutputStream.html"><span class="code">java.io.ObjectOutputStream</span></a> and <a href="https://docs.oracle.com/javase/8/docs/api/java/io/ObjectInputStream.html"><span class="code">java.io.ObjectInputStream</span></a>.
@@ -2973,8 +2973,8 @@ underlying transport.
 
 <p>
 	&lt;
-	<a href="#APIGEN">prev</a>; 
-	<a href="#TOP">top</a>; 
+	<a href="#APIGEN">prev</a>;
+	<a href="#TOP">top</a>;
 	<a href="#APINAMES">next</a>
 	&gt;
 </p>
@@ -3035,8 +3035,8 @@ underlying transport.
 
 <p>
 	&lt;
-	<a href="#APIOVER">prev</a>; 
-	<a href="#TOP">top</a>; 
+	<a href="#APIOVER">prev</a>;
+	<a href="#TOP">top</a>;
 	<a href="#APISTATECHAN">next</a>
 	&gt;
 </p>
@@ -3081,14 +3081,14 @@ underlying transport.
 		Scribble generates a Java class named <span class="code">G_r_s</span> in package <span class="code">mypack.MyMod.G.channels.r</span>.
 		<ul>
 			<li>
-				In the default naming scheme, <span class="code">s</span> is an integer state identifier in an enumeration of the FSM states.  
+				In the default naming scheme, <span class="code">s</span> is an integer state identifier in an enumeration of the FSM states.
 			</li>
 		</ul>
 	</li>
 	<li>
 		If <span class="code">s</span> is the <a href="#VALIDFSM">initial state</a>, then <span class="code">G_r_s</span> has a constructor:
 
-<pre class="code">	public G_r_s(MPSTEndpoint<g, r=""> ep) throws ScribbleRuntimeException	
+<pre class="code">	public G_r_s(MPSTEndpoint<g, r=""> ep) throws ScribbleRuntimeException
 </g,></pre>
 
 	Otherwise <span class="code">G_r_s</span> has no <span class="code">public</span> constructor.
@@ -3101,8 +3101,8 @@ underlying transport.
 
 <p>
 	&lt;
-	<a href="#APINAMES">prev</a>; 
-	<a href="#TOP">top</a>; 
+	<a href="#APINAMES">prev</a>;
+	<a href="#TOP">top</a>;
 	<a href="#APIOUTPUT">next</a>
 	&gt;
 </p>
@@ -3116,10 +3116,10 @@ underlying transport.
 <p>
 	Let:
 </p>
- 
+
 <ul>
 	<li>
-		<span class="code">s<sub>output</sub></span> be an <em><a href="#VALIDFSM">output state</a></em> in the Endpoint FSM of <span class="code">G</span> for role <span class="code">r</span>; 
+		<span class="code">s<sub>output</sub></span> be an <em><a href="#VALIDFSM">output state</a></em> in the Endpoint FSM of <span class="code">G</span> for role <span class="code">r</span>;
 	</li>
 	<li>
 		<span class="code">a<sub>1..n</sub></span> be the actions of the transitions from <span class="code">s</span>, leading to states <span class="code">s<sub>1..n</sub></span>, respectively.
@@ -3143,7 +3143,7 @@ underlying transport.
 
 <pre class="code">    public G_r_s<sub>i</sub> send(r<sub>i</sub> role, M msg) throws ScribbleRuntimeException, IOException
 </pre>
-	
+
 </ul>
 
 <p>
@@ -3161,10 +3161,10 @@ underlying transport.
 <ul>
 	<li>
 		<span class="code">org.scribble.net.session.BinaryChannelEndpoint</span> is an <span class="code">abstract</span> class that represents a bidirectional <em>binary</em> communication channel.  Implementations of this interface must provide a channel that is <em>reliable</em> and <em>order-preserving in each direction</em>.
-		
+
 		<ul>
 			<li>
-				<span class="code">org.scribble.net.session.SocketChannelEndpoint</span> is a concrete implementation using TCP provided by the Scribble API.  
+				<span class="code">org.scribble.net.session.SocketChannelEndpoint</span> is a concrete implementation using TCP provided by the Scribble API.
 			</li>
 		</ul>
 	</li>
@@ -3184,8 +3184,8 @@ underlying transport.
 
 <p>
 	&lt;
-	<a href="#APISTATECHAN">prev</a>; 
-	<a href="#TOP">top</a>; 
+	<a href="#APISTATECHAN">prev</a>;
+	<a href="#TOP">top</a>;
 	<a href="#APIRECEIVE">next</a>
 	&gt;
 </p>
@@ -3199,10 +3199,10 @@ underlying transport.
 <p>
 	Let:
 </p>
- 
+
 <ul>
 	<li>
-		<span class="code">s<sub>receive</sub></span> be a <em><a href="#VALIDFSM">receive state</a></em> in the Endpoint FSM of <span class="code">G</span> for role <span class="code">r</span>; 
+		<span class="code">s<sub>receive</sub></span> be a <em><a href="#VALIDFSM">receive state</a></em> in the Endpoint FSM of <span class="code">G</span> for role <span class="code">r</span>;
 	</li>
 	<li>
 		<span class="code">a<sub>1..n</sub></span> be the <a href="#SCRIBINTERACT">receive</a> actions, from sender role <span class="code">r'</span>, of the transitions from <span class="code">s</span>, leading to states <span class="code">s<sub>1..n</sub></span>, respectively.
@@ -3229,11 +3229,11 @@ underlying transport.
 <pre class="code">    public G_r_s<sub>1</sub> receive(r' role, Buf&lt;? super M arg1)
         throws ScribbleRuntimeException, IOException, ClassNotFoundException
 </pre>
-	
+
 </ul>
 
 <p>
-	The <span class="code">receive</span> methods are generated to block until a message is received.  
+	The <span class="code">receive</span> methods are generated to block until a message is received.
 </p>
 </div>
 
@@ -3258,7 +3258,7 @@ underlying transport.
 </ul>
 
 <p>
-	The <span class="code">branch</span> method is generated to block until a message is received.  
+	The <span class="code">branch</span> method is generated to block until a message is received.
 </p>
 
 <p>
@@ -3281,14 +3281,14 @@ underlying transport.
 <pre class="code">    public G_r_s<sub>i</sub> receive(r' role, Buf&lt;? super M arg1)
         throws ScribbleRuntimeException, IOException, ClassNotFoundException
 </pre>
-	
+
 </ul>
 </div>
 
 <p>
-	<span class="code">org.scribble.net.Buf&lt;T&gt;</span> is a utility class in the Scribble API. 
+	<span class="code">org.scribble.net.Buf&lt;T&gt;</span> is a utility class in the Scribble API.
 </p>
-			
+
 <ul>
 	<li>
 		It has a mutable field <span class="code">val</span> of type <span class="code">T</span>.
@@ -3303,8 +3303,8 @@ underlying transport.
 
 <p>
 	&lt;
-	<a href="#APIOUTPUT">prev</a>; 
-	<a href="#TOP">top</a>; 
+	<a href="#APIOUTPUT">prev</a>;
+	<a href="#TOP">top</a>;
 	<a href="#APIACCEPT">next</a>
 	&gt;
 </p>
@@ -3318,10 +3318,10 @@ underlying transport.
 <p>
 	Let:
 </p>
- 
+
 <ul>
 	<li>
-		<span class="code">s<sub>accept</sub></span> be an <em><a href="#VALIDFSM">accept state</a></em> in the Endpoint FSM of <span class="code">G</span> for role <span class="code">r</span>; 
+		<span class="code">s<sub>accept</sub></span> be an <em><a href="#VALIDFSM">accept state</a></em> in the Endpoint FSM of <span class="code">G</span> for role <span class="code">r</span>;
 	</li>
 	<li>
 		<span class="code">a<sub>1..n</sub></span> be the actions of the transitions from <span class="code">s</span>, leading to states <span class="code">s<sub>1..n</sub></span>, respectively.
@@ -3340,17 +3340,17 @@ underlying transport.
 		</li><li>
 			<span class="code">org.scribble.net.scribsock.SocketChannelServer</span> is a concrete implementation using TCP provided by the Scribble API.
 		</li>
-	
+
 </ul>
 
 <p>
-	The <span class="code">accept</span> method is generated to block until the connection is established or an exception is thrown.  
+	The <span class="code">accept</span> method is generated to block until the connection is established or an exception is thrown.
 </p>
 
 <p>
 	&lt;
-	<a href="#APIRECEIVE">prev</a>; 
-	<a href="#TOP">top</a>; 
+	<a href="#APIRECEIVE">prev</a>;
+	<a href="#TOP">top</a>;
 	<a href="#APIDISCONNECT">next</a>
 	&gt;
 </p>
@@ -3364,22 +3364,22 @@ underlying transport.
 <p>
 	If <span class="code">s</span> is a <em><a href="#VALIDFSM">disconnect state</a></em> in the Endpoint FSM of <span class="code">G</span> for role <span class="code">r</span>:
 </p>
- 
+
 <ul>
 	<li>
  		Scribble generates an instance method in class <span class="code">G_r_s</span>:
 
 <pre class="code">    public G_r_s' disconnect(r' role) throws ScribbleRuntimeException, IOException
 </pre>
-		
+
 		where <span class="code">r'</span> is the object role of the <a href="#SCRIBCONNECT">disconnect</a> action of the transition from <span class="code">s</span>, and <span class="code">s'</span> is the successor state.
 	</li>
 </ul>
 
 <p>
 	&lt;
-	<a href="#APIACCEPT">prev</a>; 
-	<a href="#TOP">top</a>; 
+	<a href="#APIACCEPT">prev</a>;
+	<a href="#TOP">top</a>;
 	<a href="#APILINEAR">next</a>
 	&gt;
 </p>
@@ -3391,8 +3391,8 @@ underlying transport.
 <h3><a id="APILINEAR">Linear usage of state channel instances</a></h3>
 
 <p>
-	Scribble enforces a <em>linear usage</em> discipline on state channel 
-instances, by generating run-time checks into the Endpoint API.  This 
+	Scribble enforces a <em>linear usage</em> discipline on state channel
+instances, by generating run-time checks into the Endpoint API.  This
 means an endpoint implementation should invoke <em>one</em> I/O method on every instance of a state channel, apart from <a href="#APISTATECHAN"><span class="code">EndSocket</span></a>.  The following situations throw a <a href="#APIOVER"><span class="code">ScribbleRuntimeException</span></a>.
 </p>
 
@@ -3400,7 +3400,7 @@ means an endpoint implementation should invoke <em>one</em> I/O method on every 
 	<li>
 		An I/O method is invoked on a state channel instance on which an I/O method has been previously invoked.
 	</li>
-		
+
 	<li>
 		A <span class="code">try</span>-with-resources statement closes an <span class="code">MPSTEndpoint</span> declared in a resource specification and there exists an associated state channel instance on which <em>no</em> I/O method has been called.
 	</li>
@@ -3408,8 +3408,8 @@ means an endpoint implementation should invoke <em>one</em> I/O method on every 
 
 <p>
 	&lt;
-	<a href="#APIDISCONNECT">prev</a>; 
-	<a href="#TOP">top</a>; 
+	<a href="#APIDISCONNECT">prev</a>;
+	<a href="#TOP">top</a>;
 	<a href="#%0A%09IMPLE">next</a>
 	&gt;
 </p>
@@ -3423,14 +3423,14 @@ means an endpoint implementation should invoke <em>one</em> I/O method on every 
 </h2>
 
 <p>
-	This section describes additional details of endpoint implementation 
+	This section describes additional details of endpoint implementation
 using Scribble-generated APIs and the associated safety properties.
 </p>
 
 <p>
 	&lt;
-	<a href="#APILINEAR">prev</a>; 
-	<a href="#TOP">top</a>; 
+	<a href="#APILINEAR">prev</a>;
+	<a href="#TOP">top</a>;
 	<a href="#IMPLECONNECT">next</a>
 	&gt;
 </p>
@@ -3452,7 +3452,7 @@ Endpoint implementation using an <a href="#APIGEN">Endpoint API</a> generated fr
 
 <pre class="code">    Adder adder = new Adder();
     try (MPSTEndpoint&lt;Adder, C&gt; client =
-                new MPSTEndpoint&lt;&gt;(adder, C, new ObjectStreamFormatter())) {    
+                new MPSTEndpoint&lt;&gt;(adder, C, new ObjectStreamFormatter())) {
         client.connect(S, SocketChannelEndpoint::new, "localhost", 8888);
         /* Body of endpoint implementation, starting from new Adder_C_1(client)*/
     }
@@ -3549,8 +3549,8 @@ Endpoint implementation using an <a href="#APIGEN">Endpoint API</a> generated fr
 
 <p>
 	&lt;
-	<a href="#IMPLE">prev</a>; 
-	<a href="#TOP">top</a>; 
+	<a href="#IMPLE">prev</a>;
+	<a href="#TOP">top</a>;
 	<a href="#IMPLEHYBRID">next</a>
 	&gt;
 </p>
@@ -3575,8 +3575,8 @@ Endpoint implementation using an <a href="#APIGEN">Endpoint API</a> generated fr
 
 <p>
 	Note that the <em>only</em> way that an endpoint implementation using an Endpoint API may <em>attempt</em>
- to violate the protocol is by violating state channel linearity.  This 
-confers the following form of safety for Scribble endpoint 
+ to violate the protocol is by violating state channel linearity.  This
+confers the following form of safety for Scribble endpoint
 implementations.
 </p>
 
@@ -3585,16 +3585,16 @@ implementations.
 		If linear channel usage is respected, then Java type checking <em>statically</em> guarantees that the endpoint implementation complies to the specified protocol.
 	</li>
 	<li>
-		<em>Regardless</em> of linear channel usage, Java type checking 
-guarantees protocol compliance up to premature termination of the 
+		<em>Regardless</em> of linear channel usage, Java type checking
+guarantees protocol compliance up to premature termination of the
 endpoint in the session.
 	</li>
 </ul>
 
 <p>
 	&lt;
-	<a href="#IMPLECONNECT">prev</a>; 
-	<a href="#TOP">top</a>; 
+	<a href="#IMPLECONNECT">prev</a>;
+	<a href="#TOP">top</a>;
 	<a href="#SCRIBBUILD">next</a>
 	&gt;
 </p>
@@ -3698,7 +3698,7 @@ endpoint in the session.
 		</li>
 		<li>
 			Eclipse should compile Scribble automatically.
-				
+
 			<ul>
 				<li>
  					You may be prompted to install a Maven-Eclipse plugin (M2E connector) for ANTLR.
@@ -3730,7 +3730,7 @@ endpoint in the session.
 <p>
 	The script is immediately executable after extracting the <span class="code">zip</span> contents.
 </p>
-	
+
 <p>
 	Alternatively, the script is executable from the <span class="code">scribble-java</span> root directory, without <span class="code">lib</span>, by:
 </p>
@@ -3746,8 +3746,8 @@ endpoint in the session.
 
 <p>
 	&lt;
-	<a href="#IMPLEHYBRID">prev</a>; 
-	<a href="#TOP">top</a>; 
+	<a href="#IMPLEHYBRID">prev</a>;
+	<a href="#TOP">top</a>;
 	<a href="#SCRIBCL">next</a>
 	&gt;
 </p>
@@ -3801,8 +3801,8 @@ endpoint in the session.
 
 <p>
 	&lt;
-	<a href="#SCRIBBUILD">prev</a>; 
-	<a href="#TOP">top</a>; 
+	<a href="#SCRIBBUILD">prev</a>;
+	<a href="#TOP">top</a>;
 	&gt;
 </p>
 
