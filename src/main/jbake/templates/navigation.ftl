@@ -1,4 +1,4 @@
-	<!-- Fixed navbar -->
+  <!-- Fixed navbar -->
     <nav class="navbar navbar-fixed-top" role="navigation">
       <div class="container">
         <!-- Brand and toggle get grouped for better mobile display -->
@@ -20,19 +20,40 @@
               <a href="<#if (content.rootpath)??>${content.rootpath}<#else></#if>docs/overview/getting-started.html">Getting
                   Started</a>
             </li>
+                <li class="dropdown">
+                  <a aria-expanded="false" class="dropdown-toggle" data-toggle="dropdown" href="#" role="button">
+                    Documentation<span class="caret"></span>
+                  </a>
+                  <ul class="dropdown-menu" role="menu">
+                    <!--<li>
+                      <a href="<#if (content.rootpath)??>${content.rootpath}<#else></#if>docs/user/user-guide.html">User Documentation</a>
+                    </li>-->
+                    <li>
+                      <a href="<#if (content.rootpath)??>${content.rootpath}<#else></#if>docs/scribble-java.html#QUICK">Quick Start (Scribble-Java)</a>
+                    </li>
+                    <li>
+                      <a href="<#if (content.rootpath)??>${content.rootpath}<#else></#if>docs/scribble-java.html#SCRIBCORE">Language Reference</a>
+                    </li>
+                    <li class="menu-item dropdown dropdown-submenu">
+                      <a href="#" class="dropdown-toggle" data-toggle="dropdown">Java Tooling</a>
+                      <ul class="dropdown-menu">
+                        <li class="menu-item ">
+                          <a href="<#if (content.rootpath)??>${content.rootpath}<#else></#if>docs/scribble-java.html">API Generation Tutorial</a>
+                        </li>
+                      </ul>
+                    </li>
+                    <li class="menu-item dropdown dropdown-submenu">
+                      <a href="#" class="dropdown-toggle" data-toggle="dropdown">Scala Tooling</a>
+                      <ul class="dropdown-menu">
+                        <li class="menu-item ">
+                          <a href="<#if (content.rootpath)??>${content.rootpath}<#else></#if>docs/scribble-scala.html">API Generation Tutorial and Demo Artifact</a>
+                        </li>
+                      </ul>
+                    </li>
+                  </ul>
+                </li>
+
             <li class=""><a href="<#if (content.rootpath)??>${content.rootpath}<#else></#if>downloads.html">Downloads</a></li>
-            <li class="dropdown"><a aria-expanded="false" class="dropdown-toggle" data-toggle="dropdown" href="#" role="button">
-              Documentation
-              <span class="caret"></span>
-            </a>
-            <ul class="dropdown-menu" role="menu">
-              <li>
-                <a href="<#if (content.rootpath)??>${content.rootpath}<#else></#if>docs/user/user-guide.html">User Documentation</a>
-              </li>
-              <li>
-                <a href="<#if (content.rootpath)??>${content.rootpath}<#else></#if>docs/dev/developer-guide.html">Developer Documentation</a>
-              </li>
-            </ul>
             <li class="dropdown"><a aria-expanded="false" class="dropdown-toggle" data-toggle="dropdown" href="#" role="button">
               Community
               <span class="caret"></span>

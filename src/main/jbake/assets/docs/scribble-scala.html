@@ -1,0 +1,1615 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>
+      Artifact: A Linear Decomposition of Multiparty Sessions for Safe Distributed Programming
+    </title>
+    <style>
+      body { background-color: white; }
+      h1, h2 {
+        padding: 3px;
+        background-color: rgb(252,199,18);
+      }
+      h3 {
+        border-bottom: thick solid rgb(252,199,18);
+      }
+      blockquote {
+        border-left: thick solid rgb(252,199,18);
+        padding-left: 5px;
+        font-style: italic;
+      }
+      h1, h2, h3, h4 { color: black; }
+      p.authors { font-style: italic; }
+      span.code { font-family: monospace; }
+      pre.code {
+        margin-left: 40px; margin-right: 40px; padding: 2px;
+        background-color: #000;
+        color: white;
+        overflow-x:auto;
+      }
+      pre.prompt {
+        margin-left: 40px; margin-right: 40px; padding: 2px;
+        background-color: black; color: white;
+      }
+    </style>
+    <link rel="stylesheet" type="text/css" href="google-code-prettify/prettify.css">
+    <script type="text/javascript" src="google-code-prettify/prettify.js"></script>
+    <link rel="stylesheet" type="text/css" href="google-code-prettify/skins/sons-of-obsidian.css">
+  </head>
+  <body onload="PR.prettyPrint()">
+    <h1>
+      Artifact: A Linear Decomposition of Multiparty Sessions for Safe Distributed Programming
+    </h1>
+
+    <p>
+      <a href="https://www.doc.ic.ac.uk/~ascalas/">Alceste Scalas</a>,
+      <a href="http://www.dcs.gla.ac.uk/~ornela/">Ornela Dardha,</a>
+      <a href="https://www.doc.ic.ac.uk/~rhu/">Raymond Hu,</a>
+      <a href="http://mrg.doc.ic.ac.uk/people/nobuko-yoshida/">Nobuko Yoshida</a>
+    </p>
+
+    <h2>Table of Contents</h2>
+    
+    <ul>
+      <li>
+	<a href="#overview">Overview</a>
+      </li>
+      <li>
+	<a href="#quickstart">Quick Start (Kick-the-Tires)</a>
+      </li>
+      <li>
+	<a href="#vmcontents">Contents of the VirtualBox Image</a>
+      </li>
+      <li>
+	<a href="#runscribble">How to run Scribble (command line)</a>
+      </li>
+      <li>
+	<a href="#scribbletutorial">Scribble Tutorial: Greeting Protocol</a>
+      </li>
+      <li>
+	<a href="#http">HTTP</a>: a fragment of
+	the <a href="https://tools.ietf.org/html/rfc7230">HTTP
+	  protocol</a>, supporting the GET method, and interoperable
+	with most browsers (<em>e.g.</em>, Firefox and Google
+	Chrome) and downloaders
+	(<em>e.g.</em>, <span class="code">wget</span>).
+      </li>
+      <li>
+	<a href="#game">Game</a> -- the main running example in
+	the <a href="#paper">paper</a> (introduced in &sect;1).
+      </li>
+      <li>
+	<a href="#threebuyer">ThreeBuyer</a>: a widely-used example
+	in MPST literature
+	(as presented <a href="http://dx.doi.org/10.1017/S0960129514000188">here</a>),
+	based on a <a href="https://www.w3.org/TR/ws-chor-reqs/">W3C
+	Web Services Choreography</a> use case (C-UC-001 Travel
+	Agent).
+      </li>
+      <li>
+	<a href="#scribblenotes">Notes on Scribble with Scala API Extension</a>.
+      </li>
+    </ul>
+
+    
+    <h2 id="overview">Overview</h2>
+
+    <p>
+      This artifact is based on the theory developed in the paper
+      <strong><a id="paper" href="mpst-linear.pdf">"A Linear Decomposition of Multiparty Sessions for Safe Distributed
+	  Programming"</a></strong>.
+      The basic intuition behind this artifact is described in &sect;7
+      of the paper.
+    </p>
+    
+    <p>
+      The artifact archive contains:
+    </p>
+    <ul>
+      <li>
+	the <strong>current draft of the paper</strong>, referenced
+	throughout this
+	document: <a href="mpst-linear.pdf"><span class="code">mpst-linear.pdf</span></a>
+      </li>
+      <li>
+	a <strong>VirtualBox drive image</strong>:
+	<a href="mpst-linear-artifact.vdi"><span class="code">mpst-linear-artifact.vdi</span></a>
+      </li>
+      <li>
+	the present document: <span class="code">index.html</span>
+      </li>
+      <li>
+	<a href="scribble/"><strong>Scribble</strong>
+	  with <strong>Scala API generation</strong> support</a>:
+	tool for <em>multiparty session type</em>
+	    (<strong>MPST</strong>) protocol validation and Scala API
+	generation (also available on 
+	<a href="https://github.com/alcestes/scribble-java/tree/linear-channels">GitHub</a>);
+      </li>
+      <li>
+	<strong><a href="lchannels/"><span class="code">lchannels</span></a></strong>:
+	Scala library for type-safe session programming
+	on <em>binary</em> I/O channels (also available
+	on <a href="http://alcestes.github.io/lchannels/">GitHub</a>);
+      </li>
+      <li>
+	a mirror of
+	the <a href="lchannels-web/"><span class="code">lchannels</span>
+	  website and <strong>documentation</strong></a>;
+      </li>
+      <li>
+	<a href="google-code-prettify/">local copy</a>
+	of <a href="https://github.com/google/code-prettify">Google's
+	code prettifier</a>, for syntax highlighting throughout the
+	present document.
+      </li>
+    </ul>
+    
+    <p>
+      The VirtualBox image contains a ready-to-use, streamlined Ubuntu 16.04.2
+      operating system
+      (thanks to <a href="http://osboxes.org/">OSBoxes.org</a>),
+      <em>plus</em> an installation of Scribble
+      and <span class="code">lchannels</span> (see above) with their
+      dependencies.
+    </p>
+
+    <p>
+      In a nutshell, the interplay between Scribble
+      and <span class="code">lchannels</span> is the following:
+    </p>
+    
+    <ol>
+      <li>
+	the Scribble tool can read a <em>global protocol</em>
+	specification, describing the interactions between
+	several <em>roles</em> (see Figure 9 in the paper), and
+	validate it against various communication errors;
+      </li>
+      <li>
+	then, for each role <em>r</em> in the protocol, our Scala
+	extension to Scribble can generate a set of Scala class definitions,
+	dubbed <strong>multiparty session classes</strong>: their API
+	consists of typed <span class="code">send()</span>/<span class="code">receive()</span>
+	methods, and guides the type-safe implementation of programs
+	playing role <em>r</em>;
+      </li>
+      <li>
+	internally, the multiparty session classes perform their
+	communications through typed <em>binary</em> channels, using
+	the <span class="code">lchannels</span> library.  The theory that allows
+	Scribble-Scala to decompose the source multiparty
+	protocols into typed binary channels is developed in the paper
+	(from &sect;2 to &sect;6).
+      </li>
+    </ol>
+    
+    <p>
+      In this artifact, we present several Scribble global protocols,
+      and their Scala implementations.  The Scala endpoint programs
+      use the multiparty session classes generated by Scribble.
+    </p>
+
+    <h2 id="quickstart">Quick Start (Kick-the-Tires)</h2>
+
+    <p>
+      In this section we provide basic instructions
+      to <a href="#runvm">setup the VirtualBox image</a>, and check
+      whether it <a href="#quick-demo">works correctly</a>.
+    </p>
+
+    <h3 id="runvm">Setting Up and Running the VirtualBox Image</h3>
+
+    <p>
+      The following instructions have been tested
+      using <a href="https://www.virtualbox.org/">VirtualBox</a>
+      version 4.3.36 (on Ubuntu 14.04) and version 5.1.18 (on Windows
+      10 and Mac OS X).
+      Start VirtualBox, and:
+    </p>
+
+    <ul>
+      <li>
+	click "New"
+	<ul>
+	  <li>
+	    type: <span class="code">Linux</span>
+	  </li>
+	  <li>
+	    version: <span class="code">Ubuntu (32-bit)</span>
+	  </li>
+	  <li>
+	    memory size: <span class="code">1024 MB</span> (if possible, 2048 MB or more)
+	  </li>
+	  <li>
+	    hard disk: "Use an existing virtual hard disk file":
+	    <span class="code"><a href="mpst-linear-artifact.vdi"><span class="code">mpst-linear-artifact.vdi</span></a></span>
+	  </li>
+	</ul>
+      </li>
+      
+      <li>
+	then, right-click on the newly-added virtual machine &rarr;
+	"Settings...", and:
+	<ul>
+	  <li>
+	    "System" &rarr; "Processor" &rarr; Check "Enable PAE/NX"
+	  </li>
+	</ul>
+      </li>
+    </ul>
+    
+    <p>
+      You can now start the newly-added VM, by selecting it and
+      clicking "Start".  To <strong>log in</strong>, use the
+      following credentials:
+    </p>
+
+    <ul>
+      <li>
+	<strong>username:</strong> <span class="code">osboxes</span>
+      </li> 
+      <li> 
+	<strong>password:</strong> <span class="code">osboxes</span>
+      </li> 
+    </ul>
+    
+    <h3 id="quick-demo">Trying Out the Demos</h3>
+
+    <p>
+      After logging in, double-click on the <strong>"ECOOP'17 artifact
+      demo"</strong> icon on the desktop, and follow the instructions.
+    </p>
+
+    <p>
+      Each demo will:
+    </p>
+    <ol>
+      <li>
+	show its Scribble global protocol specification;
+      </li>
+      <li>
+	run Scribble, and show its output: <em>i.e.</em>, the Scala multiparty
+	session classes corresponding to the global protocol;
+      </li>
+      <li>
+	launch an example implementation based on the multiparty session
+	classes above (at this point, one or more terminals will pop up).
+      </li>
+    </ol>
+
+    <p>
+      All demos should run without troubles.  You <em>might</em>
+      occasionally see a log message similar to the following, which
+      is harmless:
+    </p>
+ 
+    <pre class="code">
+[ERROR] [04/11/2017 17:09:16.721] [GreetingServerSys-akka.remote.default-remote-dispatcher-2] [akka.tcp://GreetingServerSys@127.0.0.1:31337/system/endpointManager/reliableEndpointWriter-akka.tcp%3A%2F%2FGreetingClientSys%40127.0.0.1%3A31338-0/endpointWriter] AssociationError [akka.tcp://GreetingServerSys@127.0.0.1:31337] &lt;- [akka.tcp://GreetingClientSys@127.0.0.1:31338]: Error [Shut down address: akka.tcp://GreetingClientSys@127.0.0.1:31338] [
+akka.remote.ShutDownAssociation: Shut down address: akka.tcp://GreetingClientSys@127.0.0.1:31338
+Caused by: akka.remote.transport.Transport$InvalidAssociationException: The remote system terminated the association because it is shutting down.</pre>
+
+    <p>
+      If you do not encounter other issues, then the artifact should
+      be working, and ready for further evaluation.
+    </p>
+
+    <h2 id="vmcontents">Contents of the VirtualBox Image</h2>
+
+    These are the main contents of the VirtualBox image, and their locations:
+
+    <ul>
+      <li>
+	Scribble, installed in:
+	<span class="code">/home/osboxes/scribble/</span>
+      </li>
+      <li>
+	<span class="code">lchannels</span>, installed
+	in: <span class="code">/home/osboxes/lchannels/</span>
+      </li>
+      <li>
+	the artifact demo script, available
+	in: <span class="code">/home/osboxes/bin/demo</span>
+      </li>
+    </ul>
+    
+    <h2 id="runscribble">How to run Scribble (command line)</h2>
+
+    <p>
+      The Scribble tool can be used to check the well-formedness of
+      MPST protocols.  In this artifact, we present an extended
+      version that also allows to generate the Scala APIs for
+      implementing the protocol endpoints.
+    </p>
+
+    <p>
+      Once logged in the VM, you can:
+    </p>
+
+    <ul>
+      <li>
+	open a terminal (<em>e.g.</em>,
+	press <span class="code">Ctrl-Alt-t</span>)
+      </li>
+
+      <li>
+	go to the Scribble installation directory:
+	<pre class="code">
+cd /home/osboxes/scribble/
+</pre>
+      </li>
+      <li>
+	run the command line script:
+	<pre class="code">
+./scribblec-linmp.sh &lt;SCR_FILE&gt; [PROTOCOL_NAME]
+</pre>
+	where:
+	
+	<ul>
+	  <li>
+	    <span class="code">&lt;SCR_FILE&gt;</span> is a
+	    Scribble <span class="code">.scr</span> file, containing
+	    the protocol specification;
+	  </li>
+	  <li>
+	    <span class="code">[PROTOCOL_NAME]</span> (optional) is
+	    the name of a <a href="#scribbleprotocol">global
+	      protocol</a> defined
+	    in the <span class="code">.scr</span> above file.  If
+	    omitted, the protocol name is assumed to
+	    be <span class="code">Proto</span> by default.
+	  </li>
+	</ul>	
+      </li>
+    </ul>
+
+    <p>
+      A concrete example:
+    </p>
+
+    <pre class="code">
+./scribblec-linmp.sh modules/linmp-scala/src/test/scrib/Greeting.scr Proto
+</pre>
+
+    <p>
+      For an explanation of Scribble syntax and the tool output, see
+      the Greeting protocol <a href="#scribbletutorial">tutorial</a>.
+    </p>
+
+    <h2 id="scribbletutorial">Scribble Tutorial: Greeting Protocol</h2>
+
+    <p>
+      We now give an overview of <a href="#scribbleprotocol">Scribble
+      syntax</a> and the <a href="#scribbletool">Scribble-Scala tool
+      output</a>, using the "Greeting protocol" example originally
+      described
+      in <a href="http://dx.doi.org/10.4230/LIPIcs.ECOOP.2016.21">this
+      ECOOP'16 paper</a>.
+    </p>
+    
+    <h3 id="scribbleprotocol">Specifying an MPST Protocol in Scribble</h3>
+
+    <p>
+      Scribble provides a user-friendly, Java-inspired notation for
+      defining structured "global protocols" among multiple
+      participants.  Such global protocols correspond to global types
+      in MPST theory (cf. section "Global Types" in the paper, page 10).
+    </p>
+
+    <p>
+      The Scribble specification of the Greeting protocol is available
+      in: <span class="code">/home/osboxes/scribble/modules/linmp-scala/src/test/scrib/Greeting.scr</span>
+      (and also
+      <a href="scribble/modules/linmp-scala/src/test/scrib/Greeting.scr">here</a>):
+    </p>
+
+    <pre class="prettyprint lang-java linenums">
+module Greeting;
+
+type &lt;java&gt; "java.lang.String" from "rt.jar" as String;
+
+global protocol Proto(role c, role s) {
+    choice at c {
+        Greet(String) from c to s;
+	choice at s {
+            Hello(String) from s to c;
+	    do Proto(c, s);
+        } or {
+            Bye(String) from s to c;
+        }
+    } or {
+        Quit() from c to s;
+    }    
+}</pre>
+
+    <p>
+      The above defines a simple protocol between two
+      participants, or <em>roles</em>: <span class="code">c</span> (client)
+      and <span class="code">s</span> (server).  The protocol can be
+      read as follows:
+    </p>
+
+    <ul>
+      <li>
+	<span class="code">c</span> starts with a choice (line 6): it
+	could send to <span class="code">s</span> either
+	a <span class="code">Greet</span> message carrying
+	a <span class="code">String</span> payload (line 7), or
+	a <span class="code">Quit</span> message carrying an empty
+	payload (line 15);
+      </li>
+      <li>
+	if <span class="code">c</span> chooses to
+	send <span class="code">Greet</span>,
+	then <span class="code">s</span> can choose (line 8) to send
+	back to	<span class="code">c</span> either
+	a <span class="code">Hello</span> message (line 9), or
+	a <span class="code">Bye</span> message (line 12);
+	<ul>
+	  <li>
+	    if <span class="code">s</span>
+	    chooses <span class="code">Hello</span>, the protocol
+	    recursively repeats from the start (line 10);
+	  </li>
+	  <li>
+	    if <span class="code">s</span>
+	    chooses <span class="code">Bye</span>, the
+	    protocol terminates;
+	  </li>
+	</ul>
+      </li>
+      <li>
+	otherwise, if <span class="code">c</span> chooses to send
+	<span class="code">Quit</span> (line 15), the protocol terminates.
+      </li>
+    </ul>
+    
+    <p>
+      For reference, the formal notation for the corresponding global
+      type (see p.10, section "Global Types" in the paper) is:
+    </p>
+    <pre class="code">
+μX.c⟶s{
+  Greet(String).s⟶c{ Hello(String).X, Bye(String).end },
+  Quit(Unit).end
+}</pre>
+
+    <p>
+      We now briefly explain the various elements appearing in the
+      above Scribble specification:
+    </p>
+    
+    <ul>
+      <li>
+	on line 1, "<span class="code">module Greeting;</span>" is the
+	name of the module.  It should be the same as the file name,
+	excluding the <span class="code">.scr</span> suffix;
+      </li>
+      <li>
+	a module can contain zero or more <em>type declarations</em> for
+	message payloads.  <em>E.g.</em>, in the example above we have
+	(line 3):
+	
+	<pre class="code">
+type &lt;java&gt; "java.lang.String" from "rt.jar" as String;</pre>
+
+	Note: the Scala API generation in this artifact only considers
+	the <em>last</em> element, <em>i.e.</em>,
+	"<span class="code">String</span>": it says that the module
+	can use "<span class="code">String</span>" in the message
+	payloads (the rest of syntax has been kept for compatibility with the
+	existing <a href="http://dx.doi.org/10.1007/978-3-662-49665-7_24">Scribble-based
+	Java API generation</a>).
+      </li>
+
+      <li>
+	then, a module can contain zero or more <em>global protocol</em>
+	declarations, consisting of:
+	<ul>
+	  <li>
+	    a protocol signature (line 5):
+	    
+	    <pre class="code">
+global protocol Proto(role c, role s) { ... }</pre>
+
+	    It declares a global protocol
+	    named <span class="code">Proto</span> with two
+	    participant <em>roles</em>: <span class="code">c</span>
+	    and <span class="code">s</span>.  All of the roles that
+	    appear in the body of the protocol must be declared here;
+	  </li>
+	  <li>
+	    role-to-role <em>message passing</em>:
+	    
+	    <pre class="code">Greet(String) from c to s;</pre>
+	    
+	    meaning that a message
+	    with <em>label</em> <span class="code">Greet</span>,
+	    carrying a <span class="code">String</span> payload, is
+	    sent from role <span class="code">c</span> to
+	    role <span class="code">s</span>.  Note that sender and
+	    recipient must be different.  Also note that the payload
+	    type <span class="code">String</span> must
+	    appear in a <span class="code">type</span> declaration
+	    --- see above;
+	  </li>
+	  <li>
+	    <em>choices</em> (lines 6, 10):
+	    
+	    <pre class="code">choice at c { ... } or { ... }</pre>
+	    
+	    A <span class="code">choice</span> specifies a branch
+	    point where the protocol may proceed according
+	    to <em>one</em> of
+	    the <span class="code">or</span>-separated cases;
+
+	    <ul>
+	      <li>
+		"<span class="code">at c</span>" means that this is a
+		choice <em>internally</em> made
+		by <span class="code">c</span> (called the <em>choice
+		subject</em>).  It is
+		an <em>external</em> choice for every
+		other role involved in the choice
+		cases, <em>i.e.</em>, <span class="code">s</span>;
+	      </li>
+	      <li>
+		the choice must be <em>directed</em>: it means that
+		the first message from the choice subject
+		(<span class="code">c</span>) in
+		each <span class="code">or</span>-separated case must
+		be sent to the <em>same</em> role.  This constraint derives
+		from the <em>formal</em> global types (cf. p.10
+		in the paper);
+	      </li>
+	      <li>
+		moreover, the choice must be <em>deterministic</em>:
+		it means in
+		each <span class="code">or</span>-separated case,
+		the first message sent by the choice subject must
+		be <em>distinct</em>.
+	      </li>
+	    </ul>
+	  </li>
+	  <li>
+	    calls to <em>(sub-)protocols</em> (line 10):
+
+	    <pre class="code">do Proto(c, s);</pre>
+
+	    This allows a protocol to be defined in terms of other
+	    protocols.  Roughly speaking, <span class="code">do</span>
+	    means to enact the specified protocol, with each argument
+	    role playing the corresponding parameter role of the
+	    target protocol.  Note that:
+	    
+	    <ul>
+	      <li>
+		the number of argument roles must be <em>equal</em> to
+		the number of parameter roles in the target protocol;
+	      </li>
+	      <li>
+		argument roles must be <em>distinct</em>;
+	      </li>
+	      <li>
+		<span class="code">do</span> can be used to define
+		(tail) <em>recursive protocols</em> (as in this
+		example).
+	      </li>
+	    </ul>
+	  </li>
+	</ul>
+      </li>
+    </ul>
+
+    <p>
+      <strong>NOTE:</strong> just like formal global types, this
+      version of Scribble supports <em>action
+      prefixing</em>: <em>i.e.</em>, sequential composition of
+      role-to-role message passing actions followed by other message
+      actions, <span class="code">do</span> statements
+      or <span class="code">choice</span> statements.  However,
+      sequential composition following a
+      <span class="code">do</span> or
+      a <span class="code">choice</span> is <em>not</em> permitted.
+    </p>
+
+    <h3 id="scribbletool">Running the Scribble-Scala tool on the
+      Greeting protocol</h3>
+      
+    <p>
+      Using the command line script:
+    </p>
+
+    <pre class="code">
+cd ~/scribble
+./scribblec-linmp.sh modules/linmp-scala/src/test/scrib/Greeting.scr Proto</pre>
+
+    <p>
+      The output will be a set of Scala class definitions, similar to
+      the following:
+    </p>
+
+    <pre class="prettyprint lang-scala linenums">
+// Global type (from modules/linmp-scala/src/test/scrib/Greeting.scr)
+//    μ(Greeting_Proto___c__s_).c->s{Greet(String).s->c{Hello(String).Greeting_Proto___c__s_, Bye(String).end}, Quit(Unit).end}
+
+// -----------------------------------------------------
+// Local type for role s:
+//    μ(Greeting_Proto___c__s_).c&{Greet(String).c⊕{Hello(String).Greeting_Proto___c__s_, Bye(String).end}, Quit(Unit).end}
+package test.proto.s
+
+import scala.concurrent.duration.Duration
+import lchannels._
+
+// Input message types for multiparty sessions
+sealed abstract class MsgMPGreetOrQuit
+case class Greet(p: String, cont: MPByeOrHello) extends MsgMPGreetOrQuit
+case class Quit(p: Unit) extends MsgMPGreetOrQuit
+
+// Output message types for multiparty sessions
+case class Hello(p: String)
+case class Bye(p: String)
+
+// Multiparty session classes
+case class MPGreetOrQuit(c: In[binary.GreetOrQuit]) {
+  def receive(implicit timeout: Duration = Duration.Inf) = {
+    c.receive(timeout) match {
+      case m @ binary.Greet(p) => {
+        Greet(p, MPByeOrHello(m.cont))
+      }
+      case m @ binary.Quit(p) => {
+        Quit(p)
+      }
+    }
+  }
+}
+case class MPByeOrHello(c: Out[binary.ByeOrHello]) {
+  def send(v: Bye) = {
+    val cnt = c ! binary.Bye(v.p)
+    ()
+  }
+  def send(v: Hello) = {
+    val cnt = c !! binary.Hello(v.p)_
+    MPGreetOrQuit(cnt)
+  }
+}
+
+// Classes representing messages (with continuations) in binary sessions
+package object binary {
+  sealed abstract class GreetOrQuit
+  case class Greet(p: String)(val cont: Out[ByeOrHello]) extends GreetOrQuit
+  case class Quit(p: Unit) extends GreetOrQuit
+
+  sealed abstract class ByeOrHello
+  case class Bye(p: String) extends ByeOrHello
+  case class Hello(p: String)(val cont: Out[GreetOrQuit]) extends ByeOrHello
+}
+// -----------------------------------------------------
+
+// -----------------------------------------------------
+// Local type for role c:
+//    μ(Greeting_Proto___c__s_).s⊕{Greet(String).s&{Hello(String).Greeting_Proto___c__s_, Bye(String).end}, Quit(Unit).end}
+package test.proto.c
+
+// ... [OMITTED]
+
+// -----------------------------------------------------</pre>
+
+    <p>
+      We now explain the elements of the above tool output,
+      and how the generated Scala APIs may be used to implement the
+      session endpoints.
+    </p>
+
+    <ul>
+      <li>
+	The "Global type" on line 2 is the translation of the Scribble
+	greeting protocol into the <em>formal</em> global types
+	notation of the paper (cf. p.10). Note
+	that <span class="code">Greeting_Proto___c__s_</span> is an
+	autogenerated recursion variable.
+      </li>
+      <li>
+	Then, for each role in the protocol (in this
+	case, <span class="code">s</span>
+	and <span class="code">c</span>), the code between
+	the markers "<span class="code">// ----...</span>"
+	contains:
+	<ul>
+	  <li>
+	    the <em>local type</em> for the role (lines 5-6 and
+	    57-58), with the formal notation in the paper (&sect;2).
+	    The local type is obtained by <em>projecting</em> the
+	    global type above onto the role (cf. p.10 and &sect;A.2 in
+	    the paper);
+	  </li>
+	  <li>
+	    a Scala package declaration and some
+	    minimal <span class="code">import</span>s (lines 7/10);
+	  </li>
+	  <li>
+	    a set of <span class="code">case class</span>es
+	    representing messages that could be <em>received</em> by
+	    the role (lines 12-15).  In our greeting protocol example,
+	    in the case of role <span class="code">s</span>, such
+	    messages/classes are <span class="code">Greet</span>
+	    and <span class="code">Quit</span>; and since they could
+	    be received in the same (external) choice, they are
+	    grouped by deriving a common
+	    autogenerated <span class="code">sealed abstract class
+	    MsgMPGreetOrQuit</span> (line 13).  In all input message
+	    classes, the field <span class="code">p</span> contains
+	    the <em>payload</em> of the received message, while
+	    the <span class="code">cont</span> field (if present)
+	    tells what is the <em>next state of the multiparty
+	    session</em> following the message (more details soon);
+	  </li>
+	  <li>
+	    a set of <span class="code">case class</span>es
+	    representing messages that could be <em>sent</em> by the
+	    role (lines 17-19).  In our example, such messages/classes
+	    are <span class="code">Hello</span>
+	    and <span class="code">Bye</span>. As above, the
+	    field <span class="code">p</span> contains the payload of
+	    the message;
+	  </li>
+	  <li>
+	    a set of <em>multiparty session classes</em> representing
+	    the possible <em>states of the multiparty session</em>
+	    (lines 21-43).  Such classes offer either
+	    a <span class="code">send()</span> or
+	    a <span class="code">receive()</span> method.  In our
+	    example, <span class="code">MPGreetOrQuit</span> (lines
+	    22-33) represents the initial state of the greeting
+	    protocol, and therefore offers
+	    a <span class="code">receive()</span> method (line 23)
+	    that could return one of the input messages
+	    <span class="code">Greet</span>
+	    or <span class="code">Quit</span> (seen above).
+	    Instead, <span class="code">MPByeOrHello</span> represents
+	    the state where role <span class="code">s</span> must
+	    <span class="code">send()</span> one of the output messages
+	    <span class="code">Bye</span>
+	    or <span class="code">Hello</span> (seen above).  The
+	    <span class="code">send()</span> methods return
+	    the <em>next state of the multiparty session</em>: <em>e.g.</em>,
+	    if <span class="code">Bye</span> is sent (line 35),
+	    then <span class="code">()</span> is returned, because the
+	    session is terminated; instead,
+	    if <span class="code">Hello</span> is sent (line 39), then
+	    the method returns an instance
+	    of <span class="code">MPGreetOrQuit</span> to continue the
+	    session;
+	  </li>
+	  <li>
+	    finally, a <span class="code">package object binary</span>
+	    containing the <em>Scala representation</em> of
+	    the <em>linearly-encoded partial projections of the local
+	    type</em>.  Roughly:
+	    <ul>
+	      <li>
+		the <em>partial projections</em> isolate
+		the <em>binary</em>, point-to-point interactions between
+		role <span class="code">s</span> and each
+		other role in the multiparty session (in this example,
+		the only other role is <span class="code">c</span>).
+		See Definition 2.9 in the paper;
+	      </li>
+	      <li>
+		its <em>linear encoding</em>, using
+		continuation-passing style, is defined in the paper,
+		section "Encoding of Types" (p.16);
+	      </li>
+	      <li>
+		the <em>Scala representation</em> of such a linear
+		encoding is based
+		on <a href="http://dx.doi.org/10.4230/LIPIcs.ECOOP.2016.21">this
+		ECOOP'16 paper</a> (&sect;7).
+	      </li>
+	    </ul>
+	  </li>
+	</ul>
+      </li>
+    </ul>
+
+    <p>
+      Note that an analogous set of classes (for input/output
+      messages, multiparty sessions, binary channels) is also
+      generated for the other roles of the global protocol.  In this
+      example, the only other role is <span class="code">s</span>
+			(for which we have omitted the resulting classes, in lines 59-63).
+    </p>
+
+    <h3>Using the Scribble-Generated Multiparty Session Classes</h3>
+
+    <p>
+      Now, the classes in the <span class="code">binary</span>
+      package <em>could</em> be used directly
+      with <span class="code">lchannels</span> (as
+      described <a href="http://dx.doi.org/10.4230/LIPIcs.ECOOP.2016.21">here</a>)
+      to implement type-safe point-to-point interactions between each
+      pair of roles involved in a multiparty session.  However, doing
+      so has two drawbacks:
+    </p>
+
+    <ol>
+      <li>
+	a programmer would be (partly) exposed to the
+	continuation-passing-style
+	of <span class="code">lchannels</span>, and
+      </li>
+      <li>
+	if a multiparty session has <em>n</em> participants, a
+	programmer implementing one of its participants would need to
+	handle up to <em>n-1</em> point-to-point channels, without any
+	guidance on their usage order: this can introduce deadlocks
+	(see &sect;7 of the paper).  This is not a problem for the
+	greeting protocol (that only has two participants), but will
+	be relevant, <em>e.g.</em>, for the <a href="#game">Game</a>
+	and <a href="#threebuyer">ThreeBuyer</a> examples later on.
+      </li>
+    </ol>
+
+    <p>
+      These issues are addressed by the multiparty session
+      classes <span class="code">MPGreetOrQuit</span>
+      and <span class="code">MPByeOrHello</span> (seen above): they offer a
+      simplified interface where a programmer only uses the
+      input/output message classes <span class="code">Greet</span>,
+      <span class="code">Quit</span>, <span class="code">Bye</span>
+      and <span class="code">Hello</span> (seen above), without
+      visible continuations.  The binary classes (and their
+      continuations) are handled
+      <em>internally</em> by <span class="code">MPGreetOrQuit</span>
+      and <span class="code">MPByeOrHello</span>, following the
+      formalisation in &sect;5 of the paper.  Moreover, if a session
+      involves more than two participants, the interface ensures that
+      the interactions will not result in a deadlock.
+    </p>
+
+    <p>
+      Here is an implementation of the greeting protocol server, based
+      on the multiparty session classes above.
+    </p>
+
+    <pre class="prettyprint lang-scala linenums">
+def server(c: MPGreetOrQuit)
+          (implicit timeout: Duration): Unit = {
+  c.receive match {
+    case Greet(whom, cont) => {
+      val c2 = cont.send(Hello(whom)) // Use "cont" to continue the session
+      server(c2) // The return value of .send above allows to keep interacting
+    }
+    case Quit(()) => {
+      () // The session is terminated
+    }
+  }
+}</pre>
+
+    <p>
+      The code should be pretty self-explanatory.  Note that
+      all <span class="code">send</span> calls are type-safe, and the
+      Scala compiler will warn if a <span class="code">.receive match {
+      ... }</span> does not cover all possible input messages
+      (depending on the state of the session).  Also note that the
+      multiparty session objects have the same <em>runtime linearity
+	usage rules</em> of the underlying linear channels: <em>i.e.</em>, the
+      programmer is supposed to use each instance <em>exactly
+      once</em> to send/receive a message.  If
+      <span class="code">.send()</span>/<span class="code">.receive()</span>
+      is called twice on the same
+      object, <span class="code">lchannels</span> will throw a runtime
+      exception
+      (see the <a href="http://dx.doi.org/10.4230/LIPIcs.ECOOP.2016.21">
+      ECOOP'16 paper</a> for more details).
+    </p>
+
+    <p>
+      One remaining question is: how does one produce an instance
+      of <span class="code">MPGreetOrQuit</span>, to invoke
+      the <span class="code">server</span> function above?  Here is an
+      example:
+    </p>
+
+    <pre class="prettyprint lang-scala linenums">
+// Create channel for local client/server interaction...
+val (in, out) = LocalChannel.factory[binary.GreetOrQuit]
+// ...and spawn server and client (note: we wrap channels in sesison objs)
+val sf = Future { server(MPGreetOrQuit(in)) }
+val cf = Future { client(...(out)) }</pre>
+
+    <p>
+      In other words, the caller creates a pair of linear channel
+      endpoints connecting the client to the server, uses one of them
+      to instantiate <span class="code">MPGreetOrQuit(in)</span>, and
+      passes it to the <span class="code">server</span> function.
+      Note that the type of the parameter
+      of <span class="code">MPGreetOrQuit</span> constrains the
+      carried type of the binary channel, that on line 2 <em>must</em>
+      be
+      <span class="code">binary.GreetOrQuit</span> (or a subtype).
+    </p>
+
+    <p>
+      The example above uses <span class="code">LocalChannel</span>s
+      for inter-thread communication, but a similar approach can be
+      used with socket-based
+      or <a href="http://akka.io">Akka</a> actor-based channels (both
+      provided by <span class="code">lchannels</span>), thus
+      allowing <span class="code">server</span> to interact with a
+      remote client (indeed, the <span class="code">server</span> code
+      is independent from the message transport).
+    </p>
+    
+    <h3>Implementation</h3>
+
+    <p>
+      An implementation of the greeting protocol, based on the
+      Scribble-generated multiparty session classes, is available in
+      <a href="lchannels/examples/src/main/scala/lchannels/examples/ScribbleGreeting.scala"><span class="code">ScribbleGreeting.scala</span></a>.
+      The file contains the autogenerated classes for both
+      roles <span class="code">s</span>
+      and <span class="code">c</span>, enclosed in different
+      namespaces to avoid clashes.
+    </p>
+
+    <p>
+      The artifact <a href="#quickstart">demo script</a> launches a
+      greeting server and client interacting remotely, using Akka
+      actor-based channels.  The implementation, however, includes more
+      examples, with the the greeting client/server launched as
+      interacting threads, or the client talking through a socket with a
+      simple server written in <a href="http://python.org">Python</a>.
+      If you want to try them, you can go to
+      the <a href="#vmcontents"><span class="code">lchannels</span>
+      installation directory</a> and follow
+      the <a href="lchannels-web/instructions.html"><span class="code">lchannels</span>
+      documentation</a>.
+    </p>
+
+    <p>
+      <em>
+	<strong>NOTE:</strong>
+	the <a href="lchannels/examples/src/main/scala/lchannels/examples/ScribbleGreeting.scala"><span class="code">ScribbleGreeting.scala</span></a>
+	example is functionally equivalent to the
+	pre-existing <a href="lchannels/examples/src/main/scala/lchannels/examples/Greeting.scala"><span class="code">Greeting.scala</span></a>
+	example; the difference is that the latter interacts directly
+	via <span class="code">lchannels</span> without using
+	Scribble-generated multiparty session classes.
+      </em>
+    </p>
+
+    <h2 id="http">HTTP (GET fragment)</h2>
+    
+    <p>
+      This example implements fragment of the HTTP/1.1 protocol,
+      focused on the GET method.  The purpose is to show that our
+      artifact is flexible enough to handle non-trivial "real-world"
+      protocols, and produce endpoint code that is interoperable with
+      existing (compliant) implementations of such protocols (in this
+      example, existing Web browsers).
+    </p>
+
+    <p>
+      Similarly to the greeting protocol in
+      the <a href="#scribbletutorial">tutorial above</a>, HTTP is a
+      binary protocol --- <em>i.e.</em>, a multiparty protocol with two roles
+      (client and server).  Its Scribble specification is
+      available in <span class="code">/home/osboxes/scribble/modules/linmp-scala/src/test/scrib/Http.scr</span>
+      (and also
+      <a href="scribble/modules/linmp-scala/src/test/scrib/Http.scr">here</a>).
+      Its only new feature is a <em>recursive protocol block</em>,
+      that behaves as expected:
+    </p>
+
+    <pre class="prettyprint lang-java linenums">
+rec X {
+    choice at c {
+        Host(String) from c to s;
+        continue X;
+    } or {
+        UserAgent(String) from c to s;
+        continue X;
+    } or {
+        ...
+    } or {
+        RequestBody(Body) from c to s;
+        do Response(c, s);
+    }
+}</pre>
+
+    <p>
+      To generate the session classes from the Scribble HTTP specification,
+      you can run:
+    </p>
+
+    <pre class="code">
+cd ~/scribble
+./scribblec-linmp.sh modules/linmp-scala/src/test/scrib/Http.scr Http</pre>
+
+    <h3>Implementation Details</h3>
+    
+    <p>
+      The Scribble-generated classes have been integrated in the
+      HTTP server implementation.  More in detail:
+    </p>
+    
+    <ul>
+      <li>
+	the input/output message classes and the multiparty session
+	classes are part
+	of <a href="lchannels/examples/src/main/scala/lchannels/examples/http/protocol/Server.scala"><span class="code">examples/http/protocol/Server.scala</span></a>.
+	Note that, since we are implementing an HTTP <em>server</em>,
+	we do <em>not</em> use the classes generated for the client
+	role;
+      </li>
+      <li>
+	the classes in the <span class="code">binary</span> package
+	(again, for the server role) are included
+	in <a href="lchannels/examples/src/main/scala/lchannels/examples/http/protocol/Binary.scala"><span class="code">examples/http/protocol/Binary.scala</span></a>.
+	Notably, since we use socket-based channels, this file also
+	defines an <span class="code">HttpServerSocketManager</span> that
+	specifies how to serialize/deserialize the HTTP protocol
+	classes into/from the socket streams, in a way that observes
+	the <a href="https://tools.ietf.org/html/rfc7230">HTTP/1.1
+	RFC</a>;
+      </li>
+      <li>
+	if you compare the classes in the files above with the
+	Scribble-generated ones, you will notice some minor cleanup.
+	In particular, some rather long autogenerated class names
+	(<em>e.g.</em>,
+	<span class="code">MPAcceptOrAcceptEncodingsOr...</span>)
+	have been manually replaced with shorter names
+	(<em>e.g.</em>, <span class="code">MPRequestChoice</span>);
+      </li>
+      <li>
+	the Scribble protocol specification references several types
+	that are not predefined in Scala:
+	
+	<pre class="prettyprint lang-java linenums">
+type &lt;java&gt; "ZonedDateTime" from "java.time" as ZonedDateTime;
+
+type &lt;java&gt; "RequestLine" from "http.protocol.types" as RequestLine;
+type &lt;java&gt; "Body" from "http.protocol.types" as Body;
+		
+type &lt;java&gt; "Version" from "http.protocol.types" as Version;</pre>
+
+	In order to use the Scribble-generated classes, these types
+	must be provided by the programmer.  In our implementation,
+	they are either defined
+	in <a href="lchannels/examples/src/main/scala/lchannels/examples/http/protocol/Types.scala"><span class="code">examples/http/protocol/Types.scala</span></a>,
+	or (in the case of <span class="code">ZonedDateTime</span>)
+	imported from the <span class="code">java.time</span> package;
+      </li>
+      <li>
+	the actual HTTP server is implemented
+	in <a href="lchannels/examples/src/main/scala/lchannels/examples/http/Server.scala"><span class="code">examples/http/Server.scala</span></a>.
+	Whenever a new client connection is received, its socket is
+	passed to a new <span class="code">Worker</span> thread.
+	The <span class="code">Worker</span>, in turn:
+	<ol>
+	  <li>
+	    uses the socket to build a
+	    typed <span class="code">lchannels.SocketIn</span> instance,
+            based on the <span class="code">HttpServerSocketManager</span>
+	    above;
+	  </li>
+	  <li>
+	    then, it uses
+	    such <span class="code">lchannels.SocketIn</span> instance
+	    to instantiate an <span class="code">MPRequest</span>
+	    instance --- which is the Scribble-generated multiparty session
+	    class for the initial state of the HTTP protocol;
+	  </li>
+	  <li>
+	    finally, it uses the <span class="code">MPRequest</span>
+	    instance to engage in the HTTP interaction with the client.
+	  </li>
+	</ol>
+	As a result, the HTTP interactions are performed in a
+	type-safe way.  The Scribble-generated classes (together with
+	<span class="code">lchannels</span> and
+	the <span class="code">HttpServerSocketManager</span>)
+	abstract the implementation from the transport medium, and
+	from the low-level details of the protocol.
+      </li>
+    </ul>
+
+    <h3>Running the HTTP Server</h3>
+    
+    <p>
+      To run the HTTP server, you can launch
+      the <a href="#quickstart">artifact demo script</a> or follow
+      the <a href="lchannels-web/instructions.html"><span class="code">lchannels</span>
+      documentation</a>.  While the server is running, you can connect
+      to <a href="http://127.0.0.1:8080/">http://127.0.0.1:8080/</a>
+      with your browser.  You can also "stress test" the implementation by
+      recursively downloading all the files being served:
+    </p>
+
+    <pre class="code">
+cd /tmp
+wget -l 100 -r http://127.0.0.1:8080/</pre>
+
+    <p>
+      <em><strong>NOTE:</strong> <span class="code">wget</span> might
+      report some transient read errors ("Connection reset by peer"),
+      because our HTTP server does not currently observe the client's
+	<a href="https://www.w3.org/Protocols/HTTP/1.1/draft-ietf-http-v11-spec-01#Persistent%20Connections">keep-alive requests</a>.  Still, the download will
+      proceed through a new connection. </em>
+    </p>
+    
+    <h2 id="game">Example: Peer-to-Peer Game</h2>
+
+    <p>
+      This is the main running example in
+      the <a href="#paper">paper</a> (first introduced in &sect;1),
+      that concisely leverages all MPST features (session with more
+      than two roles, branching, selection, recursion, delegation,
+      inter-role dependencies, projection, merging).  Its Scribble
+      specification (corresponding to Figure 9 in the paper) is
+      available
+      in <span class="code">/home/osboxes/scribble/modules/linmp-scala/src/test/scrib/Game.scr</span>
+      (and also
+      <a href="scribble/modules/linmp-scala/src/test/scrib/Game.scr">here</a>).
+    </p>
+
+    <p>
+      Unlike the <a href="#scribbletutorial">greeting protocol</a> and
+      <a href="#http">HTTP</a> examples, the game protocol involves three
+      roles.  Moreover, it features <em>session delegation</em>:
+    </p>
+
+    <pre class="prettyprint lang-java linenums">
+global protocol ClientA(role p, role q) {
+    PlayA(Game@a) from q to p;
+}
+
+global protocol ClientB(role p, role q) {
+    PlayB(Game@b) from q to p;
+}
+
+global protocol ClientC(role p, role q) {
+    PlayC(Game@c) from q to p;
+}
+
+global protocol Game(role a, role b, role c) {
+    ...
+}</pre>
+
+    <p>
+      Above, the message <span class="code">PlayA(Game@a)</span>
+      carries as payload a <em>multiparty session channel</em>: it
+      allows the recipient to join an instance of the
+      the <span class="code">Game</span> protocol, by playing the
+      role <span class="code">a</span>.  Here,
+      "<span class="code">@</span>" is the <em>projection
+      operator</em>, and is one of our main additions to Scribble,
+      based on the theory of our paper.  It means that the type of the
+      payload of <span class="code">PlayA(Game@a)</span> is determined
+      by <em>projecting</em> <span class="code">Game</span> onto
+      role <span class="code">a</span> (cf. p.10 and &sect;A.2 in the
+      paper; note that before being
+      projected, <span class="code">Game</span> is first converted
+      into the formal syntax for global types).  The same intuition
+      applies for messages <span class="code">PlayB(Game@b)</span>
+      and <span class="code">PlayC(Game@c)</span>.  As one might
+      expect, the projection of a Scribble global
+      protocol <span class="code">G</span> onto a
+      role <span class="code">r</span> is only allowed
+      if <span class="code">r</span> appears
+      in <span class="code">G</span>'s declaration; <em>e.g.</em>, in this
+      example, <span class="code">Game</span> can only be projected
+      onto <span class="code">a</span>, <span class="code">b</span>
+      and <span class="code">c</span>.
+    </p>
+
+    <h3>Generating and Using the Session Classes</h3>
+    
+    <p>
+      The Scribble specification above contains multiple global
+      protocols, and each one can be used to generate multiparty
+      protocol classes.  Assume that we want to implement a Scala
+      program that talks to the game server, and then plays
+      role <span class="code">a</span>: to do so, we can generate the
+      session classes for the global
+      protocol <span class="code">ClientA</span>, and write our
+      program using those pertaining to role <span class="code">p</span>
+      (recall that, from &sect;1 of the
+      paper, <span class="code">p</span> is the client that receives
+      the game delegation, while <span class="code">q</span> is the
+      game server).
+    </p>
+
+    <pre class="code">
+cd ~/scribble
+./scribblec-linmp.sh modules/linmp-scala/src/test/scrib/Game.scr ClientA</pre>
+
+    <p>
+      Similarly, to implement roles <span class="code">b</span>
+      and <span class="code">c</span>, we can specify respectively the
+      global protocls <span class="code">ClientB</span>
+      and <span class="code">ClientC</span>, and in both cases,
+      use the Scribble-generated classes for the client
+      role <span class="code">p</span> to write our code.
+    </p>
+
+    <p>
+      Instead, if we want to implement the server, we will
+      need <em>all</em> the Scribble-generated session classes
+      obtained
+      from <span class="code">ClientA</span>, <span class="code">ClientB</span>
+      and <span class="code">ClientC</span> --- but this time, we will
+      need to write our code using those pertaining to the server
+      role <span class="code">q</span>.  The reason is intuitive: the
+      game server will need to interact with clients willing to play
+      any role in the game; therefore, the server must implement the
+      server-side of all the necessary protocols.
+    </p>
+
+    <h3>Implementation Details</h3>
+
+    <ul>
+      <li>
+	The Scribble-generated multiparty session classes for the
+	clients playing
+	roles <span class="code">a</span>, <span class="code">b</span>
+	and <span class="code">c</span> are included, respectively,
+	in <a href="lchannels/examples/src/main/scala/lchannels/examples/game/protocol/ClientA.scala">examples/game/protocol/ClientA.scala</a>, <a href="lchannels/examples/src/main/scala/lchannels/examples/game/protocol/ClientB.scala">.../ClientB.scala</a>
+	and <a href="lchannels/examples/src/main/scala/lchannels/examples/game/protocol/ClientC.scala">.../ClientC.scala</a>.
+      </li>
+      <li>
+	The Scribble-generated binary channel classes are included
+	in <a href="lchannels/examples/src/main/scala/lchannels/examples/game/protocol/Binary.scala">examples/game/protocol/Binary.scala</a>.
+	Note that the file also defines some additional message
+	classes, inside the package <span class="code">actor</span>:
+	they are used by the clients to initiate a connection to the
+	server, when using <span class="code">lchannels</span> with
+	the Akka actor-based transport.  After establishing the
+	connection, the continuation of such messages allows the
+	server to answer with
+	a <span class="code">PlayA</span>/<span class="code">PlayB</span>/<span class="code">PlayC</span>
+	message, as expected from the Scribble protocol.
+      </li>
+      <li>
+	the game server and the three clients are available
+	in <a href="lchannels/examples/src/main/scala/lchannels/examples/game/Server.scala">examples/game/Server.scala</a>, <a href="lchannels/examples/src/main/scala/lchannels/examples/game/ClientA.scala">.../ClientA.scala</a>, <a href="lchannels/examples/src/main/scala/lchannels/examples/game/ClientB.scala">.../ClientB.scala</a>
+	and <a href="lchannels/examples/src/main/scala/lchannels/examples/game/ClientC.scala">.../ClientC.scala</a>.
+	As explained above, the game server uses the
+	Scribble-generated multiparty session protocol classes
+	necessary to interact with all
+	clients <span class="code">a</span>, <span class="code">b</span>
+	and <span class="code">c</span>.  Each game client
+	uses its own classes (<em>e.g.</em>, the implementation of
+	role <span class="code">a</span> does <em>not</em>
+	use <span class="code">b</span>
+	or <span class="code">c</span>'s protocol classes).
+      </li>
+      <li>
+	After creating and delegating a multiparty session to the
+	clients, the game server terminates: it emphasises that after
+	delegation, the clients actually interact directly, and the
+	server does not route their messages.
+      </li>
+    </ul>
+
+    <h3>Running the Game Example</h3>
+
+    <p>
+      To run the game example, you can launch
+      the <a href="#quickstart">artifact demo script</a> or follow
+      the <a href="lchannels-web/instructions.html"><span class="code">lchannels</span>
+      documentation</a>.  Note that the demo script will launch the
+      example using distributed Akka actor-based channels;
+      the <span class="code">lchannels</span> documentation also
+      includes a version where the server and clients run as
+      local threads, using a non-distributed message transport.
+    </p>
+
+    <h2 id="threebuyer">Example: Three-Buyer Protocol</h2>
+
+    <p>
+      This is a widely-used example in MPST literature, inspired by
+      a <a href="https://www.w3.org/TR/ws-chor-reqs/">W3C Web Services
+      Choreography</a> use case (C-UC-001 Travel Agent).  We use the
+      version presented in the following paper:
+      <cite>
+	M. Coppo, M. Dezani-Ciancaglini, N. Yoshida, L. Padovani.
+	"Global Progress for Dynamically Interleaved Multiparty Sessions".
+	Mathematical Structures in Computer Science, 2016
+	(<a href="http://dx.doi.org/10.1017/S0960129514000188">DOI</a>)</cite>.
+    </p>
+
+    <p>
+      Quoting from the paper:
+    </p>
+
+    <blockquote>
+      <p>
+	The overall scenario, involving a Seller
+	(<span class="code">s</span>), Alice
+	(<span class="code">a</span>), Bob
+	(<span class="code">b</span>) and Carol
+	(<span class="code">c</span>), proceeds as follows.
+      </p>
+      <ol>
+	<li>
+	  Alice sends a book title to Seller, then Seller sends back a
+	  quote to Alice and Bob.  Then Alice tells Bob how much she
+	  can contribute.
+	</li>
+	<li>
+	  If the price is within Bob’s budget, Bob notifies both
+	  Seller and Alice he accepts, then sends his address, and
+	  Seller sends back the delivery date.
+	</li>
+	<li>
+	  If the price exceeds the budget, Bob asks Carol to
+	  collaborate together by establishing a new session. Then Bob
+	  sends how much Carol must pay, then delegates the remaining
+	  interactions with Alice and Seller to Carol.
+	</li>
+	<li>
+	  If the rest of the price is within Carol’s budget, Carol
+	  accepts the quote and notifies Alice, Bob and Seller, and
+	  continues the rest of the protocol with Seller and Alice
+	  transparently, as if she were Bob. Otherwise she notifies
+	  Alice, Bob and Seller to quit the protocol.
+	</li>
+      </ol>
+    </blockquote>
+
+    <p>
+      Similarly to the <a href="#game">multiparty game</a>, this example
+      includes a three-party session --- here, involving the Seller
+      and the two buyers Alice and Bob.  Depending on Alice's choice,
+      a third  buyer (Carol) could be transparently involved by Bob,
+      using session delegation.
+    </p>
+    
+    <p>
+      The Scribble specification of this example is available
+      in <span class="code">/home/osboxes/scribble/modules/linmp-scala/src/test/scrib/ThreeBuyer.scr</span>
+      (and also
+      <a href="scribble/modules/linmp-scala/src/test/scrib/ThreeBuyer.scr">here</a>):
+    </p>
+
+    <pre class="prettyprint lang-java linenums">
+global protocol PlayAlice(role alice, role seller) {
+    PlayAlice(TwoBuyer@alice) from seller to alice;
+}
+
+global protocol PlayBob(role bob, role seller) {
+    PlayBob(TwoBuyer@bob) from seller to bob;
+}
+
+global protocol TwoBuyer(role alice, role bob, role seller) {
+    Title(String) from alice to seller;
+    QuoteA(Int) from seller to alice;
+    QuoteB(Int) from seller to bob;
+    ShareA(Int) from alice to bob;
+    do TwoBuyerChoice(alice, bob, seller);
+}
+
+aux global protocol TwoBuyerChoice(role alice, role bob, role seller) {
+    choice at bob {
+        OkA() from bob to alice;
+        OkS() from bob to seller;
+        Address(String) from bob to seller;
+        Deliver(ZonedDateTime) from seller to bob;
+    } or {
+        QuitA() from bob to alice;
+        QuitS() from bob to seller;
+    }
+}
+
+
+global protocol Delegation(role carol, role bob) {
+    Contrib(Int) from bob to carol;  // Should be the Int on line 19
+    Delegate(TwoBuyerChoice@bob) from bob to carol;
+    choice at carol {
+        OkC() from carol to bob;
+    } or {
+        QuitC() from carol to bob;
+    }
+}</pre>
+
+    <p>
+      We model this example by letting the Seller behave similarly to
+      the server in the <a href="#game">multiparty game</a>.  The Seller
+      will wait for Alice's and Bob's connections, and then it will
+      create a three-party session (based on
+      the <span class="code">TwoBuyer</span> protocol, on line 9)
+      involving the Seller itself, Alice and Bob.  For this purpose,
+      the Seller first establishes binary sessions with Alice and Bob
+      (based on the <span class="code">PlayAlice</span>
+      and <span class="code">PlayBob</span> protocols, on lines 1 and
+      5); after they are connected, the Seller sends them
+      the <span class="code">PlayAlice</span>
+      and <span class="code">PlayBob</span> messages (lines 2 and 6),
+      using delegation to let them join the three-party session.
+    </p>
+
+    <p>
+      The global protocol <span class="code">Delegation</span> only
+      involves Carol and Bob, and is used by the former to let Carol
+      know how much she should contribute, and then pass her what is
+      left of Bob's duties in the <span class="code">TwoBuyer</span>
+      session (specifically, Bob delegates
+      the <span class="code">TwoBuyerChoice</span> part of the session).
+    </p>
+      
+
+    <h3>Generating and Using the Session Classes</h3>
+    
+    <p>
+      The Scribble specification above contains multiple global
+      protocols, and each one can be used to generate multiparty
+      protocol classes.  Assume that we want to implement a Scala
+      program that talks to the Seller, and then plays
+      role <span class="code">Alice</span>: to do so, we can generate the
+      session classes for the global
+      protocol <span class="code">PlayAlice</span>, and write our
+      program using those pertaining to role <span class="code">alice</span>.
+    </p>
+
+    <pre class="code">
+cd ~/scribble
+./scribblec-linmp.sh modules/linmp-scala/src/test/scrib/ThreeBuyer.scr PlayAlice</pre>
+
+    <p>
+      Similarly, to implement role <span class="code">bob</span>, we
+      can specify the global
+      protocls <span class="code">PlayBob</span>, and use the
+      Scribble-generated classes for role
+      <span class="code">bob</span> to write our code.  Note, however,
+      that to fully implement Bob and his interaction with Carol, we
+      will <em>also</em> need <span class="code">bob</span>'s session classes
+      generated from the <span class="code">Delegation</span> global
+      protocol.
+    </p>
+
+    <p>
+      Instead, if we want to implement the Seller, we will
+      need <em>all</em> the Scribble-generated session classes
+      obtained from <span class="code">PlayAlice</span>
+      and <span class="code">PlayBob</span>, using those pertaining to
+      role <span class="code">seller</span>.  The reason is that
+      Seller will need to interact with both Alice and Bob, and must
+      therefore implement the "other side" of both their protocols.
+    </p>
+
+    <p>
+      Finally, if we want to implement Carol, we need to specify the
+      global protocol <span class="code">Delegation</span>, and then
+      use <span class="code">carol</span>'s session classes.
+    </p>
+
+    <h3>Implementation Details</h3>
+
+    <p>
+      This implementation adopts several solutions already seen in
+      the <a href="#game">game example</a>.
+    </p>
+    
+    <ul>
+      <li>
+	The Scribble-generated multiparty session classes for Seller, Alice,
+	Bob and Carol are included, respectively,
+	in <a href="lchannels/examples/src/main/scala/lchannels/examples/threebuyer/protocol/Seller.scala">examples/threebuyer/protocol/Seller.scala</a>,
+	<a href="lchannels/examples/src/main/scala/lchannels/examples/threebuyer/protocol/Alice.scala">.../Alice.scala</a>, <a href="lchannels/examples/src/main/scala/lchannels/examples/threebuyer/protocol/Bob.scala">.../Bob.scala</a>
+	and <a href="lchannels/examples/src/main/scala/lchannels/examples/threebuyer/protocol/Carol.scala">.../Carol.scala</a>.
+      </li>
+      <li>
+	The Scribble-generated binary channel classes are included
+	in <a href="lchannels/examples/src/main/scala/lchannels/examples/threebuyer/protocol/Binary.scala">examples/threebuyer/protocol/Binary.scala</a>.
+	Note that the file also defines some additional message
+	classes, inside the package <span class="code">actor</span>:
+	they are used with the <span class="code">lchannels</span>
+	Akka-based transport, to initiate connections between
+	Alice/Bob and the Seller, and also (when necessary) between
+	Bob and Carol.  After establishing such connections, the
+	continuation of such messages allow to send/receive
+	<span class="code">PlayAlice</span>/<span class="code">PlayBob</span>
+	and <span class="code">Contrib</span> messages, as expected
+	from the Scribble protocol.
+      </li>
+      <li>
+	the Seller, Alice, Bob and Carol source code is available
+	in <a href="lchannels/examples/src/main/scala/lchannels/examples/threebuyer/Seller.scala">examples/threebuyer/Seller.scala</a>, <a href="lchannels/examples/src/main/scala/lchannels/examples/threebuyer/Alice.scala">.../Alice.scala</a>, <a href="lchannels/examples/src/main/scala/lchannels/examples/threebuyer/Bob.scala">.../Bob.scala</a>
+	and <a href="lchannels/examples/src/main/scala/lchannels/examples/threebuyer/Carol.scala">.../Carol.scala</a>.
+	As explained above, the Seller uses the
+	Scribble-generated multiparty session protocol classes needed
+	to interact with both <span class="code">alice</span>
+	and <span class="code">bob</span>; notably, it
+	does <em>not</em> have any knowledge about
+	<span class="code">carol</span>, because she might
+	<em>transparently</em> implement part of Bob's session.  Alice and
+	Bob use their own classes (<em>i.e.</em>, the implementation
+	of role <span class="code">bob</span> does <em>not</em>
+	use <span class="code">alice</span>'s protocol classes).  Bob
+	and Carol, instead, share several session class definitions,
+	to realise the session delegation.
+      </li>
+      <li>
+	Alice's implementation lets the user choose which book to buy:
+	this allows to observe the various scenarios of the protocol,
+	that might involve Carol, or not.
+      </li>
+    </ul>
+
+    <h3>Running the ThreeBuyer Example</h3>
+
+    <p>
+      To run the game example, you can launch
+      the <a href="#quickstart">artifact demo script</a> or follow
+      the <a href="lchannels-web/instructions.html"><span class="code">lchannels</span>
+      documentation</a>.  Note that the demo script will launch the
+      example using distributed Akka actor-based channels;
+      the <span class="code">lchannels</span> documentation also
+      includes a version where the server and clients run as
+      local threads, using a non-distributed message transport.
+    </p>
+
+    <h2 id="scribblenotes">Notes on Scribble with Scala API Extension</h2>
+
+    <h3>Implementation</h3>
+
+    <ul>
+      <li>
+	Our Scribble extension for Scala API generation is mostly
+	contained in the
+	module <a href="scribble/modules/linmp-scala"><span class="code">linmp-scala</span></a>.
+	Following the theory of the paper, it provides a
+	representation
+	of <a href="scribble/modules/linmp-scala/src/main/java/ast/global/">global</a>,
+	<a href="scribble/modules/linmp-scala/src/main/java/ast/local/">local</a>
+	and <a href="scribble/modules/linmp-scala/src/main/java/ast/binary">partial</a>
+	session types,
+	and <a href="scribble/modules/linmp-scala/src/main/java/ast/linear/">linear
+	  types</a>, together with the required <a href="scribble/modules/linmp-scala/src/main/java/ast/global/ops/Projector.java">projection</a>
+	and <a href="scribble/modules/linmp-scala/src/main/java/ast/binary/ops/LinearEncoder.java">encoding</a> operations.
+      </li>
+      <li>
+	The Scala class generation is implemented
+	in <a href="scribble/modules/linmp-scala/src/main/java/ast/local/ops/ScalaEncoder.java"><span class="code">ScalaEncoder.java</span></a>.
+      </li>
+    </ul>
+
+    <h3>Known Limitations</h3>
+    
+    <ul>
+      <li>
+	The error messages generated by Scribble can be a bit obscure,
+	and require the reader to be familiar with the theory of our
+	ECOOP'17 paper,
+	and <a href="http://dx.doi.org/10.1007/978-3-662-49665-7_24">other
+	Scribble papers</a>.
+      </li>
+      <li>
+	Session and &pi;-calculus typing systems
+	are <em>structural</em>, whereas the Scala type system
+	is <em>nominal</em>.  Encoding the types of the former into
+	those of the latter requires introducing naming conventions
+	and namespaces.  This can be done in many ways; our current
+	approach tries to be as direct as possible, but imposes some
+	restrictions on message labels: see
+	<em>e.g.</em> <a href="scribble/modules/linmp-scala/src/test/scrib/DuplicateLabels.scr">this
+	example</a>, that terminates with an error about incompatible
+	Scala class definitions.
+      </li>
+      <li>
+	Some autogenerated class names can be quite long, as mentioned
+	in the <a href="#http">HTTP example</a>: <em>e.g.</em>, a choice among
+	messages <span class="code">A</span>, <span class="code">B</span>, <span class="code">C</span>,... will
+	be called <span class="code">AOrBOrC...</span>.  Ideally,
+	Scribble should provide a way to annotate choices, giving them
+	a human-readable name that will then be used for autogenerated
+	classes.  This would also allow to address the message label
+	restrictions mentioned above.
+      </li>
+    </ul>
+  </body>
+</html>
