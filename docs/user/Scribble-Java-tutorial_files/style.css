@@ -1,0 +1,80 @@
+body {
+	background-color: White; 
+	color: Black;
+	/*padding-left: 2%;
+	padding-right: 2%;*/
+	counter-reset: chapter;
+}
+
+/*img {
+	border: 2px solid black
+}*/
+
+/*
+h1, h2, h3 {
+	padding-left: 2%;
+	color: Black;
+	background-color :White;
+	border: 2px solid black ;
+}*/
+
+/*.alignleft {
+	float: left;
+}
+.alignright {
+	float: right;
+}*/
+
+h2:before {
+	content: counter(chapter) ". ";
+	counter-increment: chapter;
+}
+
+h2 {
+	counter-reset: section;  /* Set section to 0 */
+}
+
+h3:before {
+	content: counter(chapter) "." counter(section) " ";
+	counter-increment: section;  /* Add 1 to section */
+}
+
+ol.nested {
+	counter-reset: item
+}
+
+li.nested:before {
+	content: counters(item, ".") ". ";
+	counter-increment: item
+}
+
+li.nested {
+	display: block
+}
+
+
+/*h1, h2 {
+	padding: 3px;
+	background-color: rgb(252,199,18);
+}
+h3 {
+	border-bottom: thick solid rgb(252,199,18);
+}
+blockquote {
+	border-left: thick solid rgb(252,199,18);
+	padding-left: 5px;
+	font-style: italic;
+}
+h1, h2, h3, h4 { color: black; }
+p.authors { font-style: italic; }
+pre.code {
+	margin-left: 40px; margin-right: 40px; padding: 2px;
+	background-color: #000;
+	color: white;
+	overflow-x:auto;
+}
+pre.prompt {
+	margin-left: 40px; margin-right: 40px; padding: 2px;
+	background-color: black; color: white;
+}*/
+
