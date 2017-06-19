@@ -25,17 +25,28 @@
                     Documentation<span class="caret"></span>
                   </a>
                   <ul class="dropdown-menu" role="menu">
-                    <li>
+                    <!--<li>
                       <a href="<#if (content.rootpath)??>${content.rootpath}<#else></#if>docs/user/user-guide.html">User Documentation</a>
-                    </li>
-              <li>
-                <a href="<#if (content.rootpath)??>${content.rootpath}<#else></#if>docs/user/Scribble-Java-tutorial.html">Scribble Tutorial</a>
-              </li>
+                    </li>-->
+										<li>
+											<a href="<#if (content.rootpath)??>${content.rootpath}<#else></#if>docs/scribble-java.html#QUICK">Quick Start (Scribble-Java)</a>
+										</li>
+										<li>
+											<a href="<#if (content.rootpath)??>${content.rootpath}<#else></#if>docs/scribble-java.html#SCRIBCORE">Language Reference</a>
+										</li>
                     <li class="menu-item dropdown dropdown-submenu">
                       <a href="#" class="dropdown-toggle" data-toggle="dropdown">Java Tooling</a>
                       <ul class="dropdown-menu">
                         <li class="menu-item ">
-                          <a href="<#if (content.rootpath)??>${content.rootpath}<#else></#if>url">Command Line</a>
+                          <a href="<#if (content.rootpath)??>${content.rootpath}<#else></#if>docs/scribble-java.html">API Generation Tutorial</a>
+                        </li>
+                      </ul>
+                    </li>
+                    <li class="menu-item dropdown dropdown-submenu">
+                      <a href="#" class="dropdown-toggle" data-toggle="dropdown">Scala Tooling</a>
+                      <ul class="dropdown-menu">
+                        <li class="menu-item ">
+                          <a href="<#if (content.rootpath)??>${content.rootpath}<#else></#if>docs/scribble-scala.html">API Generation Tutorial and Demo Artifact</a>
                         </li>
                       </ul>
                     </li>
