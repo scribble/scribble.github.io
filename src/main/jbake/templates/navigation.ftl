@@ -26,8 +26,16 @@
               <span class="caret"></span>
             </a>
             <ul class="dropdown-menu" role="menu">
+              <ul class="" role="menu">
+                <li>
+                  <a href="<#if (content.rootpath)??>${content.rootpath}<#else></#if>docs/user/user-guide.html">Sub User Documentation</a>
+                </li>
+              </ul>
               <li>
                 <a href="<#if (content.rootpath)??>${content.rootpath}<#else></#if>docs/user/user-guide.html">User Documentation</a>
+              </li>
+              <li>
+                <a href="<#if (content.rootpath)??>${content.rootpath}<#else></#if>docs/user/Scribble-Java-tutorial.html">Scribble Tutorial</a>
               </li>
               <li>
                 <a href="<#if (content.rootpath)??>${content.rootpath}<#else></#if>docs/dev/developer-guide.html">Developer Documentation</a>
