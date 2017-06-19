@@ -9,7 +9,11 @@ notifications:
     on_failure: change
 env:
   global:
-  - secure: GlQi/m4dxO5OP+cxM4sk2Ka34sHFbDuiQVUtwls8Z3pTF0f+84z/UfM6jFPrTvrfG8xtlj7AX5BEsxnPFPBKkqmyFiQjfOlq6GJllTqpXJWc5IwKs/4uv2XkJIwZ+z3I6ICAfU/imZJfCPYmODwUsoR6bP3gbQaH/b4/oRXtAd4=
+  # Ex. travis encrypt -r org/repo GH_USER=your_github_account
+  - secure: "jQRKdJlx1KgornSbRKdVMD0rDbB/NOmmdNNAJXcH1+nBI2gyKbKz1xK02A0czojUj8U76tsXAh0uEyZe8baHc93X9yckYTxVOkF50wwR0ocBmhyXx1TGIXld6cUARm3fiD+NcxaNat5TEmeswYENXOBpDIfGGOX89wMGNlcI9cw="
+  # Ex. travis encrypt -r org/repo GH_TOKEN=XXX-https://github.com/settings/tokens-XXX
+  - secure: "NyfoVI9K+2bkPbSKsKVBVpJePZVEylaqVwZjQX3STOjxszrlH7h9zQgOAdR08fIjhgxlPA02KAdilq/ZQxp2gTsBXJCcOXWyXgaGKVXZIEzSuhLz5cluwDGIFrS/+NJgh8qXX2dGNUgb+/PolhzeuB6S+SwSNmYIINzR4BIfsbk="
+
 install:
 - mvn -version -B
 script:
