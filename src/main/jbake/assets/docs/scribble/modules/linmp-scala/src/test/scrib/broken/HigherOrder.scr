@@ -1,0 +1,58 @@
+module HigherOrder;
+
+type <java> "java.lang.Integer" from "rt.jar" as Int;
+
+global protocol Proto(role A, role B, role C) {
+    First(Proto2@D) from A to B;
+    Second(Int) from B to C;
+    Third() from C to A;
+}
+
+
+global protocol Proto2(role D, role E, role F)
+{
+	choice at D
+	{
+		M1() from D to E;
+		M1() from E to F;
+		rec X
+		{
+			rec X
+			{
+				rec X
+				{
+					M3(Int) from F to D;
+					continue X;
+				}
+			}
+		}
+	}
+	or
+	{
+		M2() from D to E;
+		M2() from E to F;  // Doesn't need to be distinct from first case
+		rec X
+		{
+			M3(Int) from F to D;
+			continue X;
+		}
+	}
+
+  /*A!
+  {
+  	M1():
+  		mu X.
+  		mu X.
+  		mu X.
+  		B?{
+				M3(int): #X
+			}
+  	,
+  	M2():
+  		mu X.
+			B?
+			{
+				M3(int): #X
+			}
+  }*/
+}

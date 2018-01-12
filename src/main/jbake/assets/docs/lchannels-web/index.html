@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="UTF-8">
+    <title>lchannels - Session programming in Scala</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="stylesheets/normalize.css" media="screen">
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/github-light.css" media="screen">
+    <script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js"></script>
+  </head>
+  <body>
+    <section class="page-header">
+      <h1 class="project-name">lchannels</h1>
+      <h2 class="project-tagline">Type-safe session programming in Scala</h2>
+      <a href="https://github.com/alcestes/lchannels" class="btn">View on GitHub</a>
+      <a href="https://github.com/alcestes/lchannels/zipball/master" class="btn">Download .zip</a>
+      <a href="https://github.com/alcestes/lchannels/tarball/master" class="btn">Download .tar.gz</a>
+    </section>
+
+    <section class="main-content">
+      <p>
+	<code>lchannels</code> is a Scala library for
+	<em>type-safe session programming</em>.  It
+	provides <em>linear I/O channels</em>, which allow to transfer
+	data locally, or over a network.  Its API allows
+	to <em>(1)</em> define
+	<em>protocols</em>, represented as a set
+	of <em>continuation-passing style classes</em>,
+	and <em>(2)</em> easily write programs that interact according
+	to such protocols.  The Scala type checker can examine the
+	resulting code and spot many protocol violations <em>at
+	compile time</em>.
+      </p>
+
+      <h2 id="example">An example</h2>
+      
+      <p>
+	Consider a simple ATM, which is supposed to implement the
+	following session protocol:
+      </p>
+
+      <ul>
+	<li>
+	  the user provides his/her card number and PIN;
+	  <ul>
+	    <li>
+	      if the card number or pin are wrong, the ATM notifies the
+	      failure and quits the session;
+	    </li>
+	    <li>
+	      otherwise, the user can choose between:
+	      <ul>
+		<li>
+		  checking the account balance. In this case, the
+		  ATM answers accordingly, and quits;
+		</li>
+		<li>
+		  quitting the session.
+		</li>
+	      </ul>
+	    </li>
+	  </ul>
+	</li>
+      </ul>
+
+      <p>
+	Such a protocol can be represented with the
+	following <em>continuation-passing style</em> classes
+	(where <code>Out[A]</code> is an <em>output channel
+	endpoint</em> carrying an <code>A</code>-typed message, and
+	the <code>cont</code> fields describe how the session
+	continues):
+      </p>
+      
+    <pre><code class="prettyprint lang-scala">case class Authenticate(card: String, pin: String)(val cont: Out[Response])
+
+sealed abstract class Response  // Authentication response from the ATM
+case class Failure()                       extends Response 
+case class Success()(val cont: Out[Menu])  extends Response
+
+sealed abstract class Menu      // Choices available to authenticated user
+case class CheckBalance()(val cont: Out[Balance])  extends Menu
+case class Quit()                                  extends Menu
+
+case class Balance(amount: Int) // User account balance
+</code></pre>
+
+      <p>
+	Then, the ATM can be implemented with the following Scala code
+	(where the method <code>In[A].?</code> allows to receive
+	an <code>A</code>-typed message,
+	while <code>Out[A].!</code> and <code>Out[A].!!</code>
+	allow to send an <code>A</code>-typed message):
+      </p>
+
+      <pre><code class="prettyprint lang-scala">def atm(c: In[Authenticate]) = {
+  c ? { auth =>
+    if (!authenticated(auth.card, auth.pin)) {
+      auth.cont ! Failure()
+    } else {
+      ( auth.cont !! Success()_ ) ? {
+        case m @ CheckBalance() => m.cont ! Balance(42)
+        case Quit()             => ()
+} } } }
+</code></pre>
+
+      <p>
+	The Scala compiler will ensure that the ATM program does not
+	send the wrong type of message
+	(e.g., trying to send <code>Balance</code>
+	when <code>Success</code>/<code>Failure</code> are expected),
+	and that it does not forget to handle some valid user requests
+	(e.g., it will warn if the <code>Quit</code> case is missing).
+	This way, many protocol violations are detected <em>at compile
+	time</em>; other protocol safety errors (e.g., duplicate
+	outputs) are detected
+	<em>at runtime</em> --- and in this case, <code>lchannels</code>
+	raises errors and prevents out-of-protocol messages to be sent.
+      </p>
+
+      <p>
+	Notably, <code>In[A]</code> and <code>Out[A]</code>
+	<em>abstract the underlying message transport</em>:
+	the <code>atm()</code> method above can interact with an user
+	process e.g. via local data queues, or through a TCP/IP
+	socket.  As a result, the protocol logic and its
+	low-level details are decoupled.
+      </p>
+      
+      <h2 id="documentation">Documentation and publications</h2>
+
+      <p>
+	The theory and practice of session programming
+	with <code>lchannels</code> is presented in the following
+	papers: they explain how protocols
+	(formalised as <em>session types</em>) can be
+	represented in Scala using <code>lchannels</code> with
+	<em>continuation-passing style classes</em>, and discusses
+	the main features of the library.
+      </p>
+
+      <img style="float:right; height:6em; width:auto" src="images/aec-badge-ecoop.png"
+      alt="ECOOP 2016 Artifact Evaluation Committee badge">
+      <ul>
+	<li>
+	  Alceste Scalas and Nobuko Yoshida.
+	  <a href="http://doi.org/10.4230/LIPIcs.ECOOP.2016.21"><em>&ldquo;Lightweight
+	  Session Programming in Scala&rdquo;</em></a>. Proceedings of
+	  the <a href="http://2016.ecoop.org/">30th European
+	  Conference on Object-Oriented Programming (ECOOP 2016)</a>.
+          A previous version of <code>lchannels</code> is also
+	  published as the <a href="http://dx.doi.org/10.4230/DARTS.2.1.11">companion artifact of the paper</a>.
+	</li>
+	<li>
+	  Alceste Scalas and Nobuko Yoshida.
+	  <a href="http://mrg.doc.ic.ac.uk/publications/lightweight-session-programming-in-scala/paper.pdf"><em>&ldquo;Lightweight Session Programming in Scala (extended version)&rdquo;</em></a>.
+          Technical Report 2015/7, Imperial College London
+	  (updated in May 2016).
+	</li>
+      </ul>
+      
+      <p>
+	<strong>NOTE:</strong> newer versions
+	of <code>lchannels</code> available on GitHub
+	have <a href="current-vs-ecoop16.html">some differences and
+	improvements</a>.
+      </p>
+
+      <h2>Downloading, compiling and testing</h2>
+
+      <p>
+	You can download <code>lchannels</code>
+	from <a href="https://github.com/alcestes/lchannels">its
+	  GitHub repository</a>.
+      </p>
+
+      <p>
+	To compile an test the code, you can
+	follow <a href="instructions.html">these instructions</a>.
+      </p>
+
+      <footer class="site-footer">
+	<span class="site-footer-owner">
+	  <a href="https://github.com/alcestes/lchannels">lchannels</a>
+          is maintained
+          by <a href="https://github.com/alcestes">Alceste Scalas</a>.
+	  Email:
+	  alceste <em>(dot)</em> scalas <em>(at)</em> imperial <em>(dot)</em> ac <em>(dot)</em> uk
+	</span>
+	
+	<span class="site-footer-credits">This theme is based on <a href="https://github.com/jasonlong/cayman-theme">Cayman</a> by <a href="https://twitter.com/jasonlong">Jason Long</a>.</span>
+      </footer>
+    </section>
+  </body>
+</html>

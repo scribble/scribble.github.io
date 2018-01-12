@@ -1,0 +1,7 @@
+module ABC;
+
+global protocol Proto(role A, role B, role C) {
+    Msg1() from A to B;
+    Msg2() from B to C;
+    Msg3() from C to A;
+}

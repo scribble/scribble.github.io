@@ -1,0 +1,47 @@
+module Game3;
+
+type <java> "java.lang.Boolean" from "rt.jar" as Boolean;
+type <java> "java.lang.Integer" from "rt.jar" as Int;
+type <java> "java.lang.String" from "rt.jar" as String;
+
+global protocol ClientA(role p, role q) {
+  PlayA(Game@a) from q to p;
+}
+
+global protocol ClientB(role p, role q) {
+  PlayB(Game@b) from q to p;
+}
+
+global protocol ClientC(role p, role q) {
+  PlayC(Game@c) from q to p;
+}
+
+global protocol Game(role a, role b, role c) {
+  InfoBC(String) from b to c;
+  InfoCA(String) from c to a;
+  InfoAB(String) from a to b;
+  
+  rec t {
+    choice at a {
+      Mov1AB(Int) from a to b;
+      Mov1BC(Int) from b to c;
+      choice at c {
+        Mov1CA(Int) from c to a;
+        continue t;
+      } or {
+        Mov2CA(Boolean) from c to a;
+        continue t;
+      }
+    } or {
+      Mov2AB(Boolean) from a to b;
+      Mov2BC(Boolean) from b to c;
+      choice at c {
+        Mov1CA(Int) from c to a;
+        continue t;
+      } or {
+        Mov2CA(Boolean) from c to a;
+				continue t;
+      }
+    }
+  }
+}

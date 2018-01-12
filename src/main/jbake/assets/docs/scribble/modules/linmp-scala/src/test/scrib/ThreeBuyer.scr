@@ -1,0 +1,62 @@
+/**
+ * Taken from:
+ *     M. Coppo, M. Dezani-Ciancaglini, N. Yoshida, L. Padovani
+ *     "Global Progress for Dynamically Interleaved Multiparty Sessions"
+ *     Mathematical Structures in Computer Science, 2016
+ *     http://dx.doi.org/10.1017/S0960129514000188
+ */
+
+module ThreeBuyer;
+
+type <java> "java.lang.Integer" from "rt.jar" as Int;
+type <java> "java.lang.String" from "rt.jar" as String;
+
+type <java> "ZonedDateTime" from "java.time" as ZonedDateTime;
+
+global protocol PlayAlice(role alice, role seller) {
+  PlayAlice(TwoBuyer@alice) from seller to alice;
+}
+
+global protocol PlayBob(role bob, role seller) {
+  PlayBob(TwoBuyer@bob) from seller to bob;
+}
+
+global protocol TwoBuyer(role alice, role bob, role seller)
+{
+	Title(String) from alice to seller;
+	QuoteA(Int) from seller to alice;
+	QuoteB(Int) from seller to bob;
+	ShareA(Int) from alice to bob;
+	do TwoBuyerChoice(alice, bob, seller);
+}
+
+aux global protocol TwoBuyerChoice(role alice, role bob, role seller)
+{
+	choice at bob
+	{
+		OkA() from bob to alice;
+		OkS() from bob to seller;
+		Address(String) from bob to seller;
+		Deliver(ZonedDateTime) from seller to bob;
+	}
+	or
+	{
+		QuitA() from bob to alice;
+		QuitS() from bob to seller;
+	}
+}
+
+
+global protocol Delegation(role carol, role bob)
+{
+	Contrib(Int) from bob to carol;  // Should be the Int on line 19
+	Delegate(TwoBuyerChoice@bob) from bob to carol;
+	choice at carol
+	{
+		OkC() from carol to bob;
+	}
+	or
+	{
+		QuitC() from carol to bob;
+	}
+}

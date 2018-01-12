@@ -1,0 +1,37 @@
+module Game3;
+
+type <java> "java.lang.Boolean" from "rt.jar" as Boolean;
+type <java> "java.lang.Integer" from "rt.jar" as Int;
+type <java> "java.lang.String" from "rt.jar" as String;
+
+
+/**
+ * Standard multiparty session typing systems do not guarantee deadlock-freedom
+ * of processes dealing with multiple concurrent sessions,
+ * and in presence of delegation.
+ *
+ * Similarly, Scribble can guarantee absence of deadlocks *inside* a single
+ * session, but cannot prevent processes from interacting on multiple
+ * sessions in a way that causes a deadlock.
+ * 
+ * For a work dealing deadlocks and multiple sessions, see e.g.:
+ *
+ *     M. Coppo, M. Dezani-Ciancaglini, N. Yoshida, L. Padovani
+ *     "Global Progress for Dynamically Interleaved Sessions"
+ *     Mathematical Structures in Computer Science, 2016
+ *     http://dx.doi.org/10.1017/S0960129514000188
+ */
+
+global protocol ClientA(role s, role c) {
+  CA(DeadLock@a) from s to c;  // Means: send a channel of *type* Deadlock@a.
+  CB(DeadLock@b) from s to c;  // Means: send a channel of *type* Deadlock@b.
+                               // Note that the channels delegated above might
+                               // belong to the same multiparty session
+}
+  
+global protocol DeadLock(role a, role b, role c) {
+  1() from a to b;  // Might deadlock if CA/CB sent above carry channels
+                    // belonging to the same multiparty session.
+  2() from b to c;
+  3() from c to a;
+}
