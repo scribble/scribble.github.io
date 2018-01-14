@@ -10,9 +10,9 @@ notifications:
 env:
   global:
   # Ex. travis encrypt -r org/repo GH_USER=your_github_account
-  - secure: "jQRKdJlx1KgornSbRKdVMD0rDbB/NOmmdNNAJXcH1+nBI2gyKbKz1xK02A0czojUj8U76tsXAh0uEyZe8baHc93X9yckYTxVOkF50wwR0ocBmhyXx1TGIXld6cUARm3fiD+NcxaNat5TEmeswYENXOBpDIfGGOX89wMGNlcI9cw="
+  - secure: "wLofk8WrIrwLixXNRLnPzm8/VO4PUJaHm4wW86jGgJ+GZb8qkN54p/0C4lT/oKtVY45OIKCqqk8fdvjax4Chow8RqLqHrW8MM7xHuykw25guQeB14blzbhMM9L8GbdScmyDn5MRfVuUQXRH+HQD5ScZpNYSgLyKEzpS5r5+PpLM="
   # Ex. travis encrypt -r org/repo GH_TOKEN=XXX-https://github.com/settings/tokens-XXX
-  - secure: "NyfoVI9K+2bkPbSKsKVBVpJePZVEylaqVwZjQX3STOjxszrlH7h9zQgOAdR08fIjhgxlPA02KAdilq/ZQxp2gTsBXJCcOXWyXgaGKVXZIEzSuhLz5cluwDGIFrS/+NJgh8qXX2dGNUgb+/PolhzeuB6S+SwSNmYIINzR4BIfsbk="
+  - secure: "fzV6AxqutqwxwrnG+sdHoyylDES+tcaV3kGr507ik42/hYNmCaD9y4y18qdlAvTxcvNbQdzo2jJ4CYuFMJGkt7fxkOhhZJCTfIBjAr9AiV3x+w4rPWK7C2GLzpLhf1vapGxGa+Goq4xF+7VCKxKPNHvBZDN8TQ93w4cW7nLClyE="
 
 install:
 - mvn -version -B
